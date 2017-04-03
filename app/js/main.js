@@ -1,9 +1,16 @@
 "use strict";
 
+function init() {
+    let input = document.getElementById('location_input');
+    let autocomplete = new google.maps.places.Autocomplete(input);
+}
+
+//google.maps.event.addDomListener(window, 'load', init);
+
 var location_sent = false;
 
 function submit_location() {
-  let location = document.getElementById('location_start').value;
+  let location = document.getElementById('location_input').value;
   location_sent = true;
   console.log(location);
   swap_location_buttons();
@@ -22,6 +29,11 @@ function swap_location_buttons() {
     
   } else {
     //show not loading
+    let loading_div = document.getElementById('loading_div');
+    loading_div.style.display = 'none';
+    
+    let submit_button = document.getElementById('submit_button');
+    submit_button.style.display = 'block';
     
   }
 }

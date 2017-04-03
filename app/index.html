@@ -16,17 +16,16 @@
   <title>Wandr</title>
 </head>
 
-<body id="body">
+<body onload="init();">
 <section class="front-content">
   <header class="front-banner">
     <h2 class="hidden">Wandr</h2>
     <img class="front-banner__image" src="./assets/wandr-logo.svg" alt="WANDR">
   </header>
 
-  <!-- Maps JavaScript API key: AIzaSyAh8xMvPeu7Y7hMcOBUA-lh4KhTYt2xUR8 -->
   <form id="location_form" class="location-form" onsubmit="submit_location(); return false;"> <!--action="trips.html"-->
     <label class="location-form__where-label">Where are you going?</label>
-    <input class="location-form__where-input" id="location_start" name="location" autocomplete="on" placeholder="London" required autofocus>
+    <input class="location-form__where-input" id="location_input" name="location" placeholder="London" required autofocus> <!--  autocomplete="on" -->
     <input class="location-form__go-button" id="submit_button" type="submit" value="Go">
     
     <div id="loading_div" class="loading">
@@ -57,6 +56,8 @@
   </form>
 </section>
 
+<!-- Maps JavaScript API key: AIzaSyAh8xMvPeu7Y7hMcOBUA-lh4KhTYt2xUR8 -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh8xMvPeu7Y7hMcOBUA-lh4KhTYt2xUR8&libraries=places" async defer></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>
