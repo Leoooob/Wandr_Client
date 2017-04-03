@@ -1,11 +1,9 @@
 "use strict";
 
-function init() {
+function initialise_autocomplete() {
     let input = document.getElementById('location_input');
     let autocomplete = new google.maps.places.Autocomplete(input);
 }
-
-//google.maps.event.addDomListener(window, 'load', init);
 
 var location_sent = false;
 
