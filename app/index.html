@@ -25,7 +25,7 @@
 
   <form id="location_form" class="location-form" onsubmit="submit_location(); return false;"> <!--action="trips.html"-->
     <label class="location-form__where-label">Where are you going?</label>
-    <input class="location-form__where-input" id="location_input" name="location" placeholder="London" required autofocus> <!--  autocomplete="on" -->
+    <input class="location-form__where-input" id="location_input" name="location" placeholder="London, United Kingdom" required autofocus> <!--  autocomplete="on" -->
     <input class="location-form__go-button" id="submit_button" type="submit" value="Go">
     
     <div id="loading_div" class="loading">
@@ -58,6 +58,7 @@
 
 <!-- Maps JavaScript API key: AIzaSyAh8xMvPeu7Y7hMcOBUA-lh4KhTYt2xUR8 -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh8xMvPeu7Y7hMcOBUA-lh4KhTYt2xUR8&libraries=places" async defer></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>

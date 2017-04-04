@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 function initialise_autocomplete() {
     let input = document.getElementById('location_input');
@@ -12,11 +12,10 @@ function submit_location() {
   location_sent = true;
   console.log(location);
   swap_location_buttons();
+  send_location(location);
 };
 
 function swap_location_buttons() {
-  console.log(location_sent);
-  
   if (location_sent) {
     //show loading
     let submit_button = document.getElementById('submit_button');
@@ -34,4 +33,19 @@ function swap_location_buttons() {
     submit_button.style.display = 'block';
     
   }
+}
+
+function send_location(location) {
+  let my_url = 'http://localhost:3000/api/location?near=' + location;
+  
+  $.ajax({
+    url: my_url,
+    type: 'GET',
+    success: function(response){
+      console.log(response);
+    },
+    error: function(error){
+      console.log('Error: ' + error);
+    }
+  });
 }
