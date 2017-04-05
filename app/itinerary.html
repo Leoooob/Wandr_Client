@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="css/style.css" />
+  
+  <meta name="author" content="Leon Hassan">
+  <meta name="theme-color" content="#f05f40">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wandr, the procedural itinerary generator.">
+  
+  <link rel="icon" type="image/png" href="./assets/static/favicon_192px.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="./assets/static/favicon_96px.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="./assets/static/favicon_32px.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="./assets/static/favicon_16px.png" sizes="16x16">
+  
+  <title>Wandr</title>
+</head>
+
+<body>
+<section class="front-content">
+  <header class="front-banner">
+    <h2 class="hidden">Wandr</h2>
+    <img class="front-banner__image" src="./assets/wandr-logo.svg" alt="WANDR">
+  </header>
+   
+  <div class="container">
+    <div class="tripPlanner">
+      <div class="summary">
+        <div class="summary__title">Here's your itinerary.</div>
+        <div class="summary__location summary__bottom-row">
+          <span class="summaryLocation"></span>
+          <button class="summary__startover" onclick="window.location='index.html';"><img src="./assets/reset_32.svg" class="summary__startover__icon" alt="start again"></button>
+        </div>
+
+        <button class="summary__reshuffle summary__bottom-row" onclick="">Reshuffle <img class="summary__reshuffle__icon" alt="" src="./assets/refresh_32.svg"></button>
+      </div>
+
+      <div id="tripSectionContainer">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Maps JavaScript API key: AIzaSyAh8xMvPeu7Y7hMcOBUA-lh4KhTYt2xUR8 -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh8xMvPeu7Y7hMcOBUA-lh4KhTYt2xUR8&libraries=places" async defer></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
