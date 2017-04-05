@@ -1,0 +1,22 @@
+/* fonts */
+@font-face {
+    font-family: 'ClinicaPro-Regular';
+    src: url('../assets/fonts/ClinicaPro-Regular-webfont.woff2') format('woff2'),
+         url('../assets/fonts/ClinicaPro-Regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$font-family: 'ClinicaPro-Regular';
+
+/* HSLA colours */
+$primary-colour: hsla(11%, 85%, 60%, 1);       //f05f40
+$highlight-colour: hsla(14%, 100%, 54%, 1);    //ff4b15
+$background-colour: hsla(0%, 0%, 97%, 1);      //f8f8f8
+
+$dark-colour: hsla(0%, 0%, 20%, 1);            //333333
+$light-colour: hsla(0%, 0%, 100%, 1);          //ffffff
+$grey-colour: hsla(0%, 0%, 50%, 1);            //808080
+
+/* media query sizes */
+$mobile-h: 420px;

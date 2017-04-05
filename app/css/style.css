@@ -1,12 +1,24 @@
+/* import all other scss sheets */
+/* fonts */
 @font-face {
   font-family: 'ClinicaPro-Regular';
   src: url("../assets/fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../assets/fonts/ClinicaPro-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
-/* Coolors Exported Palette - coolors.co/f05f40-ff4b15-333333-ffffff-808080 */
-/* HSL */
-/* SVG loading image */
+/* HSLA colours */
+/* media query sizes */
+/* import fonts and colours */
+/* fonts */
+@font-face {
+  font-family: 'ClinicaPro-Regular';
+  src: url("../assets/fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../assets/fonts/ClinicaPro-Regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+/* HSLA colours */
+/* media query sizes */
+/* SVG loading keyframes */
 @keyframes frame_1 {
   0%, 90% {
     opacity: 0; }
@@ -47,54 +59,16 @@
   100% {
     opacity: 1; } }
 
-.loading {
-  display: none; }
-  .loading .loading_svg {
-    left: 10px;
-    right: 0;
-    z-index: 1;
-    width: 160px;
-    height: 76px;
-    margin: 0 auto;
-    position: absolute; }
-    .loading .loading_svg svg {
-      width: 100%;
-      height: auto; }
-
-.loading_animation {
-  fill: #f06242; }
-  .loading_animation .frame_1 {
-    animation: frame_1 10s ease infinite; }
-  .loading_animation .frame_2 {
-    animation: frame_2 10s ease infinite; }
-  .loading_animation .frame_3 {
-    animation: frame_3 10s ease infinite; }
-  .loading_animation .frame_4 {
-    animation: frame_4 10s ease infinite; }
-
-/* style rules */
-.hidden {
-  display: none; }
-
-.front-content {
-  margin: 0 20px; }
-
-.front-banner__image {
-  display: block;
-  max-width: 500px;
-  margin: 10vh auto; }
-  @media (max-height: 420px) {
-    .front-banner__image {
-      margin: 5vh auto; } }
-
+/* styles */
 .location-form {
   margin: 0;
-  font-family: 'ClinicaPro-Regular'; }
+  font-family: "ClinicaPro-Regular"; }
   .location-form__where-label {
     display: block;
     margin: 1rem auto;
     font-size: 1.6rem;
-    text-align: center; }
+    text-align: center;
+    color: #333333; }
   .location-form__where-input {
     width: 100%;
     display: block;
@@ -104,7 +78,8 @@
     margin: 1rem auto;
     font-size: 1.6rem;
     border-radius: 3px;
-    border: 1px solid #ff4b14; }
+    border: 1px solid #ff4b14;
+    background-color: #f7f7f7; }
     .location-form__where-input:focus {
       outline: none;
       border-color: #f06242;
@@ -136,3 +111,123 @@
       color: #f06242;
       margin: 50px auto 0 auto;
       background-color: white; }
+
+.loading {
+  display: none; }
+  .loading .loading_svg {
+    left: 10px;
+    right: 0;
+    z-index: 1;
+    width: 160px;
+    height: 76px;
+    margin: 0 auto;
+    position: absolute; }
+    .loading .loading_svg svg {
+      width: 100%;
+      height: auto; }
+
+.loading_animation {
+  fill: #f06242; }
+  .loading_animation .frame_1 {
+    animation: frame_1 10s ease infinite; }
+  .loading_animation .frame_2 {
+    animation: frame_2 10s ease infinite; }
+  .loading_animation .frame_3 {
+    animation: frame_3 10s ease infinite; }
+  .loading_animation .frame_4 {
+    animation: frame_4 10s ease infinite; }
+
+/* import fonts and colours */
+/* fonts */
+@font-face {
+  font-family: 'ClinicaPro-Regular';
+  src: url("../assets/fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../assets/fonts/ClinicaPro-Regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+/* HSLA colours */
+/* media query sizes */
+/* styles */
+.page-header {
+  margin: 20px;
+  text-align: center; }
+  .page-header__logo {
+    width: 100%;
+    max-width: 25rem; }
+
+.summary {
+  font-weight: 300; }
+  .summary__title {
+    text-align: left; }
+  .summary__location {
+    float: left;
+    margin-right: 1em;
+    padding: 0.5rem 0; }
+  .summary__startover {
+    background: none;
+    border: none;
+    opacity: 0.7; }
+    .summary__startover:hover {
+      opacity: 1; }
+    .summary__startover__icon {
+      padding: 0 0.1em;
+      width: 2rem; }
+  .summary__reshuffle {
+    float: right;
+    background-color: #333333;
+    color: white;
+    border: none;
+    font-family: "ClinicaPro-Regular";
+    padding: 1rem; }
+    .summary__reshuffle__icon {
+      /*$intendedWidth: 0.8em;
+      $sidePadding: 0.4em;
+      width: 0.8em + (2 * $sidePadding);
+      padding: 0 $sidePadding;*/ }
+
+.container {
+  text-align: center;
+  margin: 0 20px; }
+
+.slot {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  cursor: pointer; }
+  .slot .slot__left-arrow, .slot .slot__right-arrow, .slot .slot__pin-button {
+    opacity: 0.9;
+    padding: 0.25rem; }
+    .slot .slot__left-arrow:hover, .slot .slot__right-arrow:hover, .slot .slot__pin-button:hover {
+      opacity: 1; }
+  .slot__title {
+    flex-grow: 1;
+    float: left; }
+  .slot__pin-button {
+    float: right; }
+  .slot__left-arrow {
+    float: left; }
+  .slot__right-arrow {
+    float: right;
+    order: 1; }
+
+.button {
+  border: 0; }
+
+/* projet wide style rules */
+body {
+  background-color: #f7f7f7; }
+
+.hidden {
+  display: none; }
+
+.front-content {
+  margin: 0 20px; }
+
+.front-banner__image {
+  display: block;
+  max-width: 500px;
+  margin: 10vh auto; }
+  @media (max-height: 420px) {
+    .front-banner__image {
+      margin: 5vh auto; } }
