@@ -15,12 +15,8 @@ $dark-colour: hsla(0%, 0%, 20%, 1);
 $light-colour: hsla(0%, 0%, 100%, 1);
 $grey-colour: hsla(0%, 0%, 50%, 1);
 
-/* RGB */
-/*$primary-colour: rgba(240, 95, 64, 1);
-$highlight-colour: rgba(255, 75, 21, 1);
-$dark-colour: rgba(51, 51, 51, 1);
-$light-colour: rgba(255, 255, 255, 1);
-$grey-colour: rgba(128, 128, 128, 1);*/
+$mobile-h: 420px;
+
 
 /* SVG loading image */
 
@@ -115,7 +111,11 @@ $grey-colour: rgba(128, 128, 128, 1);*/
     display: block;
     //max-width: 90%;
     max-width: 500px;
-    margin: 10vh auto 10vh auto;
+    margin: 10vh auto;
+    
+    @media (max-height: $mobile-h) {
+      margin: 5vh auto;
+    }
   }
 }
 
@@ -160,6 +160,10 @@ $grey-colour: rgba(128, 128, 128, 1);*/
     border-radius: 4px;
     color: $light-colour;
     background-color: $primary-colour;
+    
+    @media (max-height: $mobile-h) {
+      margin: 5vh auto;
+    }
     
     &:hover, &:focus {
       outline: none;

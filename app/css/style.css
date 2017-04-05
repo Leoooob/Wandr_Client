@@ -6,12 +6,6 @@
 
 /* Coolors Exported Palette - coolors.co/f05f40-ff4b15-333333-ffffff-808080 */
 /* HSL */
-/* RGB */
-/*$primary-colour: rgba(240, 95, 64, 1);
-$highlight-colour: rgba(255, 75, 21, 1);
-$dark-colour: rgba(51, 51, 51, 1);
-$light-colour: rgba(255, 255, 255, 1);
-$grey-colour: rgba(128, 128, 128, 1);*/
 /* SVG loading image */
 @keyframes frame_1 {
   0%, 90% {
@@ -88,7 +82,10 @@ $grey-colour: rgba(128, 128, 128, 1);*/
 .front-banner__image {
   display: block;
   max-width: 500px;
-  margin: 10vh auto 10vh auto; }
+  margin: 10vh auto; }
+  @media (max-height: 420px) {
+    .front-banner__image {
+      margin: 5vh auto; } }
 
 .location-form {
   margin: 0;
@@ -124,6 +121,9 @@ $grey-colour: rgba(128, 128, 128, 1);*/
     border-radius: 4px;
     color: white;
     background-color: #f06242; }
+    @media (max-height: 420px) {
+      .location-form__go-button {
+        margin: 5vh auto; } }
     .location-form__go-button:hover, .location-form__go-button:focus {
       outline: none;
       box-shadow: 0 0 10px #f06242;
