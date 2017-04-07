@@ -28,15 +28,52 @@
       <div class="summary">
         <div class="summary__title">Here's your itinerary.</div>
         <div class="summary__location summary__bottom-row">
-          <span class="summaryLocation"></span>
-          <button class="summary__startover" onclick="window.location='index.html';"><img src="./assets/reset_32.svg" class="summary__startover__icon" alt="start again"></button>
+          <span class="summary_location">Reading, United Kingdom</span>
+          <button class="summary__button summary__button__edit" onclick="edit_itinerary_name();"><img src="./assets/edit_24.svg" class="summary__button__icon" alt="edit itinerary name"></button>
+          <button class="summary__button" onclick="window.location='index.html';"><img src="./assets/reset_32.svg" class="summary__button__icon" alt="start again"></button>
         </div>
 
         <button class="summary__reshuffle summary__bottom-row" onclick="">Reshuffle <img class="summary__reshuffle__icon" alt="" src="./assets/refresh_32.svg"></button>
       </div>
 
-      <div id="tripSectionContainer">
+      <div id="itinerary_container">
+        <article tabindex="0" class="slot">
+          <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
+          <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
+          <div class="slot__title">Leicester Square Garden</div>
+          <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
+          <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
+        </article>
+        <article tabindex="0" class="slot">
+          <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
+          <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
+          <div class="slot__title">Premier Inn London City Old Street</div>
+          <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
+          <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
+        </article>
+        <article tabindex="0" class="slot">
+          <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
+          <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
+          <div class="slot__title">Primrose Hill</div>
+          <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
+          <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
+        </article>
+        <article tabindex="0" class="slot">
+          <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
+          <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
+          <div class="slot__title">ZSL London Zoo</div>
+          <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
+          <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
+        </article>
+        <article tabindex="0" class="slot">
+          <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
+          <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
+          <div class="slot__title">ibis London City - Shoreditch Hotel</div>
+          <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
+          <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
+        </article>
       </div>
+      
     </div>
   </div>
 </section>
