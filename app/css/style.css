@@ -239,9 +239,36 @@
     order: 1; }
 
 .button {
-  background: green;
-  color: white;
-  border: 0; }
+  border: 0;
+  color: white; }
+
+/* travel node styles */
+.travel {
+  display: inline-flex;
+  /*&__mode, &__time {
+    font-size: 20px;
+    line-height: 30px;
+  }*/ }
+  .travel__mode {
+    order: 1;
+    font-size: 15px;
+    line-height: 30px; }
+  .travel__node {
+    order: 2;
+    width: 32px;
+    height: 32px;
+    margin: 0 15px;
+    cursor: pointer;
+    fill: #333333;
+    stroke: #333333;
+    stroke-miterlimit: 10; }
+    .travel__node:hover {
+      fill: #f7f7f7;
+      stroke: #ff4b14; }
+  .travel__time {
+    order: 3;
+    font-size: 20px;
+    line-height: 30px; }
 
 /* projet wide style rules */
 body {

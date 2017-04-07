@@ -147,17 +147,46 @@
   }
 }
 
-.smallHeading {
-  //font-size: $headingSize;
-}
-
-.itineraryListing {
-    //background: $itemcolor;
-    //color: $itemfontcolor;
-}
-
 .button {
-    background: green;//$itemsecondarycolor;
-    color: $light-colour;
     border: 0;
+    color: $light-colour;
+}
+
+/* travel node styles */
+.travel {
+  display: inline-flex;
+  
+  &__mode {
+    order: 1;
+    font-size: 15px;
+    line-height: 30px;
+  }
+  
+  &__node {
+    order: 2;
+    width: 32px;
+    height: 32px;
+    margin: 0 15px;
+    cursor: pointer;
+    fill: $dark-colour;
+    stroke: $dark-colour;
+    stroke-miterlimit: 10;
+      
+    &:hover {
+      //fill: $primary-colour;
+      fill: $background-colour;
+      stroke: $highlight-colour;
+    }
+  }
+  
+  &__time {
+    order: 3;
+    font-size: 20px;
+    line-height: 30px;
+  }
+  
+  /*&__mode, &__time {
+    font-size: 20px;
+    line-height: 30px;
+  }*/
 }
