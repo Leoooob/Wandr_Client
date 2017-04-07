@@ -13,13 +13,15 @@
 }
 
 .summary {
+  width: 100%;
+  max-width: 800px;
   font-weight: 300;
   display: inline-block;
 
   &__bottom-row {
     padding: 5px;
     font-size: 20px;
-    margin: auto 1em;
+    //margin: auto 1em;
     //border: 1px solid $dark-colour;
     
     .summary_location {
@@ -42,6 +44,7 @@
   &__button {
     border: none;
     opacity: 0.7;
+    padding: 2px;
     background: none;
 
     &:hover {
@@ -51,7 +54,10 @@
     &__icon {
       width: 2rem;
       float: right;
-      padding: 0 0.1em;
+    }
+    
+    &__edit {
+      margin-left: 10px;
     }
   }
 
@@ -59,10 +65,11 @@
     float: right;
     border: none;
     padding: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
     color: $light-colour;
     font-family: $font-family;
     background-color: $dark-colour;
-    //font-size: $fontSizeSmall;
 
     &__icon {
       /*$intendedWidth: 0.8em;
@@ -74,8 +81,8 @@
 }
 
 .container {
-  text-align: center;
   margin: 0 20px;
+  text-align: center;
 }
 
 .textbox {
@@ -83,18 +90,20 @@
 
 
 #itinerary_container {
-  clear: both;
+  width: 100%;
   display: inline-block;
 }
 
 .slot {
   display: flex;
   padding: 1rem;
-  margin: 1rem 0;
   cursor: pointer;
+  max-width: 600px;
+  margin: 1rem auto;
   align-items: center;
-  font-family: $font-family;
+  border-radius: 10px;
   color: $light-colour;
+  font-family: $font-family;
   background: $primary-colour;
 
   %slot-button {
@@ -113,6 +122,12 @@
   &__title {
     flex-grow: 1;
     float: left;
+  }
+
+  &__genre-button {
+    @extend %slot-button;
+    float: left;
+    width: 32px;
   }
 
   &__pin-button {

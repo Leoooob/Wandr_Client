@@ -93,7 +93,7 @@
     font-size: 1.6rem;
     margin: 10vh auto;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 5px;
     color: #f7f7f7;
     background-color: #f06242; }
     @media (max-height: 420px) {
@@ -156,12 +156,13 @@
     max-width: 25rem; }
 
 .summary {
+  width: 100%;
+  max-width: 800px;
   font-weight: 300;
   display: inline-block; }
   .summary__bottom-row {
     padding: 5px;
-    font-size: 20px;
-    margin: auto 1em; }
+    font-size: 20px; }
     .summary__bottom-row .summary_location {
       float: left;
       padding: 8px 0; }
@@ -175,17 +176,21 @@
   .summary__button {
     border: none;
     opacity: 0.7;
+    padding: 2px;
     background: none; }
     .summary__button:hover {
       opacity: 1; }
     .summary__button__icon {
       width: 2rem;
-      float: right;
-      padding: 0 0.1em; }
+      float: right; }
+    .summary__button__edit {
+      margin-left: 10px; }
   .summary__reshuffle {
     float: right;
     border: none;
     padding: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
     color: white;
     font-family: "ClinicaPro-Regular";
     background-color: #333333; }
@@ -196,30 +201,35 @@
       padding: 0 $sidePadding;*/ }
 
 .container {
-  text-align: center;
-  margin: 0 20px; }
+  margin: 0 20px;
+  text-align: center; }
 
 #itinerary_container {
-  clear: both;
+  width: 100%;
   display: inline-block; }
 
 .slot {
   display: flex;
   padding: 1rem;
-  margin: 1rem 0;
   cursor: pointer;
+  max-width: 600px;
+  margin: 1rem auto;
   align-items: center;
-  font-family: "ClinicaPro-Regular";
+  border-radius: 10px;
   color: white;
+  font-family: "ClinicaPro-Regular";
   background: #f06242; }
-  .slot .slot__left-arrow, .slot .slot__right-arrow, .slot .slot__pin-button {
+  .slot .slot__left-arrow, .slot .slot__right-arrow, .slot .slot__genre-button, .slot .slot__pin-button {
     opacity: 0.9;
     padding: 0.25rem; }
-    .slot .slot__left-arrow:hover, .slot .slot__right-arrow:hover, .slot .slot__pin-button:hover {
+    .slot .slot__left-arrow:hover, .slot .slot__right-arrow:hover, .slot .slot__genre-button:hover, .slot .slot__pin-button:hover {
       opacity: 1; }
   .slot__title {
     flex-grow: 1;
     float: left; }
+  .slot__genre-button {
+    float: left;
+    width: 32px; }
   .slot__pin-button {
     float: right; }
   .slot__left-arrow {
