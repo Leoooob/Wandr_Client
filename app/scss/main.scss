@@ -5,6 +5,12 @@
 
 
 /* projet wide style rules */
+%clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 body {
   background-color: $background-colour;
 }

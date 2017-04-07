@@ -82,7 +82,7 @@
     margin: 10vh auto;
     text-align: center;
     border-radius: 4px;
-    color: $light-colour;
+    color: $background-colour;
     background-color: $primary-colour;
     
     @media (max-height: $mobile-h) {
@@ -102,7 +102,7 @@
       position: absolute;
       color: $primary-colour;
       margin: 50px auto 0 auto;
-      background-color: $light-colour;
+      background-color: $background-colour;
     }
   }
 }

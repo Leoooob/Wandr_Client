@@ -1,3 +1,13 @@
+/* import all other scss sheets */
+/* fonts */
+@font-face {
+  font-family: 'ClinicaPro-Regular';
+  src: url("../assets/fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../assets/fonts/ClinicaPro-Regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+/* HSLA colours */
+/* media query sizes */
 /* import fonts and colours */
 /* fonts */
 @font-face {
@@ -84,7 +94,7 @@
     margin: 10vh auto;
     text-align: center;
     border-radius: 4px;
-    color: white;
+    color: #f7f7f7;
     background-color: #f06242; }
     @media (max-height: 420px) {
       .location-form__go-button {
@@ -100,7 +110,7 @@
       position: absolute;
       color: #f06242;
       margin: 50px auto 0 auto;
-      background-color: white; }
+      background-color: #f7f7f7; }
 
 .loading {
   display: none; }
@@ -126,3 +136,117 @@
     animation: frame_3 10s ease infinite; }
   .loading_animation .frame_4 {
     animation: frame_4 10s ease infinite; }
+
+/* import fonts and colours */
+/* fonts */
+@font-face {
+  font-family: 'ClinicaPro-Regular';
+  src: url("../assets/fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../assets/fonts/ClinicaPro-Regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+/* HSLA colours */
+/* media query sizes */
+/* styles */
+.page-header {
+  margin: 20px;
+  text-align: center; }
+  .page-header__logo {
+    width: 100%;
+    max-width: 25rem; }
+
+.summary {
+  font-weight: 300;
+  display: inline-block; }
+  .summary__bottom-row {
+    padding: 5px;
+    font-size: 20px;
+    margin: auto 1em; }
+    .summary__bottom-row .summary_location {
+      float: left;
+      padding: 8px 0; }
+  .summary__title {
+    font-size: 20px;
+    margin: 1ex auto;
+    text-align: left; }
+  .summary__location {
+    float: left;
+    padding: 1rem 0; }
+  .summary__button {
+    border: none;
+    opacity: 0.7;
+    background: none; }
+    .summary__button:hover {
+      opacity: 1; }
+    .summary__button__icon {
+      width: 2rem;
+      float: right;
+      padding: 0 0.1em; }
+  .summary__reshuffle {
+    float: right;
+    border: none;
+    padding: 1rem;
+    color: white;
+    font-family: "ClinicaPro-Regular";
+    background-color: #333333; }
+    .summary__reshuffle__icon {
+      /*$intendedWidth: 0.8em;
+      $sidePadding: 0.4em;
+      width: 0.8em + (2 * $sidePadding);
+      padding: 0 $sidePadding;*/ }
+
+.container {
+  text-align: center;
+  margin: 0 20px; }
+
+#itinerary_container {
+  clear: both;
+  display: inline-block; }
+
+.slot {
+  display: flex;
+  padding: 1rem;
+  margin: 1rem 0;
+  cursor: pointer;
+  align-items: center;
+  font-family: "ClinicaPro-Regular";
+  color: white;
+  background: #f06242; }
+  .slot .slot__left-arrow, .slot .slot__right-arrow, .slot .slot__pin-button {
+    opacity: 0.9;
+    padding: 0.25rem; }
+    .slot .slot__left-arrow:hover, .slot .slot__right-arrow:hover, .slot .slot__pin-button:hover {
+      opacity: 1; }
+  .slot__title {
+    flex-grow: 1;
+    float: left; }
+  .slot__pin-button {
+    float: right; }
+  .slot__left-arrow {
+    float: left; }
+  .slot__right-arrow {
+    float: right;
+    order: 1; }
+
+.button {
+  background: green;
+  color: white;
+  border: 0; }
+
+/* projet wide style rules */
+body {
+  background-color: #f7f7f7; }
+
+.hidden {
+  display: none; }
+
+.front-content {
+  margin: 0 20px; }
+
+.front-banner__image {
+  display: block;
+  max-width: 500px;
+  margin: 10vh auto; }
+  @media (max-height: 420px) {
+    .front-banner__image {
+      margin: 5vh auto; } }
