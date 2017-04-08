@@ -161,6 +161,14 @@
     font-size: 15px;
     line-height: 30px;
   }
+    
+  select {
+    &:focus {
+      outline: none;
+      border-color: $primary-colour;
+      box-shadow: 0 0 10px $primary-colour;
+    }
+  }
   
   &__node {
     order: 2;

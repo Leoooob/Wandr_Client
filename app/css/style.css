@@ -253,6 +253,10 @@
     order: 1;
     font-size: 15px;
     line-height: 30px; }
+  .travel select:focus {
+    outline: none;
+    border-color: #f06242;
+    box-shadow: 0 0 10px #f06242; }
   .travel__node {
     order: 2;
     width: 32px;
