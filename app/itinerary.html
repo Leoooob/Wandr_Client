@@ -1,102 +1,148 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <link rel="stylesheet" href="css/style.css" />
-  
+
   <meta name="author" content="Leon Hassan">
   <meta name="theme-color" content="#f05f40">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Wandr, the procedural itinerary generator.">
-  
+
   <link rel="icon" type="image/png" href="./assets/static/favicon_192px.png" sizes="192x192">
   <link rel="icon" type="image/png" href="./assets/static/favicon_96px.png" sizes="96x96">
   <link rel="icon" type="image/png" href="./assets/static/favicon_32px.png" sizes="32x32">
   <link rel="icon" type="image/png" href="./assets/static/favicon_16px.png" sizes="16x16">
-  
+
   <title>Wandr</title>
 </head>
 
 <body>
-<section class="front-content">
-  <header class="front-banner">
-    <h2 class="hidden">Wandr</h2>
-    <img class="front-banner__image" src="./assets/wandr-logo.svg" alt="WANDR">
-  </header>
-   
-  <div class="container">
-    <div class="tripPlanner">
-      <div class="summary">
-        <div class="summary__title">Here's your itinerary.</div>
-        <div class="summary__location summary__bottom-row">
-          <span class="summary_location">Reading, United Kingdom</span>
-          <button class="summary__button summary__button__edit" onclick="edit_itinerary_name();"><img src="./assets/edit_24.svg" class="summary__button__icon" alt="edit itinerary name"></button>
-          <button class="summary__button" onclick="window.location='index.html';"><img src="./assets/reset_32.svg" class="summary__button__icon" alt="start again"></button>
+  <section class="front-content">
+    <header class="front-banner">
+      <h2 class="hidden">Wandr</h2>
+      <img class="front-banner__image" src="./assets/wandr-logo.svg" alt="WANDR">
+    </header>
+
+    <div class="container">
+      <div class="tripPlanner">
+        <div class="summary">
+          <div class="summary__title">Here's your itinerary.</div>
+          <div class="summary__location summary__bottom-row">
+            <span class="summary_location">Reading, United Kingdom</span>
+            <button class="summary__button summary__button__edit" onclick="edit_itinerary_name();"><img src="./assets/edit_24.svg" class="summary__button__icon" alt="edit itinerary name"></button>
+            <button class="summary__button" onclick="window.location='index.html';"><img src="./assets/reset_32.svg" class="summary__button__icon" alt="start again"></button>
+          </div>
+
+          <button class="summary__reshuffle summary__bottom-row" onclick="">Reshuffle <img class="summary__reshuffle__icon" alt="" src="./assets/refresh_32.svg"></button>
         </div>
 
-        <button class="summary__reshuffle summary__bottom-row" onclick="">Reshuffle <img class="summary__reshuffle__icon" alt="" src="./assets/refresh_32.svg"></button>
-      </div>
-
-      <div id="itinerary_container">
-       <div class="slot_box">
-        <article tabindex="0" class="slot">
-          <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
-          <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
-          <div class="slot__title">Leicester Square Garden</div>
-          <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
-          <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
-        </article>
-        <div class="travel">
-          <!--<div class="travel__mode">Walking</div>-->
-           <select class="travel__mode">
-             <option>Walking</option>
-             <option>Cycling</option>
-             <option>Driving</option>
-             <option>Public Transport</option>
-           </select>
-          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" class="travel__node" xml:space="preserve">
-            <circle cx="16" cy="16" r="15.4"/>
-          </svg>
-          <!--<a href="#" class="travel__node"><img src="./assets/travel-node_32.svg"></a>-->
-          <div class="travel__time">10 minutes</div>
+        <div id="itinerary_container">
+          <div class="slot_box">
+            <article tabindex="0" class="slot">
+              <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
+              <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
+              <div class="slot__title">Leicester Square Garden</div>
+              <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
+              <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
+            </article>
+            <div class="travel">
+              <select class="travel__mode">
+                <option>Walking</option>
+                <option>Cycling</option>
+                <option>Driving</option>
+                <option>Public Transport</option>
+              </select>
+              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" class="travel__node" xml:space="preserve">
+                <circle cx="16" cy="16" r="15.4"/>
+              </svg>
+              <div class="travel__time">10 minutes</div>
+            </div>
+          </div>
+          <div class="slot_box">
+            <article tabindex="0" class="slot">
+              <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
+              <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
+              <div class="slot__title">Premier Inn London City Old Street</div>
+              <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
+              <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
+            </article>
+            <div class="travel">
+              <select class="travel__mode">
+                <option>Walking</option>
+                <option>Cycling</option>
+                <option>Driving</option>
+                <option>Public Transport</option>
+              </select>
+              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" class="travel__node" xml:space="preserve">
+                <circle cx="16" cy="16" r="15.4"/>
+              </svg>
+              <div class="travel__time">10 minutes</div>
+            </div>
+          </div>
+          <div class="slot_box">
+            <article tabindex="0" class="slot">
+              <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
+              <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
+              <div class="slot__title">Primrose Hill</div>
+              <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
+              <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
+            </article>
+            <div class="travel">
+              <select class="travel__mode">
+                <option>Walking</option>
+                <option>Cycling</option>
+                <option>Driving</option>
+                <option>Public Transport</option>
+              </select>
+              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" class="travel__node" xml:space="preserve">
+                <circle cx="16" cy="16" r="15.4"/>
+              </svg>
+              <div class="travel__time">10 minutes</div>
+            </div>
+          </div>
+          <div class="slot_box">
+            <article tabindex="0" class="slot">
+              <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
+              <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
+              <div class="slot__title">ZSL London Zoo</div>
+              <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
+              <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
+            </article>
+            <div class="travel">
+              <select class="travel__mode">
+                <option>Walking</option>
+                <option>Cycling</option>
+                <option>Driving</option>
+                <option>Public Transport</option>
+              </select>
+              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" class="travel__node" xml:space="preserve">
+                <circle cx="16" cy="16" r="15.4"/>
+              </svg>
+              <div class="travel__time">10 minutes</div>
+            </div>
+          </div>
+          <div class="slot_box">
+            <article tabindex="0" class="slot">
+              <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
+              <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
+              <div class="slot__title">ibis London City - Shoreditch Hotel</div>
+              <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
+              <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
+            </article>
+            <div class="travel">
+            
+            </div>
+          </div>
         </div>
-       </div>
-       
-        <article tabindex="0" class="slot">
-          <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
-          <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
-          <div class="slot__title">Premier Inn London City Old Street</div>
-          <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
-          <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
-        </article>
-        <article tabindex="0" class="slot">
-          <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
-          <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
-          <div class="slot__title">Primrose Hill</div>
-          <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
-          <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
-        </article>
-        <article tabindex="0" class="slot">
-          <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
-          <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
-          <div class="slot__title">ZSL London Zoo</div>
-          <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
-          <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
-        </article>
-        <article tabindex="0" class="slot">
-          <a href="#" class="slot__left-arrow"><img src="./assets/arrow-left.svg"></a>
-          <a href="#" class="slot__genre-button"><img src="./assets/info_32.svg"></a>
-          <div class="slot__title">ibis London City - Shoreditch Hotel</div>
-          <a href="#" class="slot__right-arrow"><img src="./assets/arrow-right.svg"></a>
-          <a href="#" class="slot__pin-button"><img src="./assets/pin-unfilled.svg"></a>
-        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Maps JavaScript API key: AIzaSyAh8xMvPeu7Y7hMcOBUA-lh4KhTYt2xUR8 -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh8xMvPeu7Y7hMcOBUA-lh4KhTYt2xUR8&libraries=places" async defer></script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="js/main.js" defer></script>
+  <!-- Maps JavaScript API key: AIzaSyAh8xMvPeu7Y7hMcOBUA-lh4KhTYt2xUR8 -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh8xMvPeu7Y7hMcOBUA-lh4KhTYt2xUR8&libraries=places" async defer></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="js/main.js" defer></script>
 </body>
+
 </html>

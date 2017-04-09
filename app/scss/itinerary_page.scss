@@ -64,12 +64,20 @@
   &__reshuffle {
     float: right;
     border: none;
+    opacity: 0.9;
     padding: 1rem;
     cursor: pointer;
     border-radius: 5px;
     color: $light-colour;
     font-family: $font-family;
     background-color: $dark-colour;
+    
+    &:hover {
+      opacity: 1;
+      outline: none;
+      box-shadow: 0 0 10px $dark-colour;
+      background-color: $dark-colour;
+    }
 
     &__icon {
       /*$intendedWidth: 0.8em;
@@ -154,6 +162,7 @@
 
 /* travel node styles */
 .travel {
+  //display: none;
   display: inline-flex;
   
   &__mode {

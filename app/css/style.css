@@ -188,12 +188,18 @@
   .summary__reshuffle {
     float: right;
     border: none;
+    opacity: 0.9;
     padding: 1rem;
     cursor: pointer;
     border-radius: 5px;
     color: white;
     font-family: "ClinicaPro-Regular";
     background-color: #333333; }
+    .summary__reshuffle:hover {
+      opacity: 1;
+      outline: none;
+      box-shadow: 0 0 10px #333333;
+      background-color: #333333; }
     .summary__reshuffle__icon {
       /*$intendedWidth: 0.8em;
       $sidePadding: 0.4em;
