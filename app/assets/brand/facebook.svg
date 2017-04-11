@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 266.9 266.9" style="enable-background:new 0 0 266.9 266.9;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;fill:#EAEBED;}
+	.st2{display:inline;fill:#3B5A9A;}
+	.st3{display:inline;}
+	.st4{fill:#FFFFFF;}
+	.st5{fill:#333333;}
+	.st6{display:inline;fill:#FFFFFF;}
+	.st7{fill:#3C5A99;}
+</style>
+<g id="Background" class="st0">
+	<rect x="-123.6" y="-112.6" class="st1" width="512" height="500"/>
+	<rect x="388.4" y="-112.6" class="st2" width="512" height="500"/>
+	<g id="Frame" class="st3">
+		<rect x="-123.6" y="-92.6" class="st4" width="1024" height="0.4"/>
+		<rect x="-123.6" y="-72.6" class="st4" width="1024" height="0.4"/>
+		<rect x="368.2" y="-112.6" class="st4" width="0.4" height="500"/>
+		<rect x="-103.6" y="-112.6" class="st4" width="0.4" height="500"/>
+		<rect x="408.2" y="-112.6" class="st4" width="0.4" height="500"/>
+		<rect x="880" y="-112.6" class="st4" width="0.4" height="500"/>
+		<rect x="-123.6" y="367" class="st4" width="1024" height="0.4"/>
+	</g>
+	<g id="Text" class="st3">
+		<text transform="matrix(1 0 0 1 -96.0527 -78.521)"><tspan x="0" y="0" class="st5" style="font-family:'Helvetica'; font-size:10px;">Facebook </tspan><tspan x="46.7" y="0" class="st5" style="font-family:'Helvetica'; font-size:10px;">“</tspan><tspan x="50.8" y="0" class="st5" style="font-family:'Helvetica'; font-size:10px; letter-spacing:1;">f</tspan><tspan x="54.6" y="0" class="st5" style="font-family:'Helvetica'; font-size:10px;">” Logo</tspan></text>
+		<text transform="matrix(1 0 0 1 312.8262 -78.521)" class="st5" style="font-family:'Helvetica'; font-size:10px;">CMYK / .ai</text>
+		<text transform="matrix(1 0 0 1 415.9473 -78.521)"><tspan x="0" y="0" class="st4" style="font-family:'Helvetica'; font-size:10px;">Facebook </tspan><tspan x="46.7" y="0" class="st4" style="font-family:'Helvetica'; font-size:10px;">“</tspan><tspan x="50.8" y="0" class="st4" style="font-family:'Helvetica'; font-size:10px; letter-spacing:1;">f</tspan><tspan x="54.6" y="0" class="st4" style="font-family:'Helvetica'; font-size:10px;">” Logo</tspan></text>
+		<text transform="matrix(1 0 0 1 824.8262 -78.521)" class="st4" style="font-family:'Helvetica'; font-size:10px;">CMYK / .ai</text>
+	</g>
+</g>
+<g id="White" class="st0">
+	<path id="White_2_" class="st6" d="M764.2,0H526.7C518.6,0,512,6.6,512,14.7v237.4c0,8.1,6.6,14.7,14.7,14.7h127.8V163.5h-34.8
+		v-40.3h34.8V93.6c0-34.5,21.1-53.2,51.8-53.2c14.7,0,27.4,1.1,31.1,1.6v36l-21.3,0c-16.7,0-20,7.9-20,19.6v25.7H736l-5.2,40.3
+		h-34.7v103.4h68c8.1,0,14.7-6.6,14.7-14.7V14.7C778.9,6.6,772.3,0,764.2,0z"/>
+</g>
+<g id="Blue">
+	<path id="Blue_1_" class="st7" d="M252.2,266.9c8.1,0,14.7-6.6,14.7-14.7V14.7c0-8.1-6.6-14.7-14.7-14.7H14.7C6.6,0,0,6.6,0,14.7
+		v237.4c0,8.1,6.6,14.7,14.7,14.7H252.2z"/>
+	<path id="f" class="st4" d="M184.2,266.9V163.5h34.7l5.2-40.3h-39.9V97.5c0-11.7,3.2-19.6,20-19.6l21.3,0v-36
+		c-3.7-0.5-16.4-1.6-31.1-1.6c-30.8,0-51.8,18.8-51.8,53.2v29.7h-34.8v40.3h34.8v103.4H184.2z"/>
+</g>
+</svg>

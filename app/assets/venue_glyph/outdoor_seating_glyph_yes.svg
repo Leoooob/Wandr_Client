@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#F05F40;stroke-miterlimit:10;}
+	.st1{fill:#F05F40;stroke:#F05F40;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#F05F40;stroke-miterlimit:10;stroke-dasharray:1.0338,1.0338;}
+</style>
+<g id="table">
+	<g>
+		<line class="st0" x1="8.9" y1="17.5" x2="16.5" y2="17.5"/>
+	</g>
+	<line class="st0" x1="16.4" y1="17.5" x2="16.4" y2="24.5"/>
+	<path class="st0" d="M16.9,24c-1,0-3.9,2.6-3.9,3.5"/>
+</g>
+<g id="chairs">
+	<line class="st0" x1="3" y1="11.8" x2="3" y2="20.8"/>
+	<line class="st0" x1="2.5" y1="20.8" x2="9.5" y2="20.8"/>
+	<path class="st0" d="M3.5,20.8c-0.5,0-2,4.5-2,6"/>
+	<path class="st0" d="M8,20.8c0.4,0,1.5,4.5,1.5,6"/>
+	<g>
+		<line class="st0" x1="23.5" y1="17.5" x2="15.9" y2="17.5"/>
+	</g>
+	<line class="st0" x1="16" y1="17.5" x2="16" y2="24.5"/>
+	<path class="st0" d="M15.5,24c1,0,3.9,2.6,3.9,3.5"/>
+	<line class="st0" x1="29.4" y1="11.8" x2="29.4" y2="20.8"/>
+	<line class="st0" x1="29.9" y1="20.8" x2="22.9" y2="20.8"/>
+	<path class="st0" d="M28.9,20.8c0.5,0,2,4.5,2,6"/>
+	<path class="st0" d="M24.4,20.8c-0.4,0-1.5,4.5-1.5,6"/>
+</g>
+<g id="sun">
+	<circle class="st1" cx="4.4" cy="4.4" r="1.5"/>
+	<g>
+		<circle class="st2" cx="4.4" cy="4.4" r="3.6"/>
+	</g>
+</g>
+</svg>

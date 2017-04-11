@@ -170,9 +170,16 @@
     font-size: 20px;
     margin: 1ex auto;
     text-align: left; }
+    @media screen and (max-width: 500px) {
+      .summary__title {
+        margin: 0 auto; } }
   .summary__location {
     float: left;
     padding: 1rem 0; }
+    @media screen and (max-width: 500px) {
+      .summary__location {
+        padding: 0;
+        margin-bottom: 10px; } }
   .summary__button {
     border: none;
     opacity: 0.7;
@@ -210,6 +217,7 @@
   margin: 0 20px;
   text-align: center; }
 
+/* item pills */
 #itinerary_container {
   width: 100%;
   display: inline-block; }
@@ -280,6 +288,102 @@
     font-size: 20px;
     line-height: 30px; }
 
+/* import fonts and colours */
+/* fonts */
+@font-face {
+  font-family: 'ClinicaPro-Regular';
+  src: url("../assets/fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../assets/fonts/ClinicaPro-Regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+/* HSLA colours */
+/* media query sizes */
+/* styles */
+.venue h3 {
+  margin: 5px 0; }
+
+.venue h4 {
+  margin-bottom: 0; }
+
+.venue__categories ul {
+  margin: 0;
+  padding-left: 10px;
+  column-count: 3; }
+  .venue__categories ul li {
+    margin-left: 10px; }
+
+.venue__split {
+  width: 100%;
+  display: inline-flex; }
+
+.venue__address {
+  max-width: 50%;
+  margin-right: 5em; }
+  .venue__address p {
+    margin: 0; }
+
+.venue__times {
+  max-width: 50%; }
+  .venue__times ul {
+    margin: 5px 0;
+    padding-left: 0; }
+    .venue__times ul li {
+      list-style-type: none; }
+
+.venue__rating {
+  margin-top: 10px; }
+
+.venue .glyph-icon {
+  width: 64px;
+  height: auto;
+  margin: 5px 10px;
+  position: relative; }
+  .venue .glyph-icon:hover, .venue .glyph-icon:focus {
+    cursor: help; }
+    .venue .glyph-icon:hover .glyph-icon__tooltip, .venue .glyph-icon:focus .glyph-icon__tooltip {
+      opacity: 0.9;
+      display: block; }
+  .venue .glyph-icon__tooltip {
+    left: -2em;
+    z-index: 1;
+    opacity: 0;
+    width: 120px;
+    display: none;
+    padding: 2px 5px;
+    position: absolute;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid gray;
+    color: #f06242;
+    transition: opacity .6s;
+    background-color: #f7f7f7; }
+    .venue .glyph-icon__tooltip .arrow {
+      top: -10px;
+      left: 55px;
+      position: absolute;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid #808080; }
+
+.venue .social {
+  margin: 0 auto;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 3px solid #f06242; }
+  .venue .social:hover, .venue .social:focus {
+    outline: none;
+    border-color: #ff4b14;
+    box-shadow: 0 0 10px #ff4b14; }
+  .venue .social a {
+    cursor: pointer;
+    display: block;
+    color: #333333;
+    text-decoration: none; }
+    .venue .social a span {
+      display: block; }
+  .venue .social__brand {
+    width: 32px; }
+
 /* projet wide style rules */
 body {
   background-color: #f7f7f7; }
@@ -290,10 +394,17 @@ body {
 .front-content {
   margin: 0 20px; }
 
+.front-banner h2 {
+  color: #f06242;
+  margin: 5px -10px; }
+
 .front-banner__image {
   display: block;
   max-width: 500px;
   margin: 10vh auto; }
   @media (max-height: 420px) {
+    .front-banner__image {
+      margin: 5vh auto; } }
+  @media screen and (max-width: 500px) {
     .front-banner__image {
       margin: 5vh auto; } }
