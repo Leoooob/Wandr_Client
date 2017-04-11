@@ -36,6 +36,7 @@ function swap_location_buttons() {
 }
 
 function send_location(location) {
+  //add parameters to request instead of embedding
   let my_url = 'http://localhost:3000/api/location?near=' + location;
   
   $.ajax({
@@ -51,11 +52,16 @@ function send_location(location) {
 }
 
 $(".travel__node").on("click", function() {
-  console.log('travel node clicked!');
   let my_div = $(this);
   let parent_div = my_div.closest('.slot_box');
   
-  parent_div.find('.travel__node').addClass('travel__node__active');
-  parent_div.find('.travel__instructions').show();
-  //parent_div.find('.travel__instructions').css('display','block');
+  if (parent_div.data('travel') == 'true') {
+    parent_div.find('.travel__node').removeClass('travel__node__active');
+    parent_div.find('.travel__instructions').hide();
+    parent_div.data('travel', 'false');
+  } else {
+    parent_div.find('.travel__node').addClass('travel__node__active');
+    parent_div.find('.travel__instructions').show();
+    parent_div.data('travel', 'true');
+  }
 });
