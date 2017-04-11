@@ -24,6 +24,8 @@ body {
 }
 
 .front-banner {
+  position: relative;
+  
   h2 {
     color: $primary-colour;
     margin: 5px -10px;

@@ -2,6 +2,24 @@
 @import '_fonts';
 
 /* styles */
+.foursquare-attribution {
+  top: 0;
+  right: 0;
+  width: 75px;
+  font-size: 14px;
+  position: absolute;
+  text-align: center;
+  color: $dark-colour;
+  text-decoration: none;
+  font-family: ClinicaPro-Regular;
+  
+  span {
+    img {
+      width: 64px;
+      margin-top: 5px;
+    }
+  }
+}
 
 .venue {
   h3 {

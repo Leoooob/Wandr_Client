@@ -51,9 +51,9 @@ function send_location(location) {
   });
 }
 
-$(".travel__node").on("click", function() {
-  let my_div = $(this);
-  let parent_div = my_div.closest('.slot_box');
+$('.travel__node').on('click', function() {
+  let origin_div = $(this);
+  let parent_div = origin_div.closest('.slot_box');
   
   if (parent_div.data('travel') == 'true') {
     parent_div.find('.travel__node').removeClass('travel__node__active');
@@ -64,4 +64,16 @@ $(".travel__node").on("click", function() {
     parent_div.find('.travel__instructions').show();
     parent_div.data('travel', 'true');
   }
+});
+
+$('.slot__pin-button').on('click', function(event) {
+  if (event) event.preventDefault();
+  
+  let origin_div = $(this);
+  let parent_div = origin_div.closest('.slot');
+  let pin_state = parent_div.data('pinned');
+  
+  let pin_src = pin_state ? "./assets/pin-unfilled.svg" :  "./assets/pin-filled.svg";
+  origin_div.find('img').attr('src', pin_src);
+  parent_div.data('pinned', !pin_state);
 });

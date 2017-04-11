@@ -129,7 +129,7 @@
   background: $primary-colour;
 
   %slot-button {
-    opacity: 0.9;
+    opacity: 0.8;
     padding: 0.25rem;
 
     &:hover {
@@ -149,7 +149,7 @@
   &__genre-button {
     @extend %slot-button;
     float: left;
-    width: 32px;
+    min-width: 32px;
   }
 
   &__pin-button {
