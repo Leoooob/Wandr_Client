@@ -220,7 +220,12 @@
 /* item pills */
 #itinerary_container {
   width: 100%;
-  display: inline-block; }
+  display: inline-block;
+  /*.slot_box {
+    ul {
+      display: none;
+    }
+  }*/ }
 
 .slot {
   display: flex;
@@ -283,10 +288,25 @@
     .travel__node:hover {
       fill: #f7f7f7;
       stroke: #ff4b14; }
+    .travel__node__active {
+      fill: #f7f7f7;
+      stroke: #ff4b14; }
+      .travel__node__active:hover {
+        fill: #333333;
+        stroke: #333333; }
   .travel__time {
     order: 3;
     font-size: 20px;
     line-height: 30px; }
+  .travel__instructions {
+    display: none;
+    text-align: left;
+    border-radius: 5px;
+    border: 1px solid #f06242; }
+    .travel__instructions li:first-child {
+      margin-top: 10px; }
+    .travel__instructions li:last-child {
+      margin-bottom: 10px; }
 
 /* import fonts and colours */
 /* fonts */
@@ -383,6 +403,9 @@
       display: block; }
   .venue .social__brand {
     width: 32px; }
+  .venue .social__foursquare {
+    width: 85%;
+    height: auto; }
 
 /* projet wide style rules */
 body {

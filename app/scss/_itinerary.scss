@@ -108,6 +108,12 @@
 #itinerary_container {
   width: 100%;
   display: inline-block;
+  
+  /*.slot_box {
+    ul {
+      display: none;
+    }
+  }*/
 }
 
 .slot {
@@ -202,12 +208,37 @@
       fill: $background-colour;
       stroke: $highlight-colour;
     }
+    
+    &__active {
+      fill: $background-colour;
+      stroke: $highlight-colour;
+      
+      &:hover {
+        fill: $dark-colour;
+        stroke: $dark-colour;
+      }
+    }
   }
   
   &__time {
     order: 3;
     font-size: 20px;
     line-height: 30px;
+  }
+  
+  &__instructions {
+    display: none;
+    text-align: left;
+    border-radius: 5px;
+    border: 1px solid $primary-colour;
+    
+    li:first-child {
+      margin-top: 10px;
+    }
+    
+    li:last-child {
+      margin-bottom: 10px;
+    }
   }
   
   /*&__mode, &__time {
