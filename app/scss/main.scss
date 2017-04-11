@@ -1,8 +1,8 @@
 /* import all other scss sheets */
 @import '_fonts';
-@import 'landing_page';
-@import 'itinerary_page';
-
+@import '_landing';
+@import '_itinerary';
+@import '_venue';
 
 /* projet wide style rules */
 %clearfix:after {
@@ -24,12 +24,21 @@ body {
 }
 
 .front-banner {
+  h2 {
+    color: $primary-colour;
+    margin: 5px -10px;
+  }
+  
   &__image {
     display: block;
     max-width: 500px;
     margin: 10vh auto;
     
     @media (max-height: $mobile-h) {
+      margin: 5vh auto;
+    }
+    
+    @media screen and (max-width: $mobile-w) {
       margin: 5vh auto;
     }
   }

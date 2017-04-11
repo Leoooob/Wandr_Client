@@ -34,11 +34,20 @@
     font-size: 20px;
     margin: 1ex auto;
     text-align: left;
+    
+    @media screen and (max-width: $mobile-w) {
+      margin: 0 auto;
+    }
   }
 
   &__location {
     float: left;
     padding: 1rem 0;
+    
+    @media screen and (max-width: $mobile-w) {
+      padding: 0;
+      margin-bottom: 10px;
+    }
   }
 
   &__button {
@@ -93,9 +102,8 @@
   text-align: center;
 }
 
-.textbox {
-}
 
+/* item pills */
 
 #itinerary_container {
   width: 100%;
