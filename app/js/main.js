@@ -3256,149 +3256,162 @@ function build_itinerary() {
     itinerary_items.forEach(function(element, index) {
       console.log(element.name + ' at index ' + index);
       //start component builder
+      build_item_pill(index);
     });
+    
+    //contains all event listeners for item pills
+    add_event_listeners();
   }
 }
 
-function build_travel() {
-  
+function build_article(venue_index) {
+  let article = document.createElement('article');
+  {
+    article.tabIndex = '0';
+    article.className = 'slot';
+    article.dataset.pinned = 'false';
+    {
+      let a1 = document.createElement('a');
+      {
+        a1.href = '#';
+        a1.className = 'slot__left-arrow';
+        {
+          let img = document.createElement('img');
+          img.src = './assets/arrow-left.svg';
+          a1.appendChild(img);
+        }
+        article.appendChild(a1)
+      }
+
+      let a2 = document.createElement('a');
+      {
+        a2.href = '#';
+        a2.className = 'slot__genre-button';
+        {
+          let img = document.createElement('img');
+          img.src = './assets/genre_32.svg';
+          a2.appendChild(img);
+        }
+        article.appendChild(a2)
+      }
+
+      let div = document.createElement('div');
+      {
+        div.className = 'slot__title';
+        div.appendChild(document.createTextNode(JSON.venues[venue_index].name));
+      }
+      article.appendChild(div);
+
+      let a3 = document.createElement('a');
+      {
+        a3.href = '#';
+        a3.className = 'slot__right-arrow';
+        {
+          let img = document.createElement('img');
+          img.src = './assets/arrow-right.svg';
+          a3.appendChild(img);
+        }
+        article.appendChild(a3)
+      }
+
+      let a4 = document.createElement('a');
+      {
+        a4.href = '#';
+        a4.className = 'slot__pin-button';
+        {
+          let img = document.createElement('img');
+          img.src = './assets/pin-unfilled.svg';
+          a4.appendChild(img);
+        }
+        article.appendChild(a4)
+      }
+    }
+  }
+  return article;
 }
 
-function build_item_pill() {
+function build_travel() {
+  let travel = document.createElement('div');
+  {
+    travel.className = 'travel';
+    let travel_select = document.createElement('select');
+    {
+      travel_select.className = 'travel__mode';
+
+      let option_1 = document.createElement('option');
+      {
+        option_1.appendChild(document.createTextNode('Walking'))
+      }
+      travel_select.appendChild(option_1);
+
+      let option_2 = document.createElement('option');
+      {
+        option_2.appendChild(document.createTextNode('Cycling'))
+      }
+      travel_select.appendChild(option_2);
+
+      let option_3 = document.createElement('option');
+      {
+        option_3.appendChild(document.createTextNode('Driving'))
+      }
+      travel_select.appendChild(option_3);
+
+      let option_4 = document.createElement('option');
+      {
+        option_4.appendChild(document.createTextNode('Public Transport'))
+      }
+      travel_select.appendChild(option_4);
+    }
+    travel.appendChild(travel_select);
+
+    let travel_node = document.createElement('img');
+    {
+      travel_node.className = 'travel__node';
+      travel_node.src = './assets/travel-node_32.svg'
+    }
+    travel.appendChild(travel_node);
+
+    let travel_time = document.createElement('div');
+    {
+      travel_time.className = 'travel__time';
+      travel_time.appendChild(document.createTextNode('unknown'));
+    }
+    travel.appendChild(travel_time);
+  }
+  return travel;
+}
+
+function build_travel_instructions() {
+  let travel_instructions = document.createElement('ul');
+  {
+    travel_instructions.className = 'travel__instructions';
+    let instruction = document.createElement('li');
+    {
+      instruction.appendChild(document.createTextNode('no instructions set, yet'));
+    }
+    travel_instructions.appendChild(instruction);
+  }
+  return travel_instructions;
+}
+
+function build_item_pill(venue_index) {
   let new_item = document.createElement('div');
   {
     new_item.className = 'slot_box';
     new_item.dataset.travel = 'false';
-    new_item.dataset.venue_id = JSON.venues[0].id;
+    new_item.dataset.venue_id = JSON.venues[venue_index].id;
     {
-      let article = document.createElement('article');
-      {
-        article.tabIndex = '0';
-        article.className = 'slot';
-        article.dataset.pinned = 'false';
-        {
-          let a1 = document.createElement('a');
-          {
-            a1.href = '#';
-            a1.className = 'slot__left-arrow';
-            {
-              let img = document.createElement('img');
-              img.src = './assets/arrow-left.svg';
-              a1.appendChild(img);
-            }
-            article.appendChild(a1)
-          }
-          
-          let a2 = document.createElement('a');
-          {
-            a2.href = '#';
-            a2.className = 'slot__genre-button';
-            {
-              let img = document.createElement('img');
-              img.src = './assets/genre_32.svg';
-              a2.appendChild(img);
-            }
-            article.appendChild(a2)
-          }
-          
-          let div = document.createElement('div');
-          {
-            div.className = 'slot__title';
-            div.appendChild(document.createTextNode(JSON.venues[0].name));
-          }
-          article.appendChild(div);
-          
-          let a3 = document.createElement('a');
-          {
-            a3.href = '#';
-            a3.className = 'slot__right-arrow';
-            {
-              let img = document.createElement('img');
-              img.src = './assets/arrow-right.svg';
-              a3.appendChild(img);
-            }
-            article.appendChild(a3)
-          }
-          
-          let a4 = document.createElement('a');
-          {
-            a4.href = '#';
-            a4.className = 'slot__pin-button';
-            {
-              let img = document.createElement('img');
-              img.src = './assets/pin-unfilled.svg';
-              a4.appendChild(img);
-            }
-            article.appendChild(a4)
-          }
-        }
-      }
+      let article = build_article(venue_index);
       new_item.appendChild(article);
       
-      let travel = document.createElement('div');
-      {
-        travel.className = 'travel';
-        let travel_select = document.createElement('select');
-        {
-          travel_select.className = 'travel__mode';
-          
-          let option_1 = document.createElement('option');
-          {
-            option_1.appendChild(document.createTextNode('Walking'))
-          }
-          travel_select.appendChild(option_1);
-          
-          let option_2 = document.createElement('option');
-          {
-            option_2.appendChild(document.createTextNode('Cycling'))
-          }
-          travel_select.appendChild(option_2);
-          
-          let option_3 = document.createElement('option');
-          {
-            option_3.appendChild(document.createTextNode('Driving'))
-          }
-          travel_select.appendChild(option_3);
-          
-          let option_4 = document.createElement('option');
-          {
-            option_4.appendChild(document.createTextNode('Public Transport'))
-          }
-          travel_select.appendChild(option_4);
-        }
-        travel.appendChild(travel_select);
-        
-        let travel_node = document.createElement('img');
-        {
-          travel_node.className = 'travel__node';
-          travel_node.src = './assets/travel-node_32.svg'
-        }
-        travel.appendChild(travel_node);
-        
-        let travel_time = document.createElement('div');
-        {
-          travel_time.className = 'travel__time';
-          travel_time.appendChild(document.createTextNode('unknown'));
-        }
-        travel.appendChild(travel_time);
-      }
+      let travel = build_travel();
       new_item.appendChild(travel);
       
-      let travel_instructions = document.createElement('ul');
-      {
-        travel_instructions.className = 'travel__instructions';
-        let instruction = document.createElement('li');
-        {
-          instruction.appendChild(document.createTextNode('no instructions set, yet'));
-        }
-        travel_instructions.appendChild(instruction);
-      }
+      let travel_instructions = build_travel_instructions();
       new_item.appendChild(travel_instructions);
     }
   }
   itinerary_container.appendChild(new_item);
-  
-  add_event_listeners();
 }
 
 function initialise_autocomplete() {
