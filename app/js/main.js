@@ -1,6 +1,7 @@
 'use strict';
 
-/*var JSON = {
+const itinerary_container = document.getElementById('itinerary_container');
+var JSON = {
   "venues": [
     {
       "id": "4beb25fca9900f47dc701740",
@@ -3224,13 +3225,9 @@
     },
     "parents": []
   }
-}*/
-
-var JSON = '';
+}
 
 function build_itinerary() {
-  let itinerary_container = document.getElementById('itinerary_container');
-  
   if (JSON.length === 0) {
     let new_element = document.createElement('div');
     {
@@ -3255,8 +3252,153 @@ function build_itinerary() {
     itinerary_container.appendChild(new_element);
     return;
   } else {
-    
+    let itinerary_items = JSON.venues.slice(0, 5);
+    itinerary_items.forEach(function(element, index) {
+      console.log(element.name + ' at index ' + index);
+      //start component builder
+    });
   }
+}
+
+function build_travel() {
+  
+}
+
+function build_item_pill() {
+  let new_item = document.createElement('div');
+  {
+    new_item.className = 'slot_box';
+    new_item.dataset.travel = 'false';
+    new_item.dataset.venue_id = JSON.venues[0].id;
+    {
+      let article = document.createElement('article');
+      {
+        article.tabIndex = '0';
+        article.className = 'slot';
+        article.dataset.pinned = 'false';
+        {
+          let a1 = document.createElement('a');
+          {
+            a1.href = '#';
+            a1.className = 'slot__left-arrow';
+            {
+              let img = document.createElement('img');
+              img.src = './assets/arrow-left.svg';
+              a1.appendChild(img);
+            }
+            article.appendChild(a1)
+          }
+          
+          let a2 = document.createElement('a');
+          {
+            a2.href = '#';
+            a2.className = 'slot__genre-button';
+            {
+              let img = document.createElement('img');
+              img.src = './assets/genre_32.svg';
+              a2.appendChild(img);
+            }
+            article.appendChild(a2)
+          }
+          
+          let div = document.createElement('div');
+          {
+            div.className = 'slot__title';
+            div.appendChild(document.createTextNode(JSON.venues[0].name));
+          }
+          article.appendChild(div);
+          
+          let a3 = document.createElement('a');
+          {
+            a3.href = '#';
+            a3.className = 'slot__right-arrow';
+            {
+              let img = document.createElement('img');
+              img.src = './assets/arrow-right.svg';
+              a3.appendChild(img);
+            }
+            article.appendChild(a3)
+          }
+          
+          let a4 = document.createElement('a');
+          {
+            a4.href = '#';
+            a4.className = 'slot__pin-button';
+            {
+              let img = document.createElement('img');
+              img.src = './assets/pin-unfilled.svg';
+              a4.appendChild(img);
+            }
+            article.appendChild(a4)
+          }
+        }
+      }
+      new_item.appendChild(article);
+      
+      let travel = document.createElement('div');
+      {
+        travel.className = 'travel';
+        let travel_select = document.createElement('select');
+        {
+          travel_select.className = 'travel__mode';
+          
+          let option_1 = document.createElement('option');
+          {
+            option_1.appendChild(document.createTextNode('Walking'))
+          }
+          travel_select.appendChild(option_1);
+          
+          let option_2 = document.createElement('option');
+          {
+            option_2.appendChild(document.createTextNode('Cycling'))
+          }
+          travel_select.appendChild(option_2);
+          
+          let option_3 = document.createElement('option');
+          {
+            option_3.appendChild(document.createTextNode('Driving'))
+          }
+          travel_select.appendChild(option_3);
+          
+          let option_4 = document.createElement('option');
+          {
+            option_4.appendChild(document.createTextNode('Public Transport'))
+          }
+          travel_select.appendChild(option_4);
+        }
+        travel.appendChild(travel_select);
+        
+        let travel_node = document.createElement('img');
+        {
+          travel_node.className = 'travel__node';
+          travel_node.src = './assets/travel-node_32.svg'
+        }
+        travel.appendChild(travel_node);
+        
+        let travel_time = document.createElement('div');
+        {
+          travel_time.className = 'travel__time';
+          travel_time.appendChild(document.createTextNode('unknown'));
+        }
+        travel.appendChild(travel_time);
+      }
+      new_item.appendChild(travel);
+      
+      let travel_instructions = document.createElement('ul');
+      {
+        travel_instructions.className = 'travel__instructions';
+        let instruction = document.createElement('li');
+        {
+          instruction.appendChild(document.createTextNode('no instructions set, yet'));
+        }
+        travel_instructions.appendChild(instruction);
+      }
+      new_item.appendChild(travel_instructions);
+    }
+  }
+  itinerary_container.appendChild(new_item);
+  
+  add_event_listeners();
 }
 
 function initialise_autocomplete() {
@@ -3329,7 +3471,36 @@ function edit_itinerary_name() {
   }
 }
 
-$('.travel__node').on('click', function() {
+function add_event_listeners() {
+  $('.slot__pin-button').on('click', function(event) {
+    if (event) event.preventDefault();
+
+    let origin_div = $(this);
+    let parent_div = origin_div.closest('.slot');
+    let pin_state = parent_div.data('pinned');
+
+    let pin_src = pin_state ? "./assets/pin-unfilled.svg" :  "./assets/pin-filled.svg";
+    origin_div.find('img').attr('src', pin_src);
+    parent_div.data('pinned', !pin_state);
+  });
+  
+  $('.travel__node').on('click', function() {
+    let origin_div = $(this);
+    let parent_div = origin_div.closest('.slot_box');
+
+    if (parent_div.data('travel') == 'true') {
+      parent_div.find('.travel__node').removeClass('travel__node__active');
+      parent_div.find('.travel__instructions').hide();
+      parent_div.data('travel', 'false');
+    } else {
+      parent_div.find('.travel__node').addClass('travel__node__active');
+      parent_div.find('.travel__instructions').show();
+      parent_div.data('travel', 'true');
+    }
+  });
+}
+
+/*$('.travel__node').on('click', function() {
   let origin_div = $(this);
   let parent_div = origin_div.closest('.slot_box');
   
@@ -3354,4 +3525,4 @@ $('.slot__pin-button').on('click', function(event) {
   let pin_src = pin_state ? "./assets/pin-unfilled.svg" :  "./assets/pin-filled.svg";
   origin_div.find('img').attr('src', pin_src);
   parent_div.data('pinned', !pin_state);
-});
+});*/
