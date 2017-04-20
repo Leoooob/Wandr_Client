@@ -263,11 +263,7 @@
 
 /* travel node styles */
 .travel {
-  display: inline-flex;
-  /*&__mode, &__time {
-    font-size: 20px;
-    line-height: 30px;
-  }*/ }
+  display: none; }
   .travel__mode {
     order: 1;
     font-size: 15px;
@@ -307,6 +303,12 @@
       margin-top: 10px; }
     .travel__instructions li:last-child {
       margin-bottom: 10px; }
+
+.trip_name_input {
+  float: left;
+  display: none;
+  padding: 8px 0;
+  font-size: 20px; }
 
 /* import fonts and colours */
 /* fonts */

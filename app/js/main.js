@@ -51,6 +51,21 @@ function send_location(location) {
   });
 }
 
+function edit_itinerary_name() {
+  let span = $('span.summary_location');
+  let input = $('.trip_name_input');
+  
+  if(span.css('display') == 'none') {
+    let new_name = input.val(); 
+    span.text(new_name);
+    input.hide();
+    span.show();
+  } else {
+    span.hide();
+    input.show();
+  }
+}
+
 $('.travel__node').on('click', function() {
   let origin_div = $(this);
   let parent_div = origin_div.closest('.slot_box');
