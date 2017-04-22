@@ -336,19 +336,28 @@
   background-color: rgba(0, 0, 0, 0.4); }
   .modal__content {
     margin: auto;
+    max-width: 400px;
     border-radius: 10px;
     border: 1px solid #333333;
     background-color: #f7f7f7; }
-
-.modal-close {
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  margin: 10px 20px; }
-  .modal-close:hover, .modal-close:focus {
-    cursor: pointer;
-    color: #333333;
-    text-decoration: none; }
+    .modal__content .modal-close {
+      width: 32px;
+      float: right;
+      cursor: pointer;
+      margin: 5px 10px;
+      font-size: 28px;
+      font-weight: bold; }
+      .modal__content .modal-close:hover, .modal__content .modal-close:focus {
+        color: #333333;
+        text-decoration: none; }
+  .modal__section {
+    margin: 20px 25px 20px 20px; }
+    .modal__section__banner {
+      position: relative; }
+      .modal__section__banner h2 {
+        margin: 5px -10px;
+        text-align: justify;
+        color: #f06242; }
 
 /* import fonts and colours */
 /* fonts */
@@ -362,106 +371,100 @@
 /* media query sizes */
 /* styles */
 .foursquare-attribution {
-  top: 0;
   right: 0;
+  top: 10px;
   width: 75px;
   font-size: 14px;
   position: absolute;
   text-align: center;
   color: #333333;
   text-decoration: none;
-  font-family: ClinicaPro-Regular; }
+  font-family: "ClinicaPro-Regular"; }
   .foursquare-attribution span img {
     width: 64px;
     margin-top: 5px; }
 
-.venue h3 {
-  margin: 5px 0; }
-
-.venue h4 {
-  margin-bottom: 0; }
-
-.venue__categories ul {
-  margin: 0;
-  padding-left: 10px;
-  column-count: 3; }
-  .venue__categories ul li {
-    margin-left: 10px; }
-
-.venue__split {
-  width: 100%;
-  display: inline-flex; }
-
-.venue__address {
-  max-width: 50%;
-  margin-right: 5em; }
-  .venue__address p {
-    margin: 0; }
-
-.venue__times {
-  max-width: 50%; }
-  .venue__times ul {
-    margin: 5px 0;
-    padding-left: 0; }
-    .venue__times ul li {
-      list-style-type: none; }
-
-.venue__rating {
-  margin-top: 10px; }
-
-.venue .glyph-icon {
-  width: 64px;
-  height: auto;
-  margin: 5px 10px;
-  position: relative; }
-  .venue .glyph-icon:hover, .venue .glyph-icon:focus {
-    cursor: help; }
-    .venue .glyph-icon:hover .glyph-icon__tooltip, .venue .glyph-icon:focus .glyph-icon__tooltip {
-      opacity: 0.9;
-      display: block; }
-  .venue .glyph-icon__tooltip {
-    left: -2em;
-    z-index: 1;
-    opacity: 0;
-    width: 120px;
-    display: none;
-    padding: 2px 5px;
-    position: absolute;
-    text-align: center;
-    border-radius: 6px;
-    border: 1px solid gray;
-    color: #f06242;
-    transition: opacity .6s;
-    background-color: #f7f7f7; }
-    .venue .glyph-icon__tooltip .arrow {
-      top: -10px;
-      left: 55px;
+.venue {
+  text-align: justify; }
+  .venue h3 {
+    margin: 5px 0; }
+  .venue h4 {
+    margin-bottom: 0; }
+  .venue__categories ul {
+    margin: 0;
+    padding-left: 10px;
+    column-count: 3; }
+    .venue__categories ul li {
+      margin-left: 10px; }
+  .venue__split {
+    width: 100%;
+    display: inline-flex; }
+  .venue__address {
+    max-width: 50%;
+    margin-right: 5em; }
+    .venue__address p {
+      margin: 0; }
+  .venue__times {
+    max-width: 50%; }
+    .venue__times ul {
+      margin: 5px 0;
+      padding-left: 0; }
+      .venue__times ul li {
+        list-style-type: none; }
+  .venue__rating {
+    margin-top: 10px; }
+  .venue .glyph-icon {
+    width: 64px;
+    height: auto;
+    margin: 5px 10px;
+    position: relative; }
+    .venue .glyph-icon:hover, .venue .glyph-icon:focus {
+      cursor: help; }
+      .venue .glyph-icon:hover .glyph-icon__tooltip, .venue .glyph-icon:focus .glyph-icon__tooltip {
+        opacity: 0.9;
+        display: block; }
+    .venue .glyph-icon__tooltip {
+      left: -2em;
+      z-index: 1;
+      opacity: 0;
+      width: 120px;
+      display: none;
+      padding: 2px 5px;
       position: absolute;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-bottom: 10px solid #808080; }
-
-.venue .social {
-  margin: 0 auto;
-  padding: 5px 10px;
-  border-radius: 10px;
-  border: 3px solid #f06242; }
-  .venue .social:hover, .venue .social:focus {
-    outline: none;
-    border-color: #ff4b14;
-    box-shadow: 0 0 10px #ff4b14; }
-  .venue .social a {
-    cursor: pointer;
-    display: block;
-    color: #333333;
-    text-decoration: none; }
-    .venue .social a span {
-      display: block; }
-  .venue .social__brand {
-    width: 32px; }
-  .venue .social__foursquare {
-    width: 85%;
-    height: auto; }
+      text-align: center;
+      border-radius: 6px;
+      color: #f06242;
+      transition: opacity .6s;
+      border: 1px solid gray;
+      background-color: #f7f7f7; }
+      .venue .glyph-icon__tooltip .arrow {
+        top: -10px;
+        left: 55px;
+        position: absolute;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #808080; }
+  .venue .social {
+    margin: 0 auto;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 3px solid #f06242; }
+    .venue .social:hover, .venue .social:focus {
+      outline: none;
+      border-color: #ff4b14;
+      box-shadow: 0 0 10px #ff4b14; }
+    .venue .social a {
+      display: block;
+      cursor: pointer;
+      color: #333333;
+      text-decoration: none; }
+      .venue .social a span {
+        display: block; }
+    .venue .social__brand {
+      width: 32px; }
+    .venue .social__foursquare {
+      width: 85%;
+      height: auto; }
 
 /* projet wide style rules */
 body {

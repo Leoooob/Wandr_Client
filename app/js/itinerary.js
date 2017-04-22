@@ -247,12 +247,10 @@ function edit_itinerary_name() {
     let new_name = input.val();
     //if val empty and localstorage exists just set text
     if (new_name.length === 0) {
-      let location = localStorage.getItem('location');
-      span.text(location);
-    } else {
-      localStorage.setItem('itinerary_name', new_name);
-      span.text(new_name);
+      new_name = localStorage.getItem('location');
     }
+    localStorage.setItem('itinerary_name', new_name);
+    span.text(new_name);
     
     input.hide();
     span.show();
@@ -330,7 +328,12 @@ function add_event_listeners() {
   });
   
   $('.slot__title').on('click', function() {
-    console.log('click click motherfucker');
-    $('#venue_info').css('display', 'block');
+    let modal = $('#venue_info');
+    let display = 'none';
+    
+    if (modal.css('display') == 'none') {
+      display = 'block';
+    }
+    modal.css('display', display);
   });
 }
