@@ -91,9 +91,9 @@
     }
     
     &__tooltip {
-      left: -2em;
       z-index: 1;
       opacity: 0;
+      left: -1.5em;
       width: 120px;
       display: none;
       padding: 2px 5px;
@@ -107,17 +107,16 @@
       
       .arrow {
         top: -10px;
-        left: 55px;
+        left: 50px;
         position: absolute;
+        border-bottom: 10px solid #808080;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
-        border-bottom: 10px solid #808080;
       }
     }
   }
   
   .social {
-    //width: 50%;
     margin: 0 auto;
     padding: 5px 10px;
     border-radius: 10px;
@@ -142,11 +141,6 @@
     
     &__brand {
       width: 32px;
-    }
-    
-    &__foursquare {
-      width: 85%;
-      height: auto;
     }
   }
 }
