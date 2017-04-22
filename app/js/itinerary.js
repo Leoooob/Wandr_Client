@@ -6,30 +6,19 @@ const venues = JSON.parse(localStorage.getItem('venue_data'));
 const itinerary_container = document.getElementById('itinerary_container');
 
 function next_venue(current_venue, current_position) {
-  console.log('\nnext venue')
-  console.log('current position: ' + current_position);
-  console.log('current venue: ' + current_venue);
   //if exists in used_venues
   if (used_venues.indexOf(current_position) !== -1) {
-    console.log('current position exists in our list');
-    /*if (current_position === current_venue) {
-      console.log ('remove ' + current_venue + ' venue from list')
-      used_venues.splice(current_venue, 1);
-    }*/
-    console.log('used venues: ' + used_venues);
     current_position++;
-    console.log('current position is now: ' + current_position);
+    
+    if (current_position > (venues.venues.length - 1)) {
+      current_position = 0;
+    }
+    
     return next_venue(current_venue, current_position);
   } else {
-    console.log ('remove ' + current_venue + ' venue from list')
-    //used_venues.splice(current_venue, 1);
-    
     let remove_me = used_venues.indexOf(current_venue);
     used_venues.splice(remove_me, 1);
-    
-    console.log('add ' + current_position + ' venue to list')
     used_venues.push(current_position);
-    console.log('used venues: ' + used_venues);
     
     let id = venues.venues[current_position].id;
     let name = venues.venues[current_position].name;
@@ -38,14 +27,26 @@ function next_venue(current_venue, current_position) {
   }
 }
 
-function previous_venue() {
-  current_position--;
-  console.log(current_position);
-  //if (current_position < 0) current_position = venues.venues.length-1;
-  let id = venues.venues[current_position].id;
-  let name = venues.venues[current_position].name;
-  
-  return [id, name];
+function previous_venue(current_venue, current_position) {
+  if (used_venues.indexOf(current_position) !== -1) {
+    current_position--;
+    
+    if (current_position < 0) {
+      let final_element = (venues.venues.length - 1);
+      current_position = final_element;
+    }
+    
+    return previous_venue(current_venue, current_position);
+  } else {
+    let remove_me = used_venues.indexOf(current_venue);
+    used_venues.splice(remove_me, 1);
+    used_venues.push(current_position);
+    
+    let id = venues.venues[current_position].id;
+    let name = venues.venues[current_position].name;
+    
+    return [id, name, current_position]
+  }
 }
 
 function update_itinerary_name() {
@@ -260,10 +261,7 @@ function add_event_listeners() {
     let origin = $(this);
     let slot = origin.closest('.slot_box');
     let slot_label = origin.siblings('.slot__title');
-    //let current_index = slot.data('index');
     let current_index = parseInt(slot.attr('data-index'));
-    console.log('\nhtml index: ' + current_index);
-    console.log(used_venues);
     
     //0 = id, 1 = name, 2 = index of new venue in venues array
     let data = next_venue(current_index, current_index);
@@ -279,19 +277,19 @@ function add_event_listeners() {
   $('.slot__left-arrow').on('click', function(event) {
     if (event) event.preventDefault();
     
-    //0 = id, 1 = name, 2 = index in venues array
-    let data = previous_venue();
+    let origin = $(this);
+    let slot = origin.closest('.slot_box');
+    let slot_label = origin.siblings('.slot__title');
+    let current_index = parseInt(slot.attr('data-index'));
+    
+    //0 = id, 1 = name, 2 = index of new venue in venues array
+    let data = previous_venue(current_index, current_index);
     const venue_id = data[0];
     const venue_name = data[1];
-    const venue_index = data[2];
+    const new_index = data[2];
     
-    let origin = $(this);
-    
-    let slot = origin.closest('.slot_box');
+    slot.attr('data-index', new_index);
     slot.attr('data-venueid', venue_id);
-    slot.dataset('index', venue_index);
-    
-    let slot_label = origin.siblings('.slot__title');
     slot_label.text(venue_name);
   });
   
