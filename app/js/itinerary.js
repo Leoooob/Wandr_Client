@@ -1,7 +1,7 @@
 'use strict';
 
-//var current_position = 5;
 var used_venues = [];
+var venue_information = {};
 const venues = JSON.parse(localStorage.getItem('venue_data'));
 const itinerary_container = document.getElementById('itinerary_container');
 
@@ -329,11 +329,92 @@ function add_event_listeners() {
   
   $('.slot__title').on('click', function() {
     let modal = $('#venue_info');
-    let display = 'none';
+    if (modal.css('display') == 'none') modal.css('display', 'block');
     
-    if (modal.css('display') == 'none') {
-      display = 'block';
-    }
-    modal.css('display', display);
+    //make ajax call to server, update foursquare attribution with link, update everything in $('.venue'), then display modal
+    let origin_div = $(this);
+    let parent_div = origin_div.closest('.slot_box');
+    let venue_id = parent_div.attr('data-venueid');
+    
+    venue_info(venue_id);
   });
+}
+
+function venue_info(venue_id) {
+  let my_url = 'http://localhost:3000/api/venue';
+  
+  $.ajax({
+    url: my_url,
+    type: 'GET',
+    data: {
+      id: venue_id
+    },
+    success: function(response) {
+      build_venue_JSON(response);
+    },
+    error: function(error) {
+      console.log('Error: ' + error);
+    }
+  });
+}
+
+function build_venue_JSON(response) {
+  //general stuff
+  venue_information.name = response.name;
+  venue_information.url = response.url;
+  venue_information.categories = response.categories[0];
+  venue_information.address = response.location.formattedAddress; //this is an array, each element is a line of address
+
+  //opening times
+  let opening_times = response.hours.timeframes;
+  venue_information.times = [];
+
+  opening_times.forEach(function (element, index) {
+    let days = element.days;
+    let times = element.open[0].renderedTime;
+    let day_times = {
+      'days': days,
+      'times': times
+    };
+
+    venue_information.times.push(day_times);
+  });
+
+  //ratings
+  venue_information.avg_rating = response.rating;
+  venue_information.no_ratings = response.ratingSignals;
+
+  //gylphs
+  venue_information.glyphs = [];
+  let glyph_stuff = response.attributes.groups;
+
+  for (let i = 0; i < glyph_stuff.length; i++) {
+    let this_glyph = glyph_stuff[i].items[0];
+    //easy to collect more glyph data, just add more usable cases
+    switch (this_glyph.displayName) {
+      case 'Price':
+        venue_information.glyphs.price = this_glyph.displayValue;
+        break;
+
+      case 'Credit Cards':
+        venue_information.glyphs.creditcard = this_glyph.displayValue;
+        break;
+
+      case 'Outdoor Seating':
+        venue_information.glyphs.outdoor = this_glyph.displayValue;
+        break;
+
+      case 'Wi-Fi':
+        venue_information.glyphs.wifi = this_glyph.displayValue;
+        break;
+
+      default:
+        console.log("Sorry we don't currently display glyph information for " + this_glyph.displayName);
+        break;
+    }
+  }
+
+  //social media
+  venue_information.facebook = response.contact.facebook;
+  venue_information.twitter = response.contact.twitter;
 }

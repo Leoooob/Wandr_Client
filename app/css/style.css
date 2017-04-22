@@ -424,9 +424,9 @@
         opacity: 0.9;
         display: block; }
     .venue .glyph-icon__tooltip {
-      left: -2em;
       z-index: 1;
       opacity: 0;
+      left: -1.5em;
       width: 120px;
       display: none;
       padding: 2px 5px;
@@ -439,11 +439,11 @@
       background-color: #f7f7f7; }
       .venue .glyph-icon__tooltip .arrow {
         top: -10px;
-        left: 55px;
+        left: 50px;
         position: absolute;
+        border-bottom: 10px solid #808080;
         border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 10px solid #808080; }
+        border-right: 10px solid transparent; }
   .venue .social {
     margin: 0 auto;
     padding: 5px 10px;
@@ -462,9 +462,6 @@
         display: block; }
     .venue .social__brand {
       width: 32px; }
-    .venue .social__foursquare {
-      width: 85%;
-      height: auto; }
 
 /* projet wide style rules */
 body {
