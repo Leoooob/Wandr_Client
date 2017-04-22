@@ -1,6 +1,52 @@
 'use strict';
 
+//var current_position = 5;
+var used_venues = [];
+const venues = JSON.parse(localStorage.getItem('venue_data'));
 const itinerary_container = document.getElementById('itinerary_container');
+
+function next_venue(current_venue, current_position) {
+  console.log('\nnext venue')
+  console.log('current position: ' + current_position);
+  console.log('current venue: ' + current_venue);
+  //if exists in used_venues
+  if (used_venues.indexOf(current_position) !== -1) {
+    console.log('current position exists in our list');
+    /*if (current_position === current_venue) {
+      console.log ('remove ' + current_venue + ' venue from list')
+      used_venues.splice(current_venue, 1);
+    }*/
+    console.log('used venues: ' + used_venues);
+    current_position++;
+    console.log('current position is now: ' + current_position);
+    return next_venue(current_venue, current_position);
+  } else {
+    console.log ('remove ' + current_venue + ' venue from list')
+    //used_venues.splice(current_venue, 1);
+    
+    let remove_me = used_venues.indexOf(current_venue);
+    used_venues.splice(remove_me, 1);
+    
+    console.log('add ' + current_position + ' venue to list')
+    used_venues.push(current_position);
+    console.log('used venues: ' + used_venues);
+    
+    let id = venues.venues[current_position].id;
+    let name = venues.venues[current_position].name;
+    
+    return [id, name, current_position]
+  }
+}
+
+function previous_venue() {
+  current_position--;
+  console.log(current_position);
+  //if (current_position < 0) current_position = venues.venues.length-1;
+  let id = venues.venues[current_position].id;
+  let name = venues.venues[current_position].name;
+  
+  return [id, name];
+}
 
 function update_itinerary_name() {
   let location = '';
@@ -14,46 +60,50 @@ function update_itinerary_name() {
   build_itinerary();
 }
 
-function build_itinerary() {
-  const venues = JSON.parse(localStorage.getItem('venue_data'));
-  
-  if (venues.length === 0) {
-    let new_element = document.createElement('div');
+function build_no_results() {
+  let new_element = document.createElement('div');
+  {
+    new_element.tabIndex = '1';
+    new_element.className = 'no_results';
     {
-      new_element.tabIndex = '1';
-      new_element.className = 'no_results';
+      let para = document.createElement('p');
       {
-        let para = document.createElement('p');
-        {
-          para.appendChild(document.createTextNode("Sorry, we couldn't find anything for you to do here."));
-        }
-        new_element.appendChild(para);
-        var para_2 = document.createElement('p');
-        let a = document.createElement('a');
-        {
-          a.href = 'index.html';
-          a.appendChild(document.createTextNode('Try another location?'));
-        }
-        para_2.appendChild(a);
+        para.appendChild(document.createTextNode("Sorry, we couldn't find anything for you to do here."));
       }
-      new_element.appendChild(para_2);
+      new_element.appendChild(para);
+      var para_2 = document.createElement('p');
+      let a = document.createElement('a');
+      {
+        a.href = 'index.html';
+        a.appendChild(document.createTextNode('Try another location?'));
+      }
+      para_2.appendChild(a);
     }
+    new_element.appendChild(para_2);
+  }
+  return new_element;
+}
+
+function build_itinerary() {
+  if (venues.venues.length === 0) {
+    let new_element = build_no_results();
     itinerary_container.appendChild(new_element);
     return;
   } else {
     let itinerary_items = venues.venues.slice(0, 5);
     itinerary_items.forEach(function(element, index) {
-      console.log(element.name + ' at index ' + index);
       //start component builder
-      build_item_pill(venues, index);
+      build_item_pill(index);
+      used_venues.push(index);
     });
     
     //contains all event listeners for item pills
+    //create a function for each event listener and add them after creating the element?
     add_event_listeners();
   }
 }
 
-function build_article(venues, venue_index) {
+function build_article(venue_index) {
   let article = document.createElement('article');
   {
     article.tabIndex = '0';
@@ -126,30 +176,13 @@ function build_travel() {
     let travel_select = document.createElement('select');
     {
       travel_select.className = 'travel__mode';
-
-      let option_1 = document.createElement('option');
-      {
-        option_1.appendChild(document.createTextNode('Walking'))
-      }
-      travel_select.appendChild(option_1);
-
-      let option_2 = document.createElement('option');
-      {
-        option_2.appendChild(document.createTextNode('Cycling'))
-      }
-      travel_select.appendChild(option_2);
-
-      let option_3 = document.createElement('option');
-      {
-        option_3.appendChild(document.createTextNode('Driving'))
-      }
-      travel_select.appendChild(option_3);
-
-      let option_4 = document.createElement('option');
-      {
-        option_4.appendChild(document.createTextNode('Public Transport'))
-      }
-      travel_select.appendChild(option_4);
+      let modes = ['Walking', 'Cycling', 'Driving', 'Public Transport'];
+      
+      modes.forEach(function(element) {
+        let option = document.createElement('option');
+        option.text = element;
+        travel_select.add(option);
+      });
     }
     travel.appendChild(travel_select);
 
@@ -183,14 +216,15 @@ function build_travel_instructions() {
   return travel_instructions;
 }
 
-function build_item_pill(venues, venue_index) {
+function build_item_pill(venue_index) {
   let new_item = document.createElement('div');
   {
     new_item.className = 'slot_box';
     new_item.dataset.travel = 'false';
-    new_item.dataset.venue_id = venues.venues[venue_index].id;
+    new_item.dataset.venueid = venues.venues[venue_index].id;
+    new_item.dataset.index = venue_index;
     {
-      let article = build_article(venues, venue_index);
+      let article = build_article(venue_index);
       new_item.appendChild(article);
       
       let travel = build_travel();
@@ -201,63 +235,6 @@ function build_item_pill(venues, venue_index) {
     }
   }
   itinerary_container.appendChild(new_item);
-}
-
-function initialise_autocomplete() {
-    let input = document.getElementById('location_input');
-    let autocomplete = new google.maps.places.Autocomplete(input);
-}
-
-var location_sent = false;
-
-function submit_location() {
-  let location = document.getElementById('location_input').value;
-  location_sent = true;
-  console.log(location);
-  swap_location_buttons();
-  send_location(location);
-};
-
-function swap_location_buttons() {
-  if (location_sent) {
-    //show loading
-    let submit_button = document.getElementById('submit_button');
-    submit_button.style.display = 'none';
-    
-    let loading_div = document.getElementById('loading_div');
-    loading_div.style.display = 'block';
-    
-  } else {
-    //show not loading
-    let loading_div = document.getElementById('loading_div');
-    loading_div.style.display = 'none';
-    
-    let submit_button = document.getElementById('submit_button');
-    submit_button.style.display = 'block';
-    
-  }
-}
-
-function send_location(location) {
-  //add parameters to request instead of embedding
-  let my_url = 'http://localhost:3000/api/location';
-  
-  $.ajax({
-    url: my_url,
-    type: 'GET',
-    data: {
-      near: location
-    },
-    success: function(response){
-      //save data to local storage and then redirect to new page
-      localStorage.setItem('venue_data', JSON.stringify(response));
-      localStorage.setItem('location', location);
-      window.location.href = '/itinerary.html';
-    },
-    error: function(error){
-      console.log('Error: ' + error);
-    }
-  });
 }
 
 function edit_itinerary_name() {
@@ -277,6 +254,47 @@ function edit_itinerary_name() {
 }
 
 function add_event_listeners() {
+  $('.slot__right-arrow').on('click', function(event) {
+    if (event) event.preventDefault();
+    
+    let origin = $(this);
+    let slot = origin.closest('.slot_box');
+    let slot_label = origin.siblings('.slot__title');
+    //let current_index = slot.data('index');
+    let current_index = parseInt(slot.attr('data-index'));
+    console.log('\nhtml index: ' + current_index);
+    console.log(used_venues);
+    
+    //0 = id, 1 = name, 2 = index of new venue in venues array
+    let data = next_venue(current_index, current_index);
+    const venue_id = data[0];
+    const venue_name = data[1];
+    const new_index = data[2];
+    
+    slot.attr('data-index', new_index);
+    slot.attr('data-venueid', venue_id);
+    slot_label.text(venue_name);
+  });
+  
+  $('.slot__left-arrow').on('click', function(event) {
+    if (event) event.preventDefault();
+    
+    //0 = id, 1 = name, 2 = index in venues array
+    let data = previous_venue();
+    const venue_id = data[0];
+    const venue_name = data[1];
+    const venue_index = data[2];
+    
+    let origin = $(this);
+    
+    let slot = origin.closest('.slot_box');
+    slot.attr('data-venueid', venue_id);
+    slot.dataset('index', venue_index);
+    
+    let slot_label = origin.siblings('.slot__title');
+    slot_label.text(venue_name);
+  });
+  
   $('.slot__pin-button').on('click', function(event) {
     if (event) event.preventDefault();
 
@@ -287,6 +305,7 @@ function add_event_listeners() {
     let pin_src = pin_state ? "./assets/pin-unfilled.svg" :  "./assets/pin-filled.svg";
     origin_div.find('img').attr('src', pin_src);
     parent_div.data('pinned', !pin_state);
+    //count the number of pinned items, if this is number of itinerary items display travel stuff
   });
   
   $('.travel__node').on('click', function() {
@@ -304,30 +323,3 @@ function add_event_listeners() {
     }
   });
 }
-
-/*$('.travel__node').on('click', function() {
-  let origin_div = $(this);
-  let parent_div = origin_div.closest('.slot_box');
-  
-  if (parent_div.data('travel') == 'true') {
-    parent_div.find('.travel__node').removeClass('travel__node__active');
-    parent_div.find('.travel__instructions').hide();
-    parent_div.data('travel', 'false');
-  } else {
-    parent_div.find('.travel__node').addClass('travel__node__active');
-    parent_div.find('.travel__instructions').show();
-    parent_div.data('travel', 'true');
-  }
-});
-
-$('.slot__pin-button').on('click', function(event) {
-  if (event) event.preventDefault();
-  
-  let origin_div = $(this);
-  let parent_div = origin_div.closest('.slot');
-  let pin_state = parent_div.data('pinned');
-  
-  let pin_src = pin_state ? "./assets/pin-unfilled.svg" :  "./assets/pin-filled.svg";
-  origin_div.find('img').attr('src', pin_src);
-  parent_div.data('pinned', !pin_state);
-});*/
