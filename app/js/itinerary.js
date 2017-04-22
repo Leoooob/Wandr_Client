@@ -95,12 +95,13 @@ function build_itinerary() {
     itinerary_items.forEach(function(element, index) {
       //start component builder
       build_item_pill(index);
+      //add each venue index to the list
       used_venues.push(index);
     });
     
     //contains all event listeners for item pills
-    //create a function for each event listener and add them after creating the element?
     add_event_listeners();
+    //create a function for each event listener and add them after creating the element?
   }
 }
 
@@ -243,9 +244,16 @@ function edit_itinerary_name() {
   let input = $('.trip_name_input');
   
   if(span.css('display') == 'none') {
-    let new_name = input.val(); 
-    localStorage.setItem('itinerary_name', new_name);
-    span.text(new_name);
+    let new_name = input.val();
+    //if val empty and localstorage exists just set text
+    if (new_name.length === 0) {
+      let location = localStorage.getItem('location');
+      span.text(location);
+    } else {
+      localStorage.setItem('itinerary_name', new_name);
+      span.text(new_name);
+    }
+    
     input.hide();
     span.show();
   } else {
