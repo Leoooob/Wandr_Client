@@ -328,4 +328,9 @@ function add_event_listeners() {
       parent_div.data('travel', 'true');
     }
   });
+  
+  $('.slot__title').on('click', function() {
+    console.log('click click motherfucker');
+    $('#venue_info').css('display', 'block');
+  });
 }
