@@ -64,7 +64,8 @@
     
     address {
       margin: 0;
-      white-space: pre;
+      word-wrap: break-word;
+      white-space: pre-wrap;
       font-family: $font-family;
     }
   }

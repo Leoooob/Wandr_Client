@@ -412,7 +412,8 @@
     margin-right: 2em; }
     .venue__address address {
       margin: 0;
-      white-space: pre;
+      word-wrap: break-word;
+      white-space: pre-wrap;
       font-family: "ClinicaPro-Regular"; }
   .venue__times {
     max-width: 50%; }
