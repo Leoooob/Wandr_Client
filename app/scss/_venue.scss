@@ -4,7 +4,7 @@
 /* styles */
 .foursquare-attribution {
   right: 0;
-  top: 10px;
+  top: -15px;
   width: 75px;
   font-size: 14px;
   position: absolute;
@@ -32,6 +32,12 @@
     margin-bottom: 0;
   }
   
+  a.url {
+    width: 70%;
+    display: inline-block;
+    word-wrap: break-word;
+  }
+  
   &__categories {
     ul {
       margin: 0;
@@ -53,8 +59,9 @@
     max-width: 50%;
     margin-right: 5em;
     
-    p {
+    pre, p {
       margin: 0;
+      font-family: $font-family;
     }
   }
   
@@ -118,7 +125,7 @@
   
   .social {
     margin: 0 auto;
-    padding: 5px 10px;
+    padding: 2px 5px;
     border-radius: 10px;
     border: 3px solid $primary-colour;
     

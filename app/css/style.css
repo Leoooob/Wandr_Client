@@ -353,6 +353,7 @@
   .modal__section {
     margin: 20px 25px 20px 20px; }
     .modal__section__banner {
+      width: 95%;
       position: relative; }
       .modal__section__banner h2 {
         margin: 5px -10px;
@@ -372,7 +373,7 @@
 /* styles */
 .foursquare-attribution {
   right: 0;
-  top: 10px;
+  top: -15px;
   width: 75px;
   font-size: 14px;
   position: absolute;
@@ -390,6 +391,10 @@
     margin: 5px 0; }
   .venue h4 {
     margin-bottom: 0; }
+  .venue a.url {
+    width: 70%;
+    display: inline-block;
+    word-wrap: break-word; }
   .venue__categories ul {
     margin: 0;
     padding-left: 10px;
@@ -402,8 +407,9 @@
   .venue__address {
     max-width: 50%;
     margin-right: 5em; }
-    .venue__address p {
-      margin: 0; }
+    .venue__address pre, .venue__address p {
+      margin: 0;
+      font-family: "ClinicaPro-Regular"; }
   .venue__times {
     max-width: 50%; }
     .venue__times ul {
@@ -446,7 +452,7 @@
         border-right: 10px solid transparent; }
   .venue .social {
     margin: 0 auto;
-    padding: 5px 10px;
+    padding: 2px 5px;
     border-radius: 10px;
     border: 3px solid #f06242; }
     .venue .social:hover, .venue .social:focus {
