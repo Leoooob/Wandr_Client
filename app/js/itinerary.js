@@ -497,9 +497,10 @@ function build_venue(venue_info) {
     category_list.append(category);
   });
   
-  let address_element = $('.venue__address');
+  //let venue_address = venue_info.address.join(',\n');
+  let address_element = container.find('.venue__address');
   address_element.children('address').empty();
-  address_element.children('address').text(venue_info.address.join(',\n')).wrap('<pre />');
+  address_element.children('address').text(venue_info.address.join('\n'));
   
   let opening_times = $('.venue__times').children('ul');
   opening_times.empty();
