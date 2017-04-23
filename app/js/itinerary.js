@@ -260,6 +260,30 @@ function edit_itinerary_name() {
   }
 }
 
+function count_pins() {
+  let count = 0;
+  let pins = $('.slot__pin-button:lt(5)');
+  console.log(pins);
+  console.log(pins[0]);
+  
+  for (let i = 0; i < 5; i++) {
+    console.log('for ' + i);
+    let parent_div = pins[0].closest('.slot');
+    console.log(parent_div);
+    let pin_value = parent_div.getAttribute('data-pinned');
+    console.log(pin_value);
+    if (pin_value == 'pinned') count++;
+  }
+  
+  /*pins.forEach(function(element) {
+    console.log('for this element');
+    let pin_value = element.attr('data-pinned');
+    if (pin_value == 'pinned') count++
+  });*/
+  //count++;
+  console.log('count: ' + count);
+}
+
 function add_event_listeners() {
   $('.slot__right-arrow').on('click', function(event) {
     if (event) event.preventDefault();
@@ -315,6 +339,7 @@ function add_event_listeners() {
     let pin_src = pin_state ? "./assets/pin-unfilled.svg" :  "./assets/pin-filled.svg";
     origin_div.find('img').attr('src', pin_src);
     parent_div.attr('data-pinned', pin_state);
+    count_pins();
     //count the number of pinned items, if this is number of itinerary items display travel stuff
   });
   
