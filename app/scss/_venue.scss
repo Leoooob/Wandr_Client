@@ -60,10 +60,11 @@
   
   &__address {
     max-width: 50%;
-    margin-right: 5em;
+    margin-right: 2em;
     
-    pre, p {
+    address {
       margin: 0;
+      white-space: pre;
       font-family: $font-family;
     }
   }
