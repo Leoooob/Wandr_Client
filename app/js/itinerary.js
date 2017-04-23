@@ -516,7 +516,9 @@ function build_venue(venue_info) {
   let rating_div = $('.venue__rating');
   rating_div.empty();
   
-  rating_div.append('<strong>Rating</strong>').append(': ' + venue_info.avg_rating + '/10 (rated by ' + venue_info.no_ratings + ' people)');
+  if (venue_info.avg_rating !== undefined && venue_info.no_ratings !== undefined) {
+    rating_div.append('<strong>Rating</strong>').append(': ' + venue_info.avg_rating + '/10 (rated by ' + venue_info.no_ratings + ' people)');
+  }
   
   let glyphs = $('.glyph-icon');
   let text = 'This is the price rating';
