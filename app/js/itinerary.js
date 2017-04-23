@@ -436,6 +436,7 @@ function build_venue_JSON(response) {
   venue_information.glyphs = [];
   let glyph_stuff = response.attributes.groups;
 
+  console.log(venue_information.name + ': ');
   for (let i = 0; i < glyph_stuff.length; i++) {
     let this_glyph = glyph_stuff[i].items[0];
     //easy to collect more glyph data, just add more usable cases
