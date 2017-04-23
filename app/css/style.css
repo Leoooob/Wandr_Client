@@ -388,7 +388,10 @@
 .venue {
   text-align: justify; }
   .venue h3 {
-    margin: 5px 0; }
+    width: 70%;
+    margin: 5px 0;
+    display: inline-block;
+    word-wrap: break-word; }
   .venue h4 {
     margin-bottom: 0; }
   .venue a.url {
