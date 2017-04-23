@@ -376,6 +376,7 @@ function build_venue_JSON(response) {
   //general stuff
   venue_information.name = response.name;
   venue_information.url = response.url;
+  venue_information.foursquare = response.canonicalUrl;
   
   //categories
   let categories = response.categories;
@@ -426,24 +427,6 @@ function build_venue_JSON(response) {
     };
     venue_information.times.push(day_times);
   }
-  
-  /*if (response.hours.timeframes !== undefined) {
-    let opening_times = response.hours.timeframes;
-    venue_information.times = [];
-
-    opening_times.forEach(function (element) {
-      let days = element.days;
-      let times = element.open[0].renderedTime;
-      let day_times = {
-        'days': days,
-        'times': times
-      };
-
-      venue_information.times.push(day_times);
-    });
-  } else {
-    venue_information.times = 'No opening times were found for this venue.';
-  }*/
 
   //ratings
   venue_information.avg_rating = response.rating;
@@ -497,6 +480,9 @@ function build_venue(venue_info) {
   } else {
     container.children('a').attr('href', url).text(url);
   }
+  
+  //add link to the foursquare attribution
+  $('.foursquare-attribution').attr('href', venue_info.foursquare);
   
   let categories = venue_info.categories
   let category_list = container.children('.venue__categories').children('ul');
