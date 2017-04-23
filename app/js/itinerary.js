@@ -69,7 +69,7 @@ function build_no_results() {
     {
       let para = document.createElement('p');
       {
-        para.appendChild(document.createTextNode("Sorry, we couldn't find anything for you to do here."));
+        para.appendChild(document.createTextNode("Sorry, we couldn't find anything for you to do here. You might be giving a location that is too specific."));
       }
       new_element.appendChild(para);
       var para_2 = document.createElement('p');
@@ -86,7 +86,7 @@ function build_no_results() {
 }
 
 function build_itinerary() {
-  if (venues.venues.length === 0) {
+  if (venues.statusCode !== undefined || venues.venues.length === 0) {
     let new_element = build_no_results();
     itinerary_container.appendChild(new_element);
     return;
