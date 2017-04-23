@@ -304,11 +304,17 @@ function add_event_listeners() {
 
     let origin_div = $(this);
     let parent_div = origin_div.closest('.slot');
-    let pin_state = parent_div.data('pinned');
+    let pin_state = parent_div.attr('data-pinned');
+    //console.log(pin_state)
+    if (pin_state == 'false') {
+      pin_state = true;
+    } else {
+      pin_state = false;
+    }
 
     let pin_src = pin_state ? "./assets/pin-unfilled.svg" :  "./assets/pin-filled.svg";
     origin_div.find('img').attr('src', pin_src);
-    parent_div.data('pinned', !pin_state);
+    parent_div.attr('data-pinned', pin_state);
     //count the number of pinned items, if this is number of itinerary items display travel stuff
   });
   
@@ -497,7 +503,6 @@ function build_venue(venue_info) {
     category_list.append(category);
   });
   
-  //let venue_address = venue_info.address.join(',\n');
   let address_element = container.find('.venue__address');
   address_element.children('address').empty();
   address_element.children('address').text(venue_info.address.join('\n'));
