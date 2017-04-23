@@ -329,15 +329,29 @@ function add_event_listeners() {
   
   $('.slot__title').on('click', function() {
     let modal = $('#venue_info');
-    if (modal.css('display') == 'none') modal.css('display', 'block');
-    
-    //make ajax call to server, update foursquare attribution with link, update everything in $('.venue'), then display modal
-    let origin_div = $(this);
-    let parent_div = origin_div.closest('.slot_box');
-    let venue_id = parent_div.attr('data-venueid');
-    
-    venue_info(venue_id);
+    if (modal.css('display') == 'none') {
+      //only call this if we are displaying the modal
+      let origin_div = $(this);
+      let parent_div = origin_div.closest('.slot_box');
+      let venue_id = parent_div.attr('data-venueid');
+
+      venue_info(venue_id);
+      //build venue modal, then display
+      modal.css('display', 'block');
+    }
   });
+  
+  //closing the modal
+  $('.modal-close').on('click', function() {
+    $('#venue_info').css('display', 'none');
+  });
+  
+  //needs to use non deprecated methods
+  /*window.onclick = function(event) {
+    if (event.target == $('#venue_info')) {
+      modal.css('display', 'none');
+    }
+  }*/
 }
 
 function venue_info(venue_id) {
@@ -362,23 +376,74 @@ function build_venue_JSON(response) {
   //general stuff
   venue_information.name = response.name;
   venue_information.url = response.url;
-  venue_information.categories = response.categories[0];
+  
+  //categories
+  let categories = response.categories;
+  venue_information.categories = [];
+  
+  categories.forEach(function(element) {
+    venue_information.categories.push(element.name);
+  });
+  
   venue_information.address = response.location.formattedAddress; //this is an array, each element is a line of address
 
   //opening times
-  let opening_times = response.hours.timeframes;
+  let opening_times = '';
+  if (response.hours !== undefined) {
+    opening_times = response.hours.timeframes;
+  } else if (response.popular !== undefined) {
+    opening_times = response.popular.timeframes;
+  } else {
+    opening_times = 'No opening times were found for this venue'
+  }
+  
   venue_information.times = [];
+  
+  if (opening_times != 'No opening times were found for this venue') {
+    opening_times.forEach(function (element) {
+      let days = element.days;
+      if (days == 'Today') {
+        return;
+      } else {
+        let times_list = element.open;
+        let times = [];
+        times_list.forEach(function (element) {
+          times.push(element.renderedTime);
+        });
 
-  opening_times.forEach(function (element, index) {
-    let days = element.days;
-    let times = element.open[0].renderedTime;
+        let day_times = {
+          'days': days,
+          'times': times
+        };
+
+        venue_information.times.push(day_times);
+      }
+    });
+  } else {
     let day_times = {
-      'days': days,
-      'times': times
+      'days': 'No opening times were found',
+      'times': 'Sorry.'
     };
-
     venue_information.times.push(day_times);
-  });
+  }
+  
+  /*if (response.hours.timeframes !== undefined) {
+    let opening_times = response.hours.timeframes;
+    venue_information.times = [];
+
+    opening_times.forEach(function (element) {
+      let days = element.days;
+      let times = element.open[0].renderedTime;
+      let day_times = {
+        'days': days,
+        'times': times
+      };
+
+      venue_information.times.push(day_times);
+    });
+  } else {
+    venue_information.times = 'No opening times were found for this venue.';
+  }*/
 
   //ratings
   venue_information.avg_rating = response.rating;
@@ -415,6 +480,127 @@ function build_venue_JSON(response) {
   }
 
   //social media
-  venue_information.facebook = response.contact.facebook;
+  venue_information.facebook = response.contact.facebookUsername;
   venue_information.twitter = response.contact.twitter;
+  //console.log(venue_information);
+  build_venue(venue_information);
+}
+
+//wrap this function call in a try-catch in case it cannot interpret some data and it ends up displaying stale info
+function build_venue(venue_info) {
+  //add venue id as data role and check that before rebuilding the modal
+  let container = $('#venue_information');
+  container.children('h3').text(venue_info.name);
+  let url = (venue_info.url !== undefined) ? venue_info.url : 'No website available';
+  if (url == 'No website available') {
+    container.children('a').attr('href', '#').text(url);
+  } else {
+    container.children('a').attr('href', url).text(url);
+  }
+  
+  let categories = venue_info.categories
+  let category_list = container.children('.venue__categories').children('ul');
+  category_list.empty();
+  
+  categories.forEach(function(element) {
+    let category = document.createElement('li');
+    {
+      category.append(document.createTextNode(element));
+    }
+    category_list.append(category);
+  });
+  
+  let address_element = $('.venue__address');
+  address_element.children('address').empty();
+  address_element.children('address').text(venue_info.address.join(',\n')).wrap('<pre />');
+  
+  let opening_times = $('.venue__times').children('ul');
+  opening_times.empty();
+  
+  venue_info.times.forEach(function(element) {
+    let li = document.createElement('li');
+    {
+      li.append(document.createTextNode(element.days + ': ' + element.times));
+    }
+    opening_times.append(li);
+  });
+  
+  let rating_div = $('.venue__rating');
+  rating_div.empty();
+  
+  rating_div.append('<strong>Rating</strong>').append(': ' + venue_info.avg_rating + '/10 (rated by ' + venue_info.no_ratings + ' people)');
+  
+  let glyphs = $('.glyph-icon');
+  let text = 'This is the price rating';
+  let tooltip_arrow = document.createElement('div');
+  tooltip_arrow.className = 'arrow';
+  
+  //use a for loop?
+  if (venue_info.glyphs.price === undefined) {
+    venue_info.glyphs.price = '';
+  }
+  let money = venue_info.glyphs.price.length;
+  glyphs.eq(0).children('img').attr('src', './assets/venue_glyph/pound_glyph_' + money + '.svg');
+  glyphs.eq(0).children('span').text(text);
+  glyphs.eq(0).children('span').append(tooltip_arrow);
+  
+  let creditcard = (venue_info.glyphs.creditcard == "Yes") ? '_yes' : '';
+  text = (creditcard.length > 0) ? 'Accepts creditcard' : 'Does not accept creditcard';
+  glyphs.eq(1).children('img').attr('src', './assets/venue_glyph/credit_card_glyph' + creditcard + '.svg');
+  glyphs.eq(1).children('span').text(text);
+  glyphs.eq(1).children('span').append(tooltip_arrow);
+  
+  let wifi = (venue_info.glyphs.wifi == 'Free') ? '_yes' : '';
+  text = (wifi.length > 0) ? 'Free wi-fi available' : 'No free wi-fi';
+  glyphs.eq(2).children('img').attr('src', './assets/venue_glyph/wifi_glyph' + wifi + '.svg');
+  glyphs.eq(2).children('span').text(text);
+  glyphs.eq(2).children('span').append(tooltip_arrow);
+  
+  let outdoor = (venue_info.glyphs.outdoor == 'Yes') ? '_yes' : '';
+  text = (outdoor.length > 0) ? 'There is outdoor seating available' : 'There is no outdoor seating available';
+  glyphs.eq(3).children('img').attr('src', './assets/venue_glyph/outdoor_seating_glyph' + creditcard + '.svg');
+  glyphs.eq(3).children('span').text(text);
+  glyphs.eq(3).children('span').append(tooltip_arrow);
+  
+  let social_div = $('.social');
+  
+  if (venue_info.facebook !== undefined) {
+    let facebook_link = 'https://www.facebook.com/' + venue_info.facebook;
+    
+    let a_tag = social_div.eq(0).children('a');
+    a_tag.attr('href', facebook_link);
+    let label = a_tag.children('span');
+    label.contents().filter(function() {
+      return (this.nodeType == 3);
+    }).remove();
+    label.append('/' + venue_info.facebook);
+  } else {
+    let a_tag = social_div.eq(0).children('a');
+    a_tag.attr('href', '#')
+    let label = a_tag.children('span');
+    label.contents().filter(function() {
+      return (this.nodeType == 3);
+    }).remove();
+    label.append(document.createTextNode(' N/A'));
+  }
+  
+  if (venue_info.twitter !== undefined) {
+    let twitter_link = 'https://www.twitter.com/' + venue_info.twitter;
+    
+    let a_tag = social_div.eq(1).children('a');
+    a_tag.attr('href', twitter_link);
+    let label = a_tag.children('span');
+    label.contents().filter(function() {
+      return (this.nodeType == 3);
+    }).remove();
+    label.append(document.createTextNode('/' + venue_info.twitter));
+  } else {
+    let a_tag = social_div.eq(1).children('a');
+    a_tag.attr('href', '#')
+    let label = a_tag.children('span');
+    label.contents().filter(function() {
+      return (this.nodeType == 3);
+    }).remove();
+    label.append(document.createTextNode('N/A'));
+  }
 }
