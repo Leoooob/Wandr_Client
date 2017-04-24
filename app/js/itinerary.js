@@ -260,6 +260,12 @@ function edit_itinerary_name() {
   }
 }
 
+function is_pinned(origin_div) {
+  let pin_state = origin_div.attr('data-pinned');
+  pin_state = (pin_state == 'false') ? false : true;
+  return pin_state;
+}
+
 function count_pins() {
   let count = 0;
   let pins = $('.slot__pin-button:lt(5)');
@@ -282,38 +288,50 @@ function add_event_listeners() {
     if (event) event.preventDefault();
     
     let origin = $(this);
-    let slot = origin.closest('.slot_box');
-    let slot_label = origin.siblings('.slot__title');
-    let current_index = parseInt(slot.attr('data-index'));
-    
-    //0 = id, 1 = name, 2 = index of new venue in venues array
-    let data = next_venue(current_index, current_index);
-    const venue_id = data[0];
-    const venue_name = data[1];
-    const new_index = data[2];
-    
-    slot.attr('data-index', new_index);
-    slot.attr('data-venueid', venue_id);
-    slot_label.text(venue_name);
+    let pin_div = origin.closest('.slot');
+    if (is_pinned(pin_div)) {
+      console.log('this item is pinned and cannot be changed');
+      return;
+    } else {
+      let slot = origin.closest('.slot_box');
+      let slot_label = origin.siblings('.slot__title');
+      let current_index = parseInt(slot.attr('data-index'));
+
+      //0 = id, 1 = name, 2 = index of new venue in venues array
+      let data = next_venue(current_index, current_index);
+      const venue_id = data[0];
+      const venue_name = data[1];
+      const new_index = data[2];
+
+      slot.attr('data-index', new_index);
+      slot.attr('data-venueid', venue_id);
+      slot_label.text(venue_name);
+    }
   });
   
   $('.slot__left-arrow').on('click', function(event) {
     if (event) event.preventDefault();
     
     let origin = $(this);
-    let slot = origin.closest('.slot_box');
-    let slot_label = origin.siblings('.slot__title');
-    let current_index = parseInt(slot.attr('data-index'));
-    
-    //0 = id, 1 = name, 2 = index of new venue in venues array
-    let data = previous_venue(current_index, current_index);
-    const venue_id = data[0];
-    const venue_name = data[1];
-    const new_index = data[2];
-    
-    slot.attr('data-index', new_index);
-    slot.attr('data-venueid', venue_id);
-    slot_label.text(venue_name);
+    let pin_div = origin.closest('.slot');
+    if (is_pinned(pin_div)) {
+      console.log('this item is pinned and cannot be changed');
+      return;
+    } else {
+      let slot = origin.closest('.slot_box');
+      let slot_label = origin.siblings('.slot__title');
+      let current_index = parseInt(slot.attr('data-index'));
+
+      //0 = id, 1 = name, 2 = index of new venue in venues array
+      let data = previous_venue(current_index, current_index);
+      const venue_id = data[0];
+      const venue_name = data[1];
+      const new_index = data[2];
+
+      slot.attr('data-index', new_index);
+      slot.attr('data-venueid', venue_id);
+      slot_label.text(venue_name);
+    }
   });
   
   $('.slot__pin-button').on('click', function(event) {
