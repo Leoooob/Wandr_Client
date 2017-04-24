@@ -229,11 +229,14 @@ function build_item_pill(venue_index) {
       let article = build_article(venue_index);
       new_item.appendChild(article);
       
-      let travel = build_travel();
-      new_item.appendChild(travel);
-      
-      let travel_instructions = build_travel_instructions();
-      new_item.appendChild(travel_instructions);
+      //if this isn't the last item, build travel
+      if (venue_index !== 4) {
+        let travel = build_travel();
+        new_item.appendChild(travel);
+
+        let travel_instructions = build_travel_instructions();
+        new_item.appendChild(travel_instructions);
+      }
     }
   }
   itinerary_container.appendChild(new_item);
