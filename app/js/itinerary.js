@@ -269,6 +269,19 @@ function edit_itinerary_name() {
   }
 }
 
+function get_travel() {
+  let slot_box = $('.slot_box:lt(5)');
+  
+  for (let i = 0; i< 5; i++) {
+    if (i !== 4) {
+      let origin = slot_box[i].getAttribute('data-coords');
+      let destination = slot_box[i + 1].getAttribute('data-coords');
+      console.log('origin coords: ' + origin);
+      console.log('destination coords: ' + destination);
+    }
+  }
+}
+
 function is_pinned(origin_div) {
   let pin_state = origin_div.attr('data-pinned');
   pin_state = (pin_state == 'false') ? false : true;
