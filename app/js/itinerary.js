@@ -268,19 +268,12 @@ function count_pins() {
   
   for (let i = 0; i < 5; i++) {
     console.log('for ' + i);
-    let parent_div = pins[0].closest('.slot');
+    let parent_div = pins[i].closest('.slot');
     console.log(parent_div);
     let pin_value = parent_div.getAttribute('data-pinned');
     console.log(pin_value);
-    if (pin_value == 'pinned') count++;
+    if (pin_value == 'true') count++;
   }
-  
-  /*pins.forEach(function(element) {
-    console.log('for this element');
-    let pin_value = element.attr('data-pinned');
-    if (pin_value == 'pinned') count++
-  });*/
-  //count++;
   console.log('count: ' + count);
 }
 
@@ -336,7 +329,8 @@ function add_event_listeners() {
       pin_state = false;
     }
 
-    let pin_src = pin_state ? "./assets/pin-unfilled.svg" :  "./assets/pin-filled.svg";
+    let pin_src = (pin_state == 'false') ? "./assets/pin-unfilled.svg" :  "./assets/pin-filled.svg";
+    console.log('pin_src: ' + pin_src);
     origin_div.find('img').attr('src', pin_src);
     parent_div.attr('data-pinned', pin_state);
     count_pins();
