@@ -293,10 +293,9 @@ function update_travel(instructions_div, travel_JSON) {
     });
     
     let journey = {
-      [key]: {
-        'journey_time': journey_duration,
-        'steps': steps
-      }
+      'mode': key,
+      'journey_time': journey_duration,
+      'steps': steps
     };
     travel.push(journey);
     
@@ -307,10 +306,23 @@ function update_travel(instructions_div, travel_JSON) {
 }
 
 function update_travel_instructions(instructions_div, journeys) {
-  journeys.forEach(function(element) {
-    console.log('update travel instructions, element: ' + element);
-    //let li = document.createElement('li');
-    //li.className = 
+  journeys.forEach(function(root) {
+    //console.log(root);
+    root.steps.forEach(function(element) {
+      //console.log(element)
+      let li = document.createElement('li');
+      {
+        li.className = 'hidden ' + root.mode;
+        li.innerHTML = element;
+      }
+      instructions_div.append(li);
+    });
+    /*let li = document.createElement('li');
+    {
+      li.className = 'hidden';
+      li.innerHTML = element.html_instructions + ' (' + element.distance.text + ')';
+    }
+    instructions_div.append(li);*/
   });
 }
 
