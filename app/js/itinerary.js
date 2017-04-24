@@ -209,11 +209,6 @@ function build_travel_instructions() {
   let travel_instructions = document.createElement('ul');
   {
     travel_instructions.className = 'travel__instructions';
-    /*let instruction = document.createElement('li');
-    {
-      instruction.appendChild(document.createTextNode('no instructions set, yet'));
-    }
-    travel_instructions.appendChild(instruction);*/
   }
   return travel_instructions;
 }
@@ -277,19 +272,12 @@ function update_travel(instructions_div, travel_JSON) {
     let key = Object.keys(element)[0];
     let everything_else = element[key][0].legs[0].steps;
     let journey_duration = element[key][0].legs[0].duration.text;
-    //console.log(journey_duration);
+    //instructions_div.find('.travel__time').text(journey_duration);
     let steps = [];
     
     everything_else.forEach(function(element) {
-      //console.log(element);
       let step = element.html_instructions + ' (' + element.distance.text + ')';
       steps.push(step);
-      /*let instruction = document.createElement('li');
-      {
-        //instruction.append(document.createTextNode(element.html_instructions + '(' + element.distance.text + ')'));
-        instruction.innerHTML = element.html_instructions + ' (' + element.distance.text + ')';
-      }
-      instructions_div.append(instruction);*/
     });
     
     let journey = {
@@ -298,31 +286,46 @@ function update_travel(instructions_div, travel_JSON) {
       'steps': steps
     };
     travel.push(journey);
-    
   });
-  //console.log(travel);
+  
   //build all directions, hide all but walking and update the journey time
   update_travel_instructions(instructions_div, travel);
 }
 
 function update_travel_instructions(instructions_div, journeys) {
+  //journey array contains 4 elements (journeys)
   journeys.forEach(function(root) {
-    //console.log(root);
-    root.steps.forEach(function(element) {
-      //console.log(element)
+    let class_name = (root.mode == 'walking') ? root.mode : root.mode + ' hidden';
+    
+    if (class_name == 'walking') {
+      console.log('class name is walking');
+      let parent_div = instructions_div.parentNode.childNodes;
+      //console.log(parent_div);
+      if (parent_div[1].className == 'travel') {
+        console.log('found travel div');
+        let travel_div = parent_div[1].childNodes;
+        console.log(travel_div);
+        if (travel_div[2].className == 'travel__time') {
+          console.log('found travel time div');
+          travel_div[2].innerHTML = (root.journey_time);
+          console.log('set value to: ' + root.journey_time);
+        } else return;
+      } else return;
+      /*let travel_div = parent_div.getElementsByClassName('travel');
+      let travel_time_div = travel_div.getElementsByClassName('travel__time');
+      travel_time_div.innerHTML = (root.journey_time);
+      //let journey_time_div = instructions_div.sibling('.travel').children('.travel__time');
+      //journey_time_div.text(root.journey_time);*/
+    }
+    //for each step in the journey, add it to the list
+    root.steps.forEach(function(element, index) {
       let li = document.createElement('li');
       {
-        li.className = 'hidden ' + root.mode;
+        li.className = class_name;
         li.innerHTML = element;
       }
       instructions_div.append(li);
     });
-    /*let li = document.createElement('li');
-    {
-      li.className = 'hidden';
-      li.innerHTML = element.html_instructions + ' (' + element.distance.text + ')';
-    }
-    instructions_div.append(li);*/
   });
 }
 
@@ -370,10 +373,15 @@ function count_pins() {
     let pin_value = parent_div.getAttribute('data-pinned');
     if (pin_value == 'true') count++;
   }
+  let display = '';
   
-  let display = (count === 5) ? 'block' : 'none';
-  //get travel information and then display each div
-  //get_all_travel();
+  if (count === 5) {
+    get_all_travel();
+    display = 'inline-flex';
+  } else {
+    display = 'none';
+  }
+  
   $('.travel').css('display', display);
 }
 
@@ -461,14 +469,17 @@ function add_event_listeners() {
       parent_div.data('travel', 'true');
       
       //find all li items and for those with the class = dropdown menu, toggle 'hidden'
-      let list_items = parent_div.find('li');
+      /*let list_items = parent_div.find('li');
       for (let i = 0; i < 4; i++) {
-        if (list_items[i].hasClass('walking')) {
-          list_items[i].removeClass('hidden');
+        console.log('i: ' + i);
+        if (list_items[i].classList.contains('walking')) {
+          console.log('before: ' + list_items[i].className);
+          list_items[i].className -= 'hidden';
+          console.log('after: ' + list_items[i].className);
         } else {
-          list_items[i].addClass('hidden');
+          list_items[i].className += 'hidden';
         }
-      }
+      }*/
     }
   });
   
