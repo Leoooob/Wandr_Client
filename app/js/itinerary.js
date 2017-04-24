@@ -276,20 +276,29 @@ function update_travel(instructions_div, travel_JSON) {
     //get the first key in the object, this is always the mode of transport
     let key = Object.keys(element)[0];
     let everything_else = element[key][0].legs[0].steps;
-    console.log(key);
-    //for each of the below, add li with text of element.html_instructions + 'for ' + element.distance.text
-    //console.log(everything_else[0].legs[0].steps);
+    let journey_duration = element[key][0].legs[0].duration.text;
+    //console.log(journey_duration);
+    let steps = [];
+    
     everything_else.forEach(function(element) {
-      console.log(element);
-      let instruction = document.createElement('li');
+      //console.log(element);
+      let step = element.html_instructions + ' (' + element.distance.text + ')';
+      steps.push(step);
+      /*let instruction = document.createElement('li');
       {
-        //instruction.append(document.createTextNode(element.html_instructions + ', for ' + element.distance.text));
+        //instruction.append(document.createTextNode(element.html_instructions + '(' + element.distance.text + ')'));
         instruction.innerHTML = element.html_instructions + ' (' + element.distance.text + ')';
       }
-      instructions_div.append(instruction);
+      instructions_div.append(instruction);*/
     });
     
+    travel[key] = {
+      'journey_time': journey_duration,
+      'steps': steps
+    };
+    
   });
+  console.log(travel);
   //if (travel_JSON.statusCode !== undefined || travel_JSON.length === 0)
 }
 
