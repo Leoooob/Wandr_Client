@@ -209,11 +209,11 @@ function build_travel_instructions() {
   let travel_instructions = document.createElement('ul');
   {
     travel_instructions.className = 'travel__instructions';
-    let instruction = document.createElement('li');
+    /*let instruction = document.createElement('li');
     {
       instruction.appendChild(document.createTextNode('no instructions set, yet'));
     }
-    travel_instructions.appendChild(instruction);
+    travel_instructions.appendChild(instruction);*/
   }
   return travel_instructions;
 }
@@ -269,15 +269,55 @@ function edit_itinerary_name() {
   }
 }
 
-function get_travel() {
+function update_travel(instructions_div, travel_JSON) {
+  //array of JSON, each element key = mode of transport, value = array (each element = part of journey)
+  let travel = {};
+  travel_JSON.forEach(function(element) {
+    //get the first key in the object, this is always the mode of transport
+    let key = Object.keys(element)[0];
+    let everything_else = element[key][0].legs[0].steps;
+    console.log(key);
+    //for each of the below, add li with text of element.html_instructions + 'for ' + element.distance.text
+    //console.log(everything_else[0].legs[0].steps);
+    everything_else.forEach(function(element) {
+      console.log(element);
+      let instruction = document.createElement('li');
+      {
+        //instruction.append(document.createTextNode(element.html_instructions + ', for ' + element.distance.text));
+        instruction.innerHTML = element.html_instructions + ' (' + element.distance.text + ')';
+      }
+      instructions_div.append(instruction);
+    });
+    
+  });
+  //if (travel_JSON.statusCode !== undefined || travel_JSON.length === 0)
+}
+
+function get_all_travel() {
   let slot_box = $('.slot_box:lt(5)');
+  let travel_ins = document.getElementsByClassName('travel__instructions');
   
-  for (let i = 0; i< 5; i++) {
+  for (let i = 0; i < 5; i++) {
     if (i !== 4) {
       let origin = slot_box[i].getAttribute('data-coords');
       let destination = slot_box[i + 1].getAttribute('data-coords');
-      console.log('origin coords: ' + origin);
-      console.log('destination coords: ' + destination);
+      let my_url = 'http://localhost:3000/api/travel';
+  
+      $.ajax({
+        url: my_url,
+        type: 'GET',
+        data: {
+          'origin': origin,
+          'destination': destination
+        },
+        success: function(response) {
+          let instructions_div = travel_ins[i];
+          update_travel(instructions_div, response);
+        },
+        error: function(error) {
+          console.log('Error: ' + error);
+        }
+      });
     }
   }
 }
@@ -300,7 +340,7 @@ function count_pins() {
   
   let display = (count === 5) ? 'block' : 'none';
   //get travel information and then display each div
-  //get_travel();
+  //get_all_travel();
   $('.travel').css('display', display);
 }
 
