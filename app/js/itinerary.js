@@ -311,11 +311,6 @@ function update_travel_instructions(instructions_div, journeys) {
           console.log('set value to: ' + root.journey_time);
         } else return;
       } else return;
-      /*let travel_div = parent_div.getElementsByClassName('travel');
-      let travel_time_div = travel_div.getElementsByClassName('travel__time');
-      travel_time_div.innerHTML = (root.journey_time);
-      //let journey_time_div = instructions_div.sibling('.travel').children('.travel__time');
-      //journey_time_div.text(root.journey_time);*/
     }
     //for each step in the journey, add it to the list
     root.steps.forEach(function(element, index) {
@@ -455,6 +450,14 @@ function add_event_listeners() {
     //count the number of pinned items, if this is number of itinerary items display travel stuff
   });
   
+  $('.travel__mode').on('change', function() {
+    //console.log(this.value);
+    
+    //update journey time
+    //hide previous instructions
+    //show this.value == mode instructions
+  });
+  
   $('.travel__node').on('click', function() {
     let origin_div = $(this);
     let parent_div = origin_div.closest('.slot_box');
@@ -467,19 +470,6 @@ function add_event_listeners() {
       parent_div.find('.travel__node').addClass('travel__node__active');
       parent_div.find('.travel__instructions').show();
       parent_div.data('travel', 'true');
-      
-      //find all li items and for those with the class = dropdown menu, toggle 'hidden'
-      /*let list_items = parent_div.find('li');
-      for (let i = 0; i < 4; i++) {
-        console.log('i: ' + i);
-        if (list_items[i].classList.contains('walking')) {
-          console.log('before: ' + list_items[i].className);
-          list_items[i].className -= 'hidden';
-          console.log('after: ' + list_items[i].className);
-        } else {
-          list_items[i].className += 'hidden';
-        }
-      }*/
     }
   });
   
