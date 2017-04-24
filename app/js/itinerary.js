@@ -271,7 +271,7 @@ function edit_itinerary_name() {
 
 function update_travel(instructions_div, travel_JSON) {
   //array of JSON, each element key = mode of transport, value = array (each element = part of journey)
-  let travel = {};
+  let travel = [];
   travel_JSON.forEach(function(element) {
     //get the first key in the object, this is always the mode of transport
     let key = Object.keys(element)[0];
@@ -292,10 +292,13 @@ function update_travel(instructions_div, travel_JSON) {
       instructions_div.append(instruction);*/
     });
     
-    travel[key] = {
-      'journey_time': journey_duration,
-      'steps': steps
+    let journey = {
+      [key]: {
+        'journey_time': journey_duration,
+        'steps': steps
+      }
     };
+    travel.push(journey);
     
   });
   //console.log(travel);
@@ -305,7 +308,7 @@ function update_travel(instructions_div, travel_JSON) {
 
 function update_travel_instructions(instructions_div, journeys) {
   journeys.forEach(function(element) {
-    console.log(element);
+    console.log('update travel instructions, element: ' + element);
     //let li = document.createElement('li');
     //li.className = 
   });
