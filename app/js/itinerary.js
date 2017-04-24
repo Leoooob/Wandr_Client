@@ -263,18 +263,18 @@ function edit_itinerary_name() {
 function count_pins() {
   let count = 0;
   let pins = $('.slot__pin-button:lt(5)');
-  console.log(pins);
-  console.log(pins[0]);
   
   for (let i = 0; i < 5; i++) {
-    console.log('for ' + i);
     let parent_div = pins[i].closest('.slot');
-    console.log(parent_div);
     let pin_value = parent_div.getAttribute('data-pinned');
-    console.log(pin_value);
     if (pin_value == 'true') count++;
   }
   console.log('count: ' + count);
+  //if count === 5 then get travel information
+  //else hide travel info
+  let display = (count === 5) ? 'block' : 'none';
+  //get travel information and then display each div
+  $('.travel').css('display', display);
 }
 
 function add_event_listeners() {
@@ -322,15 +322,13 @@ function add_event_listeners() {
     let origin_div = $(this);
     let parent_div = origin_div.closest('.slot');
     let pin_state = parent_div.attr('data-pinned');
-    //console.log(pin_state)
     if (pin_state == 'false') {
       pin_state = true;
     } else {
       pin_state = false;
     }
 
-    let pin_src = (pin_state == 'false') ? "./assets/pin-unfilled.svg" :  "./assets/pin-filled.svg";
-    console.log('pin_src: ' + pin_src);
+    let pin_src = (!pin_state) ? "./assets/pin-unfilled.svg" :  "./assets/pin-filled.svg";
     origin_div.find('img').attr('src', pin_src);
     parent_div.attr('data-pinned', pin_state);
     count_pins();
