@@ -459,6 +459,16 @@ function add_event_listeners() {
       parent_div.find('.travel__node').addClass('travel__node__active');
       parent_div.find('.travel__instructions').show();
       parent_div.data('travel', 'true');
+      
+      //find all li items and for those with the class = dropdown menu, toggle 'hidden'
+      let list_items = parent_div.find('li');
+      for (let i = 0; i < 4; i++) {
+        if (list_items[i].hasClass('walking')) {
+          list_items[i].removeClass('hidden');
+        } else {
+          list_items[i].addClass('hidden');
+        }
+      }
     }
   });
   
