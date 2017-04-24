@@ -280,6 +280,7 @@ function update_travel(instructions_div, travel_JSON) {
       steps.push(step);
     });
     
+    if (key == 'bicycling') key = 'cycling';
     let journey = {
       'mode': key,
       'journey_time': journey_duration,
@@ -295,20 +296,15 @@ function update_travel(instructions_div, travel_JSON) {
 function update_travel_instructions(instructions_div, journeys) {
   //journey array contains 4 elements (journeys)
   journeys.forEach(function(root) {
+    instructions_div.setAttribute('data-' + root.mode, root.journey_time);
     let class_name = (root.mode == 'walking') ? root.mode : root.mode + ' hidden';
     
     if (class_name == 'walking') {
-      console.log('class name is walking');
       let parent_div = instructions_div.parentNode.childNodes;
-      //console.log(parent_div);
       if (parent_div[1].className == 'travel') {
-        console.log('found travel div');
         let travel_div = parent_div[1].childNodes;
-        console.log(travel_div);
         if (travel_div[2].className == 'travel__time') {
-          console.log('found travel time div');
           travel_div[2].innerHTML = (root.journey_time);
-          console.log('set value to: ' + root.journey_time);
         } else return;
       } else return;
     }
@@ -451,11 +447,15 @@ function add_event_listeners() {
   });
   
   $('.travel__mode').on('change', function() {
-    //console.log(this.value);
+    let origin_div = $(this);
+    let new_mode = this.value.toLowerCase();
+    if (new_mode == 'public transport') new_mode = 'transit';
     
-    //update journey time
-    //hide previous instructions
-    //show this.value == mode instructions
+    let travel_time_div = origin_div.siblings('.travel__time');
+    let travel_instruction_div = origin_div.parent('.travel').siblings('.travel__instructions');
+    let journey_time = travel_instruction_div.attr('data-' + new_mode);
+    travel_time_div.text(journey_time);
+    //change instructions to correct class
   });
   
   $('.travel__node').on('click', function() {
@@ -612,7 +612,6 @@ function build_venue_JSON(response) {
   //social media
   venue_information.facebook = response.contact.facebookUsername;
   venue_information.twitter = response.contact.twitter;
-  //console.log(venue_information);
   build_venue(venue_information);
 }
 
