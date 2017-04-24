@@ -225,6 +225,12 @@ function build_item_pill(venue_index) {
     new_item.dataset.travel = 'false';
     new_item.dataset.venueid = venues.venues[venue_index].id;
     new_item.dataset.index = venue_index;
+    
+    //set travel coords for later use
+    let location = venues.venues[venue_index].location;
+    let latlong = location.lat + ',' + location.lng;
+    new_item.dataset.coords = latlong;
+    
     {
       let article = build_article(venue_index);
       new_item.appendChild(article);
@@ -278,11 +284,10 @@ function count_pins() {
     let pin_value = parent_div.getAttribute('data-pinned');
     if (pin_value == 'true') count++;
   }
-  console.log('count: ' + count);
-  //if count === 5 then get travel information
-  //else hide travel info
+  
   let display = (count === 5) ? 'block' : 'none';
   //get travel information and then display each div
+  //get_travel();
   $('.travel').css('display', display);
 }
 
