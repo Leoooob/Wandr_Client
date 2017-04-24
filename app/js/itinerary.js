@@ -298,8 +298,17 @@ function update_travel(instructions_div, travel_JSON) {
     };
     
   });
-  console.log(travel);
-  //if (travel_JSON.statusCode !== undefined || travel_JSON.length === 0)
+  //console.log(travel);
+  //build all directions, hide all but walking and update the journey time
+  update_travel_instructions(instructions_div, travel);
+}
+
+function update_travel_instructions(instructions_div, journeys) {
+  journeys.forEach(function(element) {
+    console.log(element);
+    //let li = document.createElement('li');
+    //li.className = 
+  });
 }
 
 function get_all_travel() {
