@@ -16,19 +16,14 @@ function submit_location() {
 };
 
 function swap_location_buttons() {
+  let submit_button = document.getElementById('submit_button');
+  let loading_div = document.getElementById('loading_div');
+  
   if (location_sent) {
-    //show loading
-    let submit_button = document.getElementById('submit_button');
     submit_button.style.display = 'none';
-    
-    let loading_div = document.getElementById('loading_div');
     loading_div.style.display = 'block';
   } else {
-    //show not loading
-    let loading_div = document.getElementById('loading_div');
     loading_div.style.display = 'none';
-    
-    let submit_button = document.getElementById('submit_button');
     submit_button.style.display = 'block';
   }
 }
@@ -43,7 +38,6 @@ function send_location(location) {
       near: location
     },
     success: function(response) {
-      //save data to local storage and then redirect to new page
       localStorage.setItem('venue_data', JSON.stringify(response));
       localStorage.setItem('location', location);
       window.location.href = '/itinerary.html';
