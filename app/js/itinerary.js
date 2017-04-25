@@ -212,7 +212,6 @@ function build_item_pill(venue_index) {
   let new_item = document.createElement('div');
   {
     new_item.className = 'slot_box';
-    new_item.dataset.travel = 'false';
     new_item.dataset.venueid = venues.venues[venue_index].id;
     new_item.dataset.index = venue_index;
     
@@ -284,6 +283,8 @@ function update_travel(instructions_div, travel_JSON) {
     travel.push(journey);
   });
   
+  //empty instructions before updating with new ones
+  $(instructions_div).empty();
   //build all directions, hide all but walking and update the journey time
   update_travel_instructions(instructions_div, travel);
 }
@@ -366,8 +367,11 @@ function count_pins() {
     display = 'inline-flex';
   } else {
     display = 'none';
+    if ($('.travel__mode')[0].selectedIndex !== 0)  $('.travel__mode')[0].selectedIndex = 0;
+    if ($('.travel__instructions').css('display') !== 'none') $('.travel__instructions').css('display', display);
   }
   
+  //reset travel select element to walking
   $('.travel').css('display', display);
 }
 
@@ -448,23 +452,24 @@ function add_event_listeners() {
     
     let travel_time_div = origin_div.siblings('.travel__time');
     let travel_instruction_div = origin_div.parent('.travel').siblings('.travel__instructions');
+    
+    //change instructions to correct class
+    update_instructions(travel_instruction_div, new_mode);
+    
     let journey_time = travel_instruction_div.attr('data-' + new_mode);
     travel_time_div.text(journey_time);
-    //change instructions to correct class
   });
   
   $('.travel__node').on('click', function() {
     let origin_div = $(this);
     let parent_div = origin_div.closest('.slot_box');
 
-    if (parent_div.data('travel') == 'true') {
+    if (parent_div.find('.travel__instructions').css('display') != 'none') {
       parent_div.find('.travel__node').removeClass('travel__node__active');
       parent_div.find('.travel__instructions').hide();
-      parent_div.data('travel', 'false');
     } else {
       parent_div.find('.travel__node').addClass('travel__node__active');
       parent_div.find('.travel__instructions').show();
-      parent_div.data('travel', 'true');
     }
   });
   
@@ -477,7 +482,6 @@ function add_event_listeners() {
       let venue_id = parent_div.attr('data-venueid');
 
       venue_info(venue_id);
-      //build venue modal, then display
       modal.css('display', 'block');
     }
   });
@@ -493,6 +497,16 @@ function add_event_listeners() {
       modal.css('display', 'none');
     }
   }*/
+}
+
+function update_instructions(instructions_div, transport_mode) {
+  //if (transport_mode == 'transit') transport_mode = 'public transport';
+  
+  let old_instructions = $(instructions_div).find('li').not('hidden');
+  old_instructions.addClass('hidden');
+  
+  let new_instructions = $(instructions_div).find('li.' + transport_mode);
+  new_instructions.removeClass('hidden');
 }
 
 function venue_info(venue_id) {
