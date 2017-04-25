@@ -50,12 +50,7 @@ function previous_venue(current_venue, current_position) {
 }
 
 function update_itinerary_name() {
-  let location = '';
-  if (localStorage.getItem('itinerary_name') === null) {
-    location = localStorage.getItem('location');
-  } else {
-    location = localStorage.getItem('itinerary_name');
-  }
+  let location = (localStorage.getItem('itinerary_name') === null) ? localStorage.getItem('location') : localStorage.getItem('itinerary_name');
   
   $('span.summary_location').text(location);
   build_itinerary();
