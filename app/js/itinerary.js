@@ -255,6 +255,7 @@ function edit_itinerary_name() {
   } else {
     span.hide();
     input.show();
+    input.focus();
   }
 }
 
@@ -376,6 +377,11 @@ function count_pins() {
 }
 
 function add_event_listeners() {
+  $('#trip_input').on('keypress', function(event) {
+    let key = event.keyCode | event.which;
+    if (key === 13) edit_itinerary_name();
+  });
+  
   $('.slot__right-arrow').on('click', function(event) {
     if (event) event.preventDefault();
     
