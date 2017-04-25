@@ -203,7 +203,6 @@
     stroke-miterlimit: 10;
       
     &:hover {
-      //fill: $primary-colour;
       fill: $background-colour;
       stroke: $highlight-colour;
     }
@@ -228,16 +227,10 @@
   &__instructions {
     display: none;
     text-align: left;
+    padding-top: 5px;
     border-radius: 5px;
+    padding-bottom: 5px;
     border: 1px solid $primary-colour;
-    
-    li:first-child {
-      margin-top: 10px;
-    }
-    
-    li:last-child {
-      margin-bottom: 10px;
-    }
   }
 }
 

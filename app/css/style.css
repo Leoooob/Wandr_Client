@@ -297,12 +297,10 @@
   .travel__instructions {
     display: none;
     text-align: left;
+    padding-top: 5px;
     border-radius: 5px;
+    padding-bottom: 5px;
     border: 1px solid #f06242; }
-    .travel__instructions li:first-child {
-      margin-top: 10px; }
-    .travel__instructions li:last-child {
-      margin-bottom: 10px; }
 
 .trip_name_input {
   float: left;
