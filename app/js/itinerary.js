@@ -296,23 +296,18 @@ function build_item_pill(venue_index) {
 function edit_itinerary_name() {
   let span = $('span.summary_location');
   let input = $('.trip_name_input');
-  
-  if(span.css('display') == 'none') {
-    let new_name = input.val();
-    //if val empty and localstorage exists just set text
-    if (new_name.length === 0) {
-      new_name = localStorage.getItem('location');
-    }
-    localStorage.setItem('itinerary_name', new_name);
-    span.text(new_name);
-    
-    input.hide();
-    span.show();
-  } else {
-    span.hide();
-    input.show();
-    input.focus();
+  let new_name = input.val();
+  //if val empty and localstorage exists just set text
+  if (new_name.length === 0) {
+    new_name = localStorage.getItem('location');
   }
+
+  localStorage.setItem('itinerary_name', new_name);
+  span.text(new_name);
+
+  input.toggle();
+  span.toggle();
+  if (input.css('display') != 'none')  input.focus();
 }
 
 function update_travel(instructions_div, travel_JSON) {
