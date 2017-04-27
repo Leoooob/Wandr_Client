@@ -545,13 +545,13 @@ function add_event_listeners() {
       let venue_id = parent_div.attr('data-venueid');
 
       venue_info(venue_id);
-      modal.css('display', 'block');
+      modal.show();
     }
   });
   
   //closing the modal
   $('.modal-close').on('click', function() {
-    $('#venue_info').css('display', 'none');
+    $('#venue_info').hide();
   });
   
   //needs to use non deprecated methods
