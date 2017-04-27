@@ -8,12 +8,10 @@
   position: absolute;
   
   .genre_list {
-    top: -60px;
-    //left: 55px;
+    top: -82px;
     padding: 0;
-    //float: left;
     //width: 160px;
-    height: 36px;
+    //height: 36px;
     display: block;
     overflow-x: auto;
     margin: auto 0px;
@@ -25,14 +23,18 @@
     background-color: $background-colour;
 
     li {
-      width: 32px;
-      height: 32px;
+      //width: 32px;
+      //height: 32px;
       margin: 2px 5px;
       display: inline-block;
       
-      /*&:first-child {
-        position: fixed;
-      }*/
+      img {
+        width: 32px;
+      }
+      
+      div {
+        color: $primary-colour;
+      }
     }
   }
   

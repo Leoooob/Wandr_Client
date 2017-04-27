@@ -163,9 +163,8 @@
   display: none;
   position: absolute; }
   .genre_box .genre_list {
-    top: -60px;
+    top: -82px;
     padding: 0;
-    height: 36px;
     display: block;
     overflow-x: auto;
     margin: auto 0px;
@@ -176,13 +175,12 @@
     border: 1px solid #333333;
     background-color: #f7f7f7; }
     .genre_box .genre_list li {
-      width: 32px;
-      height: 32px;
       margin: 2px 5px;
-      display: inline-block;
-      /*&:first-child {
-        position: fixed;
-      }*/ }
+      display: inline-block; }
+      .genre_box .genre_list li img {
+        width: 32px; }
+      .genre_box .genre_list li div {
+        color: #f06242; }
   .genre_box .pointer {
     width: 0;
     height: 0;
