@@ -160,11 +160,11 @@
 /* styles */
 .genre_box {
   left: 55px;
+  display: none;
   position: absolute; }
   .genre_box .genre_list {
-    top: -50px;
+    top: -60px;
     padding: 0;
-    width: 160px;
     height: 36px;
     display: block;
     overflow-x: auto;
@@ -179,16 +179,19 @@
       width: 32px;
       height: 32px;
       margin: 2px 5px;
-      display: inline-block; }
+      display: inline-block;
+      /*&:first-child {
+        position: fixed;
+      }*/ }
   .genre_box .pointer {
     width: 0;
     height: 0;
-    top: -12px;
+    top: -22px;
     left: 10px;
     position: absolute;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid #333333; }
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #333333; }
 
 /* styles */
 .page-header {
