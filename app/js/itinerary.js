@@ -506,8 +506,6 @@ function add_event_listeners() {
 }
 
 function update_instructions(instructions_div, transport_mode) {
-  //if (transport_mode == 'transit') transport_mode = 'public transport';
-  
   let old_instructions = $(instructions_div).find('li').not('hidden');
   old_instructions.addClass('hidden');
   
@@ -684,7 +682,7 @@ function build_venue(venue_info) {
   let tooltip_arrow = document.createElement('div');
   tooltip_arrow.className = 'arrow';
   
-  //use a for loop?
+  //use a loop?
   if (venue_info.glyphs.price === undefined) {
     venue_info.glyphs.price = '';
   }
@@ -750,6 +748,6 @@ function build_venue(venue_info) {
     label.contents().filter(function() {
       return (this.nodeType == 3);
     }).remove();
-    label.append(document.createTextNode('N/A'));
+    label.append(document.createTextNode(' N/A'));
   }
 }
