@@ -318,7 +318,6 @@ function update_travel(instructions_div, travel_JSON) {
     let key = Object.keys(element)[0];
     let everything_else = element[key][0].legs[0].steps;
     let journey_duration = element[key][0].legs[0].duration.text;
-    //instructions_div.find('.travel__time').text(journey_duration);
     let steps = [];
     
     everything_else.forEach(function(element) {
@@ -405,6 +404,7 @@ function is_pinned(origin_div) {
 
 function count_pins() {
   let count = 0;
+  let display = '';
   let pins = $('.slot__pin-button:lt(5)');
   
   for (let i = 0; i < 5; i++) {
@@ -412,7 +412,6 @@ function count_pins() {
     let pin_value = parent_div.getAttribute('data-pinned');
     if (pin_value == 'true') count++;
   }
-  let display = '';
   
   if (count === 5) {
     get_all_travel();
