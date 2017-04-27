@@ -21,10 +21,12 @@
     list-style-type: none;
     border: 1px solid $dark-colour;
     background-color: $background-colour;
+    
+    @media screen and (max-width: 522px) {
+      width: 220px;
+    }
 
     li {
-      //width: 32px;
-      //height: 32px;
       margin: 2px 5px;
       display: inline-block;
       
