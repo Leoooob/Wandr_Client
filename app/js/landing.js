@@ -29,7 +29,8 @@ function swap_location_buttons() {
 }
 
 function send_location(location) {
-  let my_url = 'http://localhost:3000/api/location';
+  //let my_url = 'http://localhost:3000/api/location';
+  let my_url = 'https://wandr-app.herokuapp.com/api/location';
   
   $.ajax({
     url: my_url,

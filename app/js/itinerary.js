@@ -375,7 +375,8 @@ function get_all_travel() {
     if (i !== 4) {
       let origin = slot_box[i].getAttribute('data-coords');
       let destination = slot_box[i + 1].getAttribute('data-coords');
-      let my_url = 'http://localhost:3000/api/travel';
+      //let my_url = 'http://localhost:3000/api/travel';
+      let my_url = 'https://wandr-app.herokuapp.com/api/travel';
   
       $.ajax({
         url: my_url,
@@ -576,7 +577,8 @@ function update_instructions(instructions_div, transport_mode) {
 }
 
 function venue_info(venue_id) {
-  let my_url = 'http://localhost:3000/api/venue';
+  //let my_url = 'http://localhost:3000/api/venue';
+  let my_url = 'https://wandr-app.herokuapp.com/api/venue';
   
   $.ajax({
     url: my_url,
