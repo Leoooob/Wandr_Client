@@ -210,6 +210,9 @@
   .summary__bottom-row {
     padding: 5px;
     font-size: 20px; }
+    @media screen and (max-width: 500px) {
+      .summary__bottom-row {
+        font-size: 14px; } }
     .summary__bottom-row .summary_location {
       float: left;
       padding: 8px 0; }
@@ -219,7 +222,8 @@
     text-align: left; }
     @media screen and (max-width: 500px) {
       .summary__title {
-        margin: 0 auto; } }
+        margin: 0 auto;
+        font-size: 14px; } }
   .summary__location {
     float: left;
     padding: 1rem 0; }
@@ -263,6 +267,9 @@
 .container {
   margin: 0 20px;
   text-align: center; }
+  @media screen and (max-width: 500px) {
+    .container {
+      margin: 0; } }
 
 /* item pills */
 #itinerary_container {
@@ -292,8 +299,11 @@
     .slot .slot__left-arrow:hover, .slot .slot__right-arrow:hover, .slot .slot__genre-button:hover, .slot .slot__pin-button:hover {
       opacity: 1; }
   .slot__title {
-    flex-grow: 1;
-    float: left; }
+    float: left;
+    flex-grow: 1; }
+    @media screen and (max-width: 500px) {
+      .slot__title {
+        font-size: 12px; } }
   .slot__genre-button {
     float: left;
     min-width: 32px; }
@@ -537,6 +547,9 @@ body {
 
 .front-content {
   margin: 0 20px; }
+  @media screen and (max-width: 500px) {
+    .front-content {
+      margin: 0 10px; } }
 
 .front-banner {
   position: relative; }

@@ -22,8 +22,10 @@
   &__bottom-row {
     padding: 5px;
     font-size: 20px;
-    //margin: auto 1em;
-    //border: 1px solid $dark-colour;
+    
+    @media screen and (max-width: $mobile-w) {
+      font-size: 14px;
+    }
     
     .summary_location {
       float: left;
@@ -38,6 +40,7 @@
     
     @media screen and (max-width: $mobile-w) {
       margin: 0 auto;
+      font-size: 14px;
     }
   }
 
@@ -101,6 +104,10 @@
 .container {
   margin: 0 20px;
   text-align: center;
+  
+  @media screen and (max-width: $mobile-w) {
+    margin: 0;
+  }
 }
 
 
@@ -143,8 +150,12 @@
   }
 
   &__title {
-    flex-grow: 1;
     float: left;
+    flex-grow: 1;
+    
+    @media screen and (max-width: $mobile-w) {
+      font-size: 12px;
+    }
   }
 
   &__genre-button {

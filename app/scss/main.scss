@@ -22,6 +22,10 @@ body {
 
 .front-content {
   margin: 0 20px;
+  
+  @media screen and (max-width: $mobile-w) {
+    margin:0 10px;
+  }
 }
 
 .front-banner {
