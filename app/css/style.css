@@ -147,6 +147,49 @@
 
 /* HSLA colours */
 /* media query sizes */
+/* import fonts and colours */
+/* fonts */
+@font-face {
+  font-family: 'ClinicaPro-Regular';
+  src: url("../assets/fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../assets/fonts/ClinicaPro-Regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+/* HSLA colours */
+/* media query sizes */
+/* styles */
+.genre_box {
+  left: 55px;
+  position: absolute; }
+  .genre_box .genre_list {
+    top: -50px;
+    padding: 0;
+    width: 160px;
+    height: 36px;
+    display: block;
+    overflow-x: auto;
+    margin: auto 0px;
+    position: absolute;
+    border-radius: 5px;
+    white-space: nowrap;
+    list-style-type: none;
+    border: 1px solid #333333;
+    background-color: #f7f7f7; }
+    .genre_box .genre_list li {
+      width: 32px;
+      height: 32px;
+      margin: 2px 5px;
+      display: inline-block; }
+  .genre_box .pointer {
+    width: 0;
+    height: 0;
+    top: -12px;
+    left: 10px;
+    position: absolute;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #333333; }
+
 /* styles */
 .page-header {
   margin: 20px;
@@ -233,6 +276,7 @@
   cursor: pointer;
   max-width: 600px;
   margin: 1rem auto;
+  position: relative;
   align-items: center;
   border-radius: 10px;
   color: white;

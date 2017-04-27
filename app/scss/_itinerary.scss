@@ -1,5 +1,6 @@
 /* import fonts and colours */
 @import '_fonts';
+@import '_genrefilter';
 
 /* styles */
 .page-header {
@@ -121,6 +122,7 @@
   cursor: pointer;
   max-width: 600px;
   margin: 1rem auto;
+  position: relative;
   align-items: center;
   border-radius: 10px;
   color: $light-colour;
