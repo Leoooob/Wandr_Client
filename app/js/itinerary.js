@@ -436,7 +436,13 @@ function add_event_listeners() {
   $('.slot__genre-button').on('click', function(event) {
     if (event)  event.preventDefault();
     
-    $('.genre_box').toggle();
+    let origin = $(this);
+    let genre_box = origin.siblings('.genre_box');
+    
+    if (genre_box.css('display') == 'none') {
+      $('.genre_box').hide();
+    } 
+    genre_box.toggle();
   });
   
   $('.slot__right-arrow').on('click', function(event) {
