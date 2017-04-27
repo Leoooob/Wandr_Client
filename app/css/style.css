@@ -80,6 +80,9 @@
     border-radius: 3px;
     border: 1px solid #ff4b14;
     background-color: #f7f7f7; }
+    @media screen and (max-width: 420px) {
+      .location-form__where-input {
+        width: 95%; } }
     .location-form__where-input:focus {
       outline: none;
       border-color: #f06242;
@@ -115,8 +118,8 @@
 .loading {
   display: none; }
   .loading .loading_svg {
-    left: 10px;
     right: 0;
+    left: 10px;
     z-index: 1;
     width: 160px;
     height: 76px;

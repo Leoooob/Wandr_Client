@@ -65,6 +65,10 @@
     border: 1px solid $highlight-colour;
     background-color: $background-colour;
     
+    @media screen and (max-width: $mobile-h) {
+      width: 95%;
+    }
+    
     &:focus {
       outline: none;
       border-color: $primary-colour;
@@ -111,8 +115,8 @@
   display: none;
 
   .loading_svg {
-    left: 10px;
     right: 0;
+    left: 10px;
     z-index: 1;
     width: 160px;
     height: 76px;
