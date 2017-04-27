@@ -100,6 +100,99 @@ function build_itinerary() {
   }
 }
 
+function build_genre_menu() {
+  let genre_menu = document.createElement('div');
+  {
+    genre_menu.className = 'genre_box';
+
+    let genre_list = document.createElement('ul');
+    {
+      genre_list.className = 'genre_list';
+
+      //for 7 different genres
+      for (let i = 0; i < 7; i++) {
+        let genre = document.createElement('li');
+        {
+          let img = document.createElement('img');
+          {
+            //genre-0_32.svg, genre-1_32.svg etc
+            //img.src = './assets/genre/genre-' + i + '_32.svg';
+            img.src = './assets/travel-node_32.svg';
+          }
+          genre.appendChild(img);
+
+          let genre_label = document.createElement('div');
+          {
+            //genre_label.className = '';
+            genre_label.append(document.createTextNode('genre'));
+          }
+          genre.appendChild(genre_label);
+        }
+        genre_list.appendChild(genre);
+      }
+    }
+    genre_menu.appendChild(genre_list);
+
+    let pointer = document.createElement('div');
+    {
+      pointer.className = 'pointer';
+    }
+    genre_menu.appendChild(pointer);
+  }
+   return genre_menu;
+}
+
+function build_arrow(direction) {
+  let a = document.createElement('a');
+  {
+    a.href = '#';
+    a.className = 'slot__' + direction + '-arrow';
+    {
+      let img = document.createElement('img');
+      img.src = './assets/arrow-' + direction + '.svg';
+      a.appendChild(img);
+    }
+  }
+  return a;
+}
+
+function build_genre_button() {
+  let a = document.createElement('a');
+  {
+    a.href = '#';
+    a.className = 'slot__genre-button';
+    {
+      let img = document.createElement('img');
+      img.src = './assets/genre_32.svg';
+      a.appendChild(img);
+    }
+  }
+  return a;
+}
+
+function build_slot_title(title) {
+  let div = document.createElement('div');
+  {
+    div.className = 'slot__title';
+    div.appendChild(document.createTextNode(title));
+  }
+  return div;
+}
+
+function build_pin_slot() {
+  let a = document.createElement('a');
+  {
+    a.href = '#';
+    a.className = 'slot__pin-button';
+    {
+      let img = document.createElement('img');
+      img.src = './assets/pin-unfilled.svg';
+      a.appendChild(img);
+    }
+  }
+  return a;
+}
+
 function build_article(venue_index) {
   let article = document.createElement('article');
   {
@@ -107,60 +200,23 @@ function build_article(venue_index) {
     article.className = 'slot';
     article.dataset.pinned = 'false';
     {
-      let a1 = document.createElement('a');
-      {
-        a1.href = '#';
-        a1.className = 'slot__left-arrow';
-        {
-          let img = document.createElement('img');
-          img.src = './assets/arrow-left.svg';
-          a1.appendChild(img);
-        }
-        article.appendChild(a1)
-      }
+      let a1 = build_arrow('left');
+      article.appendChild(a1)
 
-      let a2 = document.createElement('a');
-      {
-        a2.href = '#';
-        a2.className = 'slot__genre-button';
-        {
-          let img = document.createElement('img');
-          img.src = './assets/genre_32.svg';
-          a2.appendChild(img);
-        }
-        article.appendChild(a2)
-      }
+      let a2 = build_genre_button();
+      article.appendChild(a2)
+      
+      let genre_menu = build_genre_menu();
+      article.appendChild(genre_menu);
 
-      let div = document.createElement('div');
-      {
-        div.className = 'slot__title';
-        div.appendChild(document.createTextNode(venues.venues[venue_index].name));
-      }
+      let div = build_slot_title(venues.venues[venue_index].name);
       article.appendChild(div);
 
-      let a3 = document.createElement('a');
-      {
-        a3.href = '#';
-        a3.className = 'slot__right-arrow';
-        {
-          let img = document.createElement('img');
-          img.src = './assets/arrow-right.svg';
-          a3.appendChild(img);
-        }
-        article.appendChild(a3)
-      }
+      let a3 = build_arrow('right');
+      article.appendChild(a3)
 
-      let a4 = document.createElement('a');
-      {
-        a4.href = '#';
-        a4.className = 'slot__pin-button';
-        {
-          let img = document.createElement('img');
-          img.src = './assets/pin-unfilled.svg';
-          a4.appendChild(img);
-        }
-        article.appendChild(a4)
-      }
+      let a4 = build_pin_slot();
+      article.appendChild(a4)
     }
   }
   return article;
@@ -382,8 +438,14 @@ function add_event_listeners() {
     if (key === 13) edit_itinerary_name();
   });
   
+  $('.slot__genre-button').on('click', function(event) {
+    if (event)  event.preventDefault();
+    
+    $('.genre_box').toggle();
+  });
+  
   $('.slot__right-arrow').on('click', function(event) {
-    if (event) event.preventDefault();
+    if (event)  event.preventDefault();
     
     let origin = $(this);
     let pin_div = origin.closest('.slot');
@@ -408,7 +470,7 @@ function add_event_listeners() {
   });
   
   $('.slot__left-arrow').on('click', function(event) {
-    if (event) event.preventDefault();
+    if (event)  event.preventDefault();
     
     let origin = $(this);
     let pin_div = origin.closest('.slot');
@@ -433,7 +495,7 @@ function add_event_listeners() {
   });
   
   $('.slot__pin-button').on('click', function(event) {
-    if (event) event.preventDefault();
+    if (event)  event.preventDefault();
 
     let origin_div = $(this);
     let parent_div = origin_div.closest('.slot');
@@ -751,3 +813,28 @@ function build_venue(venue_info) {
     label.append(document.createTextNode(' N/A'));
   }
 }
+
+/*
+<div class="genre_box">
+  <!-- add fixed element here -->
+  <ul class="genre_list">
+    <li>
+      <img class="genre_glyph" src="./assets/travel-node_32.svg">
+      <div class="genre_tag genre">genre_name</div>
+    </li>
+    <li>
+      <img class="genre_glyph" src="./assets/travel-node_32.svg">
+      <div class="genre_tag genre">genre_name</div>
+    </li>
+    <li>
+      <img class="genre_glyph" src="./assets/travel-node_32.svg">
+      <div class="genre_tag genre">genre_name</div>
+    </li>
+    <li>
+      <img class="genre_glyph" src="./assets/travel-node_32.svg">
+      <div class="genre_tag genre">genre_name</div>
+    </li>
+  </ul>
+  <div class="pointer"></div>
+</div>
+*/
