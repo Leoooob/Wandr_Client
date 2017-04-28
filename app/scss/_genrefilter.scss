@@ -8,7 +8,9 @@
   position: absolute;
   
   .genre_list {
-    top: -82px;
+    //top: -82px;
+    top: -94px;
+    height: 70px;
     padding: 0;
     //width: 160px;
     //height: 36px;
@@ -35,7 +37,7 @@
       }
       
       div {
-        color: $primary-colour;
+        color: $dark-colour;
       }
     }
   }
