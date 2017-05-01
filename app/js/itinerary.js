@@ -3,6 +3,7 @@
 var used_venues = [];
 var venue_information = {};
 var venues = JSON.parse(localStorage.getItem('venue_data'));
+const original_venues_length = venues.venues.length;
 const itinerary_container = document.getElementById('itinerary_container');
 
 function next_venue(current_venue, current_position) {
@@ -428,40 +429,89 @@ function count_pins() {
 }
 
 function add_genre_venues(new_venues) {
+  let original_length = venues.venues.length;
+  
   if (new_venues.venues.length > 0) {
     new_venues.venues.forEach(function(element) {
-      if (venues.venues.indexOf(element) === -1) {
+      if (venues.venues.indexOf(element) == -1) {
         venues.venues.push(element);
       } else {
         console.log(element.name + ' already exists in our venue list');
       }
     });
+    
+    return (original_length + 1);
   } else {
-    //do something to let the user know that there is nothing for this genre in this area
+    return false;
   }
 }
 
-function send_location(genre) {
-  //let my_url = 'http://localhost:3000/api/location';
-  let my_url = 'https://wandr-app.herokuapp.com/api/location';
-  let location = localStorage.getItem('location');
+function set_genre_position(genre, new_venue_index) {
+  console.log(genre);
   
-  $.ajax({
-    url: my_url,
-    type: 'GET',
-    data: {
-      near: location,
-      genre: genre
-    },
-    success: function(response) {
-      //add new locations to the venue list
-      add_genre_venues(response);
-      //set position to beginning of new venues
-    },
-    error: function(error) {
-      console.log('Error: ' + error);
+  $('li.selected').children('div').each(function() {
+    let genre_text = $(this).text();
+    console.log(genre_text);
+    if (genre_text == genre) {
+      console.log('we have a winner');
+      
+      let slotbox = $(this).closest('.slot_box');
+      let slot_label = slotbox.find('.slot__title');
+      let current_index = slotbox.attr('data-index');
+
+      //0 = id, 1 = name, 2 = index of new venue in venues array
+      let data = next_venue(current_index, new_venue_index);
+      update_slotbox(data, slotbox);
     }
   });
+}
+
+function update_slotbox(data, slotbox) {
+  let my_slotbox = $(slotbox);
+  let slot_label = my_slotbox.find('.slot__title');
+  
+  const venue_id = data[0];
+  const venue_name = data[1];
+  const new_index = data[2];
+
+  my_slotbox.attr('data-index', new_index);
+  my_slotbox.attr('data-venueid', venue_id);
+  slot_label.text(venue_name);
+}
+
+function send_location(genre) {
+  if (genre == 'Reset') {
+    console.log('length: ' + venues.venues.length + ', original length: ' + original_venues_length);
+    venues.venues.length = original_venues_length;
+    console.log('new length: ' + venues.venues.length);
+  } else {
+    //let my_url = 'http://localhost:3000/api/location';
+    let my_url = 'https://wandr-app.herokuapp.com/api/location';
+    let location = localStorage.getItem('location');
+
+    $.ajax({
+      url: my_url,
+      type: 'GET',
+      data: {
+        near: location,
+        genre: genre.toLowerCase()
+      },
+      success: function(response) {
+        //add new locations to the venue list
+        let new_index = add_genre_venues(response);
+
+        if (new_index !== false) {
+          //set position in venue index to new_index for genre item
+          set_genre_position(genre, new_index);
+        } else {
+          //do something to let the user know that there is nothing for this genre in this area
+        }
+      },
+      error: function(error) {
+        console.log('Error: ' + error);
+      }
+    });
+  }
 }
 
 function add_event_listeners() {
@@ -497,13 +547,7 @@ function add_event_listeners() {
 
       //0 = id, 1 = name, 2 = index of new venue in venues array
       let data = next_venue(current_index, current_index);
-      const venue_id = data[0];
-      const venue_name = data[1];
-      const new_index = data[2];
-
-      slot.attr('data-index', new_index);
-      slot.attr('data-venueid', venue_id);
-      slot_label.text(venue_name);
+      update_slotbox(data, slot);
     }
   });
   
@@ -522,13 +566,7 @@ function add_event_listeners() {
 
       //0 = id, 1 = name, 2 = index of new venue in venues array
       let data = previous_venue(current_index, current_index);
-      const venue_id = data[0];
-      const venue_name = data[1];
-      const new_index = data[2];
-
-      slot.attr('data-index', new_index);
-      slot.attr('data-venueid', venue_id);
-      slot_label.text(venue_name);
+      update_slotbox(data, slot);
     }
   });
   
@@ -554,9 +592,13 @@ function add_event_listeners() {
   $('.genre_list li').on('click', function() {
     let origin_div = $(this);
     let item_text = origin_div.children('div').text();
+    let parent_div = origin_div.parent();
+    parent_div.children('li').removeClass('selected');
+    origin_div.addClass('selected');
     
     //send text to server request as parameter
-	console.log(item_text);
+	//console.log(item_text);
+    send_location(item_text);
   });
   
   $('.travel__mode').on('change', function() {
