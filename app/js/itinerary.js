@@ -590,8 +590,6 @@ function add_event_listeners() {
     parent_div.children('li').removeClass('selected');
     origin_div.addClass('selected');
     
-    //send text to server request as parameter
-	//console.log(item_text);
     send_location(item_text);
   });
   
