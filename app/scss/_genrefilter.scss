@@ -32,8 +32,14 @@
       margin: 2px 5px;
       display: inline-block;
       
+      &.selected {
+        border: 1px solid $highlight-colour;
+        box-shadow: 0 0 5px $highlight-colour;
+      }
+      
       img {
         width: 32px;
+        height: 32px;
       }
       
       div {

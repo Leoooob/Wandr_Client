@@ -184,8 +184,12 @@
     .genre_box .genre_list li {
       margin: 2px 5px;
       display: inline-block; }
+      .genre_box .genre_list li.selected {
+        border: 1px solid #ff4b14;
+        box-shadow: 0 0 5px #ff4b14; }
       .genre_box .genre_list li img {
-        width: 32px; }
+        width: 32px;
+        height: 32px; }
       .genre_box .genre_list li div {
         color: #333333; }
   .genre_box .pointer {
