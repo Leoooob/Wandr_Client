@@ -343,27 +343,17 @@
     width: 32px;
     height: 32px;
     margin: 0 15px;
-    cursor: pointer;
-    fill: #333333;
-    stroke: #333333;
-    stroke-miterlimit: 10; }
-    .travel__node:hover {
-      fill: #f7f7f7;
-      stroke: #ff4b14; }
-    .travel__node__active {
-      fill: #f7f7f7;
-      stroke: #ff4b14; }
-      .travel__node__active:hover {
-        fill: #333333;
-        stroke: #333333; }
+    cursor: pointer; }
   .travel__time {
     order: 3;
     font-size: 20px;
     line-height: 30px; }
   .travel__instructions {
     display: none;
+    max-width: 600px;
     text-align: left;
     padding-top: 5px;
+    margin: 16px auto;
     border-radius: 5px;
     padding-bottom: 5px;
     border: 1px solid #f06242; }

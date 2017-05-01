@@ -211,24 +211,6 @@
     height: 32px;
     margin: 0 15px;
     cursor: pointer;
-    fill: $dark-colour;
-    stroke: $dark-colour;
-    stroke-miterlimit: 10;
-      
-    &:hover {
-      fill: $background-colour;
-      stroke: $highlight-colour;
-    }
-    
-    &__active {
-      fill: $background-colour;
-      stroke: $highlight-colour;
-      
-      &:hover {
-        fill: $dark-colour;
-        stroke: $dark-colour;
-      }
-    }
   }
   
   &__time {
@@ -239,8 +221,10 @@
   
   &__instructions {
     display: none;
+    max-width: 600px;
     text-align: left;
     padding-top: 5px;
+    margin: 16px auto;
     border-radius: 5px;
     padding-bottom: 5px;
     border: 1px solid $primary-colour;
