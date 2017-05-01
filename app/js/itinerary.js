@@ -280,7 +280,7 @@ function build_travel_instructions() {
 }
 
 function build_item_pill(venue_index) {
-  let new_item = document.createElement('div');
+  let new_item = document.createElement('li');
   {
     new_item.className = 'slot_box';
     new_item.dataset.venueid = venues.venues[venue_index].id;
