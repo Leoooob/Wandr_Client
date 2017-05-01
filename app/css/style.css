@@ -314,7 +314,8 @@
         font-size: 12px; } }
   .slot__genre-button {
     float: left;
-    min-width: 32px; }
+    width: 32px;
+    height: 32px; }
   .slot__pin-button {
     float: right; }
   .slot__left-arrow {

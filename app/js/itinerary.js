@@ -126,7 +126,8 @@ function build_genre_menu() {
           let genre_label = document.createElement('div');
           {
             //genre_label.className = '';
-            genre_label.append(document.createTextNode(element));
+            let text = document.createTextNode(element);
+            genre_label.appendChild(text);
           }
           genre_item.appendChild(genre_label);
         }
@@ -176,7 +177,8 @@ function build_slot_title(title) {
   let div = document.createElement('div');
   {
     div.className = 'slot__title';
-    div.appendChild(document.createTextNode(title));
+    let text = document.createTextNode(title);
+    div.appendChild(text);
   }
   return div;
 }
@@ -251,7 +253,8 @@ function build_travel() {
     let travel_time = document.createElement('div');
     {
       travel_time.className = 'travel__time';
-      travel_time.appendChild(document.createTextNode('unknown'));
+      let text = document.createTextNode('unknown');
+      travel_time.appendChild(text);
     }
     travel.appendChild(travel_time);
   }

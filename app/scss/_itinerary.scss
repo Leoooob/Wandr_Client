@@ -161,7 +161,8 @@
   &__genre-button {
     @extend %slot-button;
     float: left;
-    min-width: 32px;
+    width: 32px;
+    height: 32px;
   }
 
   &__pin-button {
