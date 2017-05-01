@@ -1,5 +1,21 @@
 'use strict';
 
+$(document).ready(function() {
+  if (localStorage.getItem('venue_data') !== null && localStorage.getItem('location') !== null) {
+    let container = $('.front-content');
+    let button = document.createElement('button');
+    let value = 'Revisit \'';
+    value += (localStorage.getItem('itinerary_name') === null) ? localStorage.getItem('location') : localStorage.getItem('itinerary_name');
+    value += '\'?';
+    {
+      button.id = 'skip_location_submit';
+      button.setAttribute('onclick', "window.location='itinerary.html';");
+      button.innerHTML = value;
+    }
+    container.append(button);
+  }
+});
+
 function initialise_autocomplete() {
     let input = document.getElementById('location_input');
     let autocomplete = new google.maps.places.Autocomplete(input);
