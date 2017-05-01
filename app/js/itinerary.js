@@ -4,7 +4,7 @@ var used_venues = [];
 var venue_information = {};
 var venues = JSON.parse(localStorage.getItem('venue_data'));
 const original_venues_length = venues.venues.length;
-const itinerary_container = document.getElementById('itinerary_container');
+const my_itinerary_container = document.getElementById('itinerary_container');
 
 function next_venue(current_venue, current_position) {
   //if exists in used_venues
@@ -84,7 +84,7 @@ function build_no_results() {
 function build_itinerary() {
   if (venues.statusCode !== undefined || venues.venues.length === 0) {
     let new_element = build_no_results();
-    itinerary_container.appendChild(new_element);
+    my_itinerary_container.appendChild(new_element);
     return;
   } else {
     let itinerary_items = venues.venues.slice(0, 5);
@@ -295,7 +295,7 @@ function build_item_pill(venue_index) {
       }
     }
   }
-  itinerary_container.appendChild(new_item);
+  my_itinerary_container.appendChild(new_item);
 }
 
 function edit_itinerary_name() {
