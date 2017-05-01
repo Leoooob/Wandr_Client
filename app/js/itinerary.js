@@ -367,7 +367,7 @@ function update_travel_instructions(instructions_div, journeys) {
         li.className = class_name;
         li.innerHTML = element;
       }
-      instructions_div.append(li);
+      instructions_div.appendChild(li);
     });
   });
 }
@@ -414,8 +414,8 @@ function count_pins() {
   let pins = $('.slot__pin-button:lt(5)');
   
   for (let i = 0; i < 5; i++) {
-    let parent_div = pins[i].closest('.slot');
-    let pin_value = parent_div.getAttribute('data-pinned');
+    let parent_div = $(pins[i]).closest('.slot');
+    let pin_value = parent_div.attr('data-pinned');
     if (pin_value == 'true') count++;
   }
   
@@ -521,12 +521,18 @@ function add_event_listeners() {
     if (event)  event.preventDefault();
     
     let origin = $(this);
+    let pin_div = origin.closest('.slot');
     let genre_box = origin.siblings('.genre_box');
     
-    if (genre_box.css('display') == 'none') {
-      $('.genre_box').hide();
-    } 
-    genre_box.toggle();
+    if (is_pinned(pin_div)) {
+      console.log('this item is pinned and cannot be changed');
+      return;
+    } else {
+      if (genre_box.css('display') == 'none') {
+        $('.genre_box').hide();
+      } 
+      genre_box.toggle();
+    }
   });
   
   $('.slot__right-arrow').on('click', function(event) {
@@ -810,7 +816,8 @@ function build_venue(venue_info) {
   venue_info.times.forEach(function(element) {
     let li = document.createElement('li');
     {
-      li.append(document.createTextNode(element.days + ': ' + element.times));
+      let text = document.createTextNode(element.days + ': ' + element.times);
+      li.appendChild(text);
     }
     opening_times.append(li);
   });
