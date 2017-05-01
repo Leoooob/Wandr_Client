@@ -794,7 +794,8 @@ function build_venue(venue_info) {
   categories.forEach(function(element) {
     let category = document.createElement('li');
     {
-      category.append(document.createTextNode(element));
+      let text = document.createTextNode(element);
+      category.appendChild(text);
     }
     category_list.append(category);
   });
