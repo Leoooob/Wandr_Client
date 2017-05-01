@@ -75,6 +75,7 @@
   }
 
   &__reshuffle {
+    width: 140px;
     float: right;
     border: none;
     opacity: 0.9;
@@ -85,6 +86,10 @@
     font-family: $font-family;
     background-color: $dark-colour;
     
+    @media screen and (max-width: $mobile-w) {
+      width: 120px;
+    }
+    
     &:hover {
       opacity: 1;
       outline: none;
@@ -93,10 +98,8 @@
     }
 
     &__icon {
-      /*$intendedWidth: 0.8em;
-      $sidePadding: 0.4em;
-      width: 0.8em + (2 * $sidePadding);
-      padding: 0 $sidePadding;*/
+      width: 32px;
+      padding: 0 2px;
     }
   }
 }

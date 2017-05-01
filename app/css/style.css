@@ -252,6 +252,7 @@
     .summary__button__edit {
       margin-left: 10px; }
   .summary__reshuffle {
+    width: 140px;
     float: right;
     border: none;
     opacity: 0.9;
@@ -261,16 +262,17 @@
     color: white;
     font-family: "ClinicaPro-Regular";
     background-color: #333333; }
+    @media screen and (max-width: 500px) {
+      .summary__reshuffle {
+        width: 120px; } }
     .summary__reshuffle:hover {
       opacity: 1;
       outline: none;
       box-shadow: 0 0 10px #333333;
       background-color: #333333; }
     .summary__reshuffle__icon {
-      /*$intendedWidth: 0.8em;
-      $sidePadding: 0.4em;
-      width: 0.8em + (2 * $sidePadding);
-      padding: 0 $sidePadding;*/ }
+      width: 32px;
+      padding: 0 2px; }
 
 .container {
   margin: 0 20px;
