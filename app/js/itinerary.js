@@ -2,7 +2,7 @@
 
 var used_venues = [];
 var venue_information = {};
-const venues = JSON.parse(localStorage.getItem('venue_data'));
+var venues = JSON.parse(localStorage.getItem('venue_data'));
 const itinerary_container = document.getElementById('itinerary_container');
 
 function next_venue(current_venue, current_position) {
@@ -424,8 +424,44 @@ function count_pins() {
     if ($('.travel__instructions').css('display') !== 'none') $('.travel__instructions').css('display', display);
   }
   
-  //reset travel select element to walking
   $('.travel').css('display', display);
+}
+
+function add_genre_venues(new_venues) {
+  if (new_venues.venues.length > 0) {
+    new_venues.venues.forEach(function(element) {
+      if (venues.venues.indexOf(element) === -1) {
+        venues.venues.push(element);
+      } else {
+        console.log(element.name + ' already exists in our venue list');
+      }
+    });
+  } else {
+    //do something to let the user know that there is nothing for this genre in this area
+  }
+}
+
+function send_location(genre) {
+  //let my_url = 'http://localhost:3000/api/location';
+  let my_url = 'https://wandr-app.herokuapp.com/api/location';
+  let location = localStorage.getItem('location');
+  
+  $.ajax({
+    url: my_url,
+    type: 'GET',
+    data: {
+      near: location,
+      genre: genre
+    },
+    success: function(response) {
+      //add new locations to the venue list
+      add_genre_venues(response);
+      //set position to beginning of new venues
+    },
+    error: function(error) {
+      console.log('Error: ' + error);
+    }
+  });
 }
 
 function add_event_listeners() {
