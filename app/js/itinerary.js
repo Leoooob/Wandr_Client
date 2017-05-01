@@ -244,7 +244,7 @@ function build_travel() {
     let travel_node = document.createElement('img');
     {
       travel_node.className = 'travel__node';
-      travel_node.src = './assets/travel-node_32.svg'
+      travel_node.src = './assets/travel-node.svg'
     }
     travel.appendChild(travel_node);
 
@@ -613,10 +613,10 @@ function add_event_listeners() {
     let parent_div = origin_div.closest('.slot_box');
 
     if (parent_div.find('.travel__instructions').css('display') != 'none') {
-      parent_div.find('.travel__node').removeClass('travel__node__active');
+      parent_div.find('.travel__node').attr('src', './assets/travel-node.svg');
       parent_div.find('.travel__instructions').hide();
     } else {
-      parent_div.find('.travel__node').addClass('travel__node__active');
+      parent_div.find('.travel__node').attr('src', './assets/travel-node_active.svg');
       parent_div.find('.travel__instructions').show();
     }
   });
