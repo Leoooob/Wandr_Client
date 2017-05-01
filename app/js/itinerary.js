@@ -109,22 +109,66 @@ function build_genre_menu() {
     {
       genre_list.className = 'genre_list';
 
-      //for 7 different genres
-      for (let i = 0; i < 7; i++) {
+      //for reset + 7 genres
+      for (let i = 0; i < 8; i++) {
         let genre = document.createElement('li');
         {
           let img = document.createElement('img');
           {
-            //genre-0_32.svg, genre-1_32.svg etc
+            //let src = '';
+            //switch (i) 
+            //case 0:
+            //src = './assets/genre/genre_reset.svg';
             //img.src = './assets/genre/genre-' + i + '_32.svg';
-            img.src = './assets/travel-node_32.svg';
+            let src = './assets/genre_glyph/';
+            switch (i) {
+              case 0:
+                //reset glyph
+                src += 'reset.svg';
+                break;
+                
+              case 1:
+                src += 'entertainment.svg';
+                break;
+                
+              case 2:
+                src += 'museum.svg'
+                break;
+                
+              case 3:
+                src += 'nightlife.svg';
+                break;
+                
+              case 4:
+                src += 'spiritual.svg';
+                break;
+                
+              case 5:
+                src += 'clothes.svg';
+                break;
+                
+              case 6:
+                src += 'athletics.svg';
+                break;
+                
+              case 7:
+                //food???
+                src += 'outdoors.svg';
+                break;
+                
+              default:
+                src += 'outdoors.svg';
+                break;
+            }
+            
+            img.src = src;
           }
           genre.appendChild(img);
 
           let genre_label = document.createElement('div');
           {
             //genre_label.className = '';
-            genre_label.append(document.createTextNode('genre'));
+            genre_label.append(document.createTextNode('Outdoors'));
           }
           genre.appendChild(genre_label);
         }

@@ -166,7 +166,8 @@
   display: none;
   position: absolute; }
   .genre_box .genre_list {
-    top: -82px;
+    top: -94px;
+    height: 70px;
     padding: 0;
     display: block;
     overflow-x: auto;
@@ -186,7 +187,7 @@
       .genre_box .genre_list li img {
         width: 32px; }
       .genre_box .genre_list li div {
-        color: #f06242; }
+        color: #333333; }
   .genre_box .pointer {
     width: 0;
     height: 0;
