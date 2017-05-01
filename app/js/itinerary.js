@@ -515,7 +515,7 @@ function send_location(genre) {
 }
 
 function add_event_listeners() {
-  $('#trip_input').on('keypress', function(event) {
+  $('#trip_input').on('keyup', function(event) {
     let key = event.keyCode | event.which;
     if (key === 13) edit_itinerary_name();
   });
@@ -647,12 +647,11 @@ function add_event_listeners() {
     $('#venue_info').hide();
   });
   
-  //needs to use non deprecated methods
-  /*window.onclick = function(event) {
-    if (event.target == $('#venue_info')) {
-      modal.css('display', 'none');
-    }
-  }*/
+  $(document).on('keyup', function(event) {
+    let key = event.keyCode;
+    console.log(event.keyCode);
+    if (key === 27) $('.modal-close').click();
+  });
 }
 
 function update_instructions(instructions_div, transport_mode) {
