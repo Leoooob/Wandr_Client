@@ -895,28 +895,3 @@ function build_venue(venue_info) {
     label.append(document.createTextNode(' N/A'));
   }
 }
-
-/*
-<div class="genre_box">
-  <!-- add fixed element here -->
-  <ul class="genre_list">
-    <li>
-      <img class="genre_glyph" src="./assets/travel-node_32.svg">
-      <div class="genre_tag genre">genre_name</div>
-    </li>
-    <li>
-      <img class="genre_glyph" src="./assets/travel-node_32.svg">
-      <div class="genre_tag genre">genre_name</div>
-    </li>
-    <li>
-      <img class="genre_glyph" src="./assets/travel-node_32.svg">
-      <div class="genre_tag genre">genre_name</div>
-    </li>
-    <li>
-      <img class="genre_glyph" src="./assets/travel-node_32.svg">
-      <div class="genre_tag genre">genre_name</div>
-    </li>
-  </ul>
-  <div class="pointer"></div>
-</div>
-*/
