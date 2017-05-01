@@ -251,7 +251,7 @@
       float: right; }
     .summary__button__edit {
       margin-left: 10px; }
-  .summary__reshuffle {
+  .summary__restart {
     width: 140px;
     float: right;
     border: none;
@@ -263,14 +263,14 @@
     font-family: "ClinicaPro-Regular";
     background-color: #333333; }
     @media screen and (max-width: 500px) {
-      .summary__reshuffle {
+      .summary__restart {
         width: 120px; } }
-    .summary__reshuffle:hover {
+    .summary__restart:hover {
       opacity: 1;
       outline: none;
       box-shadow: 0 0 10px #333333;
       background-color: #333333; }
-    .summary__reshuffle__icon {
+    .summary__restart__icon {
       width: 32px;
       padding: 0 2px; }
 
