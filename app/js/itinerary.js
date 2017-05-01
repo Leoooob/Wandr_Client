@@ -515,6 +515,14 @@ function add_event_listeners() {
     //count the number of pinned items, if this is number of itinerary items display travel stuff
   });
   
+  $('.genre_list li').on('click', function() {
+    let origin_div = $(this);
+    let item_text = origin_div.children('div').text();
+    
+    //send text to server request as parameter
+	console.log(item_text);
+  });
+  
   $('.travel__mode').on('change', function() {
     let origin_div = $(this);
     let new_mode = this.value.toLowerCase();
