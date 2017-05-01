@@ -190,8 +190,18 @@ function build_pin_slot() {
     a.className = 'slot__pin-button';
     {
       let img = document.createElement('img');
-      img.src = './assets/pin-unfilled.svg';
+      {
+        img.src = './assets/pin-unfilled.svg';
+      }
       a.appendChild(img);
+      
+      let span = document.createElement('span');
+      {
+        span.className = 'tooltip';
+        let text = document.createTextNode("Pinned items can't be edited");
+        span.appendChild(text);
+      }
+      a.appendChild(span);
     }
   }
   return a;
