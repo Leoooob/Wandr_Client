@@ -108,72 +108,29 @@ function build_genre_menu() {
     let genre_list = document.createElement('ul');
     {
       genre_list.className = 'genre_list';
-
-      //for reset + 7 genres
-      for (let i = 0; i < 8; i++) {
-        let genre = document.createElement('li');
+      
+      let genres = ['Reset', 'Entertainment', 'Museum', 'Nightlife', 'Spiritual', 'Clothes', 'Athletics', 'Outdoors', 'Food'];
+      let file_path = './assets/genre_glyph/';
+      let file_extension = '.svg';
+      
+      genres.forEach(function(element) {
+        let genre_item = document.createElement('li');
         {
           let img = document.createElement('img');
           {
-            //let src = '';
-            //switch (i) 
-            //case 0:
-            //src = './assets/genre/genre_reset.svg';
-            //img.src = './assets/genre/genre-' + i + '_32.svg';
-            let src = './assets/genre_glyph/';
-            switch (i) {
-              case 0:
-                //reset glyph
-                src += 'reset.svg';
-                break;
-                
-              case 1:
-                src += 'entertainment.svg';
-                break;
-                
-              case 2:
-                src += 'museum.svg'
-                break;
-                
-              case 3:
-                src += 'nightlife.svg';
-                break;
-                
-              case 4:
-                src += 'spiritual.svg';
-                break;
-                
-              case 5:
-                src += 'clothes.svg';
-                break;
-                
-              case 6:
-                src += 'athletics.svg';
-                break;
-                
-              case 7:
-                //food???
-                src += 'outdoors.svg';
-                break;
-                
-              default:
-                src += 'outdoors.svg';
-                break;
-            }
-            
-            img.src = src;
+            img.src = file_path + element.toLowerCase() + file_extension;
           }
-          genre.appendChild(img);
-
+          genre_item.appendChild(img);
+          
           let genre_label = document.createElement('div');
           {
             //genre_label.className = '';
-            genre_label.append(document.createTextNode('Outdoors'));
+            genre_label.append(document.createTextNode(element));
           }
-          genre.appendChild(genre_label);
+          genre_item.appendChild(genre_label);
         }
-        genre_list.appendChild(genre);
-      }
+        genre_list.appendChild(genre_item);
+      });
     }
     genre_menu.appendChild(genre_list);
 
