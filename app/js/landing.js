@@ -33,10 +33,12 @@ function submit_location() {
 
 function swap_location_buttons() {
   let submit_button = document.getElementById('submit_button');
+  let skip_button = document.getElementById('skip_location_submit');
   let loading_div = document.getElementById('loading_div');
   
   if (location_sent) {
     submit_button.style.display = 'none';
+    skip_button.style.display = 'none';
     loading_div.style.display = 'block';
   } else {
     loading_div.style.display = 'none';
