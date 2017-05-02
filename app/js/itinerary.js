@@ -527,6 +527,7 @@ function update_slotbox(data, slotbox) {
 function send_location(genre) {
   if (genre == 'Reset') {
     venues.venues.length = original_venues_length;
+    set_genre_position(genre, 0);
   } else {
     //let my_url = 'http://localhost:3000/api/location';
     let my_url = 'https://wandr-app.herokuapp.com/api/location';
