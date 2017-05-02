@@ -483,6 +483,9 @@ function add_genre_venues(new_venues) {
 
   if (new_venues.venues.length > 0) {
     new_venues.venues.forEach(function(element) {
+      //indexOf an object, is there a way to compare the name of
+      //the object against the names of other objects?
+      //http://stackoverflow.com/questions/201183/how-to-determine-equality-for-two-javascript-objects/16788517#16788517
       if (venues.venues.indexOf(element) == -1) {
         venues.venues.push(element);
       } else {
@@ -504,7 +507,6 @@ function set_genre_position(genre, new_venue_index) {
       let slot_label = slotbox.find('.slot__title');
       let current_index = slotbox.attr('data-index');
 
-      //0 = id, 1 = name, 2 = index of new venue in venues array
       let data = next_venue(current_index, new_venue_index);
       update_slotbox(data, slotbox);
     }
@@ -575,9 +577,7 @@ function add_event_listeners() {
       console.log('this item is pinned and cannot be changed');
       return;
     } else {
-      if (genre_box.css('display') == 'none') {
-        $('.genre_box').hide();
-      } 
+      if (genre_box.css('display') == 'none') $('.genre_box').hide();
       genre_box.toggle();
     }
   });
@@ -595,7 +595,6 @@ function add_event_listeners() {
       let slot_label = origin.siblings('.slot__title');
       let current_index = parseInt(slot.attr('data-index'));
 
-      //0 = id, 1 = name, 2 = index of new venue in venues array
       let data = next_venue(current_index, current_index);
       update_slotbox(data, slot);
     }
@@ -614,7 +613,6 @@ function add_event_listeners() {
       let slot_label = origin.siblings('.slot__title');
       let current_index = parseInt(slot.attr('data-index'));
 
-      //0 = id, 1 = name, 2 = index of new venue in venues array
       let data = previous_venue(current_index, current_index);
       update_slotbox(data, slot);
     }
@@ -632,6 +630,7 @@ function add_event_listeners() {
       pin_state = false;
     }
 
+    //if pinning the item, use Array.move to shift it into index 0-4 and then correct all indexes
     let pin_src = (!pin_state) ? "./assets/pin-unfilled.svg" :  "./assets/pin-filled.svg";
     origin_div.find('img').attr('src', pin_src);
     parent_div.attr('data-pinned', pin_state);
@@ -680,7 +679,6 @@ function add_event_listeners() {
   $('.slot__title').on('click', function() {
     let modal = $('#venue_info');
     if (modal.css('display') == 'none') {
-      //only call this if we are displaying the modal
       let origin_div = $(this);
       let parent_div = origin_div.closest('.slot_box');
       let venue_id = parent_div.attr('data-venueid');
@@ -690,7 +688,6 @@ function add_event_listeners() {
     }
   });
 
-  //closing the modal
   $('.modal-close').on('click', function() {
     $('#venue_info').hide();
   });
