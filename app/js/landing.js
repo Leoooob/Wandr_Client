@@ -36,7 +36,7 @@ function swap_location_buttons() {
   
   if (location_sent) {
     submit_button.style.display = 'none';
-    skip_button.style.display = 'none';
+    if (skip_button !== null) skip_button.style.display = 'none';
     loading_div.style.display = 'block';
   } else {
     loading_div.style.display = 'none';
