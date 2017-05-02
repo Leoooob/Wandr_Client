@@ -1,5 +1,3 @@
-'use strict';
-
 $(document).ready(function() {
   if (localStorage.getItem('venue_data') !== null && localStorage.getItem('location') !== null) {
     let container = $('.front-content');
@@ -29,7 +27,7 @@ function submit_location() {
   location_sent = true;
   swap_location_buttons();
   send_location(location);
-};
+}
 
 function swap_location_buttons() {
   let submit_button = document.getElementById('submit_button');
