@@ -820,9 +820,27 @@ function build_venue_JSON(response) {
   }
 
   //social media
-  venue_information.facebook = response.contact.facebookUsername;
-  venue_information.twitter = response.contact.twitter;
+  venue_information.facebook = '/' + response.contact.facebookUsername;
+  venue_information.twitter = '/' + response.contact.twitter;
   build_venue(venue_information);
+}
+
+function build_venue_category(category_name) {
+  let category = document.createElement('li');
+    {
+      let text = document.createTextNode(category_name);
+      category.appendChild(text);
+    }
+    return category;
+}
+
+function build_venue_openingtimes(element) {
+  let li = document.createElement('li');
+  {
+    let text = document.createTextNode(element.days + ': ' + element.times);
+    li.appendChild(text);
+  }
+  return li;
 }
 
 //wrap this function call in a try-catch in case it cannot interpret some data and it ends up displaying stale info
@@ -845,11 +863,7 @@ function build_venue(venue_info) {
   category_list.empty();
 
   categories.forEach(function(element) {
-    let category = document.createElement('li');
-    {
-      let text = document.createTextNode(element);
-      category.appendChild(text);
-    }
+    let category = build_venue_category(element);
     category_list.append(category);
   });
 
@@ -861,11 +875,7 @@ function build_venue(venue_info) {
   opening_times.empty();
 
   venue_info.times.forEach(function(element) {
-    let li = document.createElement('li');
-    {
-      let text = document.createTextNode(element.days + ': ' + element.times);
-      li.appendChild(text);
-    }
+    let li = build_venue_openingtimes(element);
     opening_times.append(li);
   });
 
@@ -881,10 +891,9 @@ function build_venue(venue_info) {
   let tooltip_arrow = document.createElement('div');
   tooltip_arrow.className = 'arrow';
 
+  if (venue_info.glyphs.price === undefined)  venue_info.glyphs.price = '';
+  
   //use a loop?
-  if (venue_info.glyphs.price === undefined) {
-    venue_info.glyphs.price = '';
-  }
   let money = venue_info.glyphs.price.length;
   glyphs.eq(0).children('img').attr('src', './assets/venue_glyph/pound_glyph_' + money + '.svg');
   glyphs.eq(0).children('span').text(text);
@@ -907,46 +916,23 @@ function build_venue(venue_info) {
   glyphs.eq(3).children('img').attr('src', './assets/venue_glyph/outdoor_seating_glyph' + creditcard + '.svg');
   glyphs.eq(3).children('span').text(text);
   glyphs.eq(3).children('span').append(tooltip_arrow);
-
-  let social_div = $('.social');
-
-  if (venue_info.facebook !== undefined) {
-    let facebook_link = 'https://www.facebook.com/' + venue_info.facebook;
-
-    let a_tag = social_div.eq(0).children('a');
-    a_tag.attr('href', facebook_link);
-    let label = a_tag.children('span');
-    label.contents().filter(function() {
-      return (this.nodeType == 3);
-    }).remove();
-    label.append('/' + venue_info.facebook);
-  } else {
-    let a_tag = social_div.eq(0).children('a');
-    a_tag.attr('href', '#')
-    let label = a_tag.children('span');
-    label.contents().filter(function() {
-      return (this.nodeType == 3);
-    }).remove();
-    label.append(document.createTextNode(' N/A'));
-  }
-
-  if (venue_info.twitter !== undefined) {
-    let twitter_link = 'https://www.twitter.com/' + venue_info.twitter;
-
-    let a_tag = social_div.eq(1).children('a');
-    a_tag.attr('href', twitter_link);
-    let label = a_tag.children('span');
-    label.contents().filter(function() {
-      return (this.nodeType == 3);
-    }).remove();
-    label.append(document.createTextNode('/' + venue_info.twitter));
-  } else {
-    let a_tag = social_div.eq(1).children('a');
-    a_tag.attr('href', '#')
-    let label = a_tag.children('span');
-    label.contents().filter(function() {
-      return (this.nodeType == 3);
-    }).remove();
-    label.append(document.createTextNode(' N/A'));
-  }
+  
+  let facebook_link = (venue_info.facebook !== undefined) ? (venue_info.facebook) : ' N/A';
+  build_venue_social(0, facebook_link);
+  
+  let twitter_link = (venue_info.twitter !== undefined) ? (venue_info.twitter) : ' N/A';
+  build_venue_social(1, twitter_link);
+}
+//media = 0 (facebook) or 1 (twitter), link = profile route ONLY
+function build_venue_social(media, link) {
+  let base_url = (media === 0) ? 'https://facebook.com' : 'https://www.twitter.com';
+  let hyperlink = (link === ' N/A') ? '#' : (base_url + link);
+  let a_tag = $('.social').eq(media).children('a');
+  a_tag.attr('href', hyperlink);
+  let label = a_tag.children('span');
+  label.contents().filter(function() {
+    return (this.nodeType === 3);
+  }).remove();
+  let text = document.createTextNode(' ' + link);
+  label.append(text);
 }
