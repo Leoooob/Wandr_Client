@@ -156,6 +156,16 @@
   .loading_animation .frame_4 {
     animation: frame_4 10s ease infinite; }
 
+.limitations_warning {
+  margin: 5px 10px;
+  padding-left: 5px;
+  /* border: 1px solid #f05f40; */
+  border-radius: 5px; }
+  .limitations_warning p {
+    font-size: 1em;
+    text-align: center;
+    font-family: "ClinicaPro-Regular"; }
+
 /* import fonts and colours */
 /* fonts */
 @font-face {
