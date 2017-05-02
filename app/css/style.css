@@ -204,6 +204,9 @@
     list-style-type: none;
     border: 1px solid #333333;
     background-color: #f7f7f7; }
+    @media screen and (max-width: 800px) {
+      .genre_box .genre_list {
+        width: 400px; } }
     @media screen and (max-width: 522px) {
       .genre_box .genre_list {
         width: 220px; } }

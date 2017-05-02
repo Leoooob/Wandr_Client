@@ -24,6 +24,10 @@
     border: 1px solid $dark-colour;
     background-color: $background-colour;
     
+    @media screen and (max-width: 800px) {
+      width: 400px;
+    }
+    
     @media screen and (max-width: 522px) {
       width: 220px;
     }
