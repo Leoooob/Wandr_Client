@@ -886,43 +886,46 @@ function build_venue(venue_info) {
     rating_div.append('<strong>Rating</strong>').append(': ' + venue_info.avg_rating + '/10 (rated by ' + venue_info.no_ratings + ' people)');
   }
 
-  let glyphs = $('.glyph-icon');
-  let text = 'This is the price rating';
-  let tooltip_arrow = document.createElement('div');
-  tooltip_arrow.className = 'arrow';
-
   if (venue_info.glyphs.price === undefined)  venue_info.glyphs.price = '';
   
-  //use a loop?
   let money = venue_info.glyphs.price.length;
-  glyphs.eq(0).children('img').attr('src', './assets/venue_glyph/pound_glyph_' + money + '.svg');
-  glyphs.eq(0).children('span').text(text);
-  glyphs.eq(0).children('span').append(tooltip_arrow);
+  let img_src = './assets/venue_glyph/pound_glyph_' + money + '.svg';
+  let text = 'This is the price rating';
+  build_venue_glyph(0, img_src, text);
 
   let creditcard = (venue_info.glyphs.creditcard == "Yes") ? '_yes' : '';
+  img_src = './assets/venue_glyph/credit_card_glyph' + creditcard + '.svg';
   text = (creditcard.length > 0) ? 'Accepts creditcard' : 'Does not accept creditcard';
-  glyphs.eq(1).children('img').attr('src', './assets/venue_glyph/credit_card_glyph' + creditcard + '.svg');
-  glyphs.eq(1).children('span').text(text);
-  glyphs.eq(1).children('span').append(tooltip_arrow);
+  build_venue_glyph(1, img_src, text);
 
   let wifi = (venue_info.glyphs.wifi == 'Free') ? '_yes' : '';
+  img_src = './assets/venue_glyph/wifi_glyph' + wifi + '.svg';
   text = (wifi.length > 0) ? 'Free wi-fi available' : 'No free wi-fi';
-  glyphs.eq(2).children('img').attr('src', './assets/venue_glyph/wifi_glyph' + wifi + '.svg');
-  glyphs.eq(2).children('span').text(text);
-  glyphs.eq(2).children('span').append(tooltip_arrow);
+  build_venue_glyph(2, img_src, text);
 
   let outdoor = (venue_info.glyphs.outdoor == 'Yes') ? '_yes' : '';
+  img_src = './assets/venue_glyph/outdoor_seating_glyph' + creditcard + '.svg';
   text = (outdoor.length > 0) ? 'There is outdoor seating available' : 'There is no outdoor seating available';
-  glyphs.eq(3).children('img').attr('src', './assets/venue_glyph/outdoor_seating_glyph' + creditcard + '.svg');
-  glyphs.eq(3).children('span').text(text);
-  glyphs.eq(3).children('span').append(tooltip_arrow);
+  build_venue_glyph(3, img_src, text);
   
-  let facebook_link = (venue_info.facebook !== undefined) ? (venue_info.facebook) : ' N/A';
+  let facebook_link = (venue_info.facebook != '/undefined') ? (venue_info.facebook) : ' N/A';
+  console.log(facebook_link);
   build_venue_social(0, facebook_link);
   
-  let twitter_link = (venue_info.twitter !== undefined) ? (venue_info.twitter) : ' N/A';
+  let twitter_link = (venue_info.twitter != '/undefined') ? (venue_info.twitter) : ' N/A';
   build_venue_social(1, twitter_link);
 }
+
+function build_venue_glyph(eq_no, img_src, text) {
+  let glyphs = $('.glyph-icon');
+  let tooltip_arrow = document.createElement('div');
+  tooltip_arrow.className = 'arrow';
+  
+  glyphs.eq(eq_no).children('img').attr('src', img_src);
+  glyphs.eq(eq_no).children('span').text(text);
+  glyphs.eq(eq_no).children('span').append(tooltip_arrow);
+}
+
 //media = 0 (facebook) or 1 (twitter), link = profile route ONLY
 function build_venue_social(media, link) {
   let base_url = (media === 0) ? 'https://facebook.com' : 'https://www.twitter.com';
