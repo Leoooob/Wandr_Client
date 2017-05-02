@@ -1,5 +1,3 @@
-'use strict';
-
 var venues = {};
 var used_venues = [];
 var venue_information = {};
@@ -25,6 +23,7 @@ function build_no_storage() {
         para.appendChild(text);
       }
       new_element.appendChild(para);
+      
       var para_2 = document.createElement('p');
       let a = document.createElement('a');
       {
@@ -33,8 +32,8 @@ function build_no_storage() {
         a.appendChild(text);
       }
       para_2.appendChild(a);
+      new_element.appendChild(para_2);
     }
-    new_element.appendChild(para_2);
   }
   return new_element;
 }
@@ -58,7 +57,7 @@ function next_venue(current_venue, current_position) {
     let location = venues.venues[current_position].location;
     let coords = location.lat + ',' + location.lng;
 
-    return [id, name, current_position, coords]
+    return [id, name, current_position, coords];
   }
 }
 
@@ -82,10 +81,11 @@ function previous_venue(current_venue, current_position) {
     let location = venues.venues[current_position].location;
     let coords = location.lat + ',' + location.lng;
 
-    return [id, name, current_position, coords]
+    return [id, name, current_position, coords];
   }
 }
 
+//this function is called on HTML body load
 function update_itinerary_name() {
   let location = (localStorage.getItem('itinerary_name') === null) ? localStorage.getItem('location') : localStorage.getItem('itinerary_name');
 
@@ -113,8 +113,8 @@ function build_no_results() {
         a.appendChild(text);
       }
       para_2.appendChild(a);
+      new_element.appendChild(para_2);
     }
-    new_element.appendChild(para_2);
   }
   return new_element;
 }
@@ -127,7 +127,7 @@ function build_itinerary() {
     let new_element = build_no_storage();
     my_itinerary_container.appendChild(new_element);
   } else if (venues.statusCode !== undefined || venues.venues.length === 0) {
-    console.log('statuscode is wrong')
+    console.log('statuscode is wrong');
     let new_element = build_no_results();
     my_itinerary_container.appendChild(new_element);
     return;
@@ -260,10 +260,10 @@ function build_article(venue_index) {
     article.dataset.pinned = 'false';
     {
       let a1 = build_arrow('left');
-      article.appendChild(a1)
+      article.appendChild(a1);
 
       let a2 = build_genre_button();
-      article.appendChild(a2)
+      article.appendChild(a2);
 
       let genre_menu = build_genre_menu();
       article.appendChild(genre_menu);
@@ -272,10 +272,10 @@ function build_article(venue_index) {
       article.appendChild(div);
 
       let a3 = build_arrow('right');
-      article.appendChild(a3)
+      article.appendChild(a3);
 
       let a4 = build_pin_slot();
-      article.appendChild(a4)
+      article.appendChild(a4);
     }
   }
   return article;
@@ -301,7 +301,7 @@ function build_travel() {
     let travel_node = document.createElement('img');
     {
       travel_node.className = 'travel__node';
-      travel_node.src = './assets/travel-node.svg'
+      travel_node.src = './assets/travel-node.svg';
     }
     travel.appendChild(travel_node);
 
@@ -358,7 +358,7 @@ function edit_itinerary_name() {
   let span = $('span.summary_location');
   let input = $('.trip_name_input');
   let new_name = input.val();
-  //if val empty and localstorage exists just set text
+  
   if (new_name.length === 0) {
     new_name = localStorage.getItem('location');
   }
@@ -529,7 +529,6 @@ function set_genre_position(genre, new_venue_index) {
     let genre_text = $(this).text();
     if (genre_text == genre) {
       let slotbox = $(this).closest('.slot_box');
-      let slot_label = slotbox.find('.slot__title');
       let current_index = slotbox.attr('data-index');
 
       let data = next_venue(current_index, new_venue_index);
@@ -640,7 +639,6 @@ function add_event_listeners() {
       return;
     } else {
       let slot = origin.closest('.slot_box');
-      let slot_label = origin.siblings('.slot__title');
       let current_index = parseInt(slot.attr('data-index'));
 
       let data = next_venue(current_index, current_index);
@@ -659,7 +657,6 @@ function add_event_listeners() {
       return;
     } else {
       let slot = origin.closest('.slot_box');
-      let slot_label = origin.siblings('.slot__title');
       let current_index = parseInt(slot.attr('data-index'));
 
       let data = previous_venue(current_index, current_index);
@@ -804,7 +801,7 @@ function build_venue_JSON(response) {
   } else if (response.popular !== undefined) {
     opening_times = response.popular.timeframes;
   } else {
-    opening_times = 'No opening times were found for this venue'
+    opening_times = 'No opening times were found for this venue';
   }
 
   venue_information.times = [];
@@ -935,7 +932,7 @@ function build_venue(venue_info) {
   //add link to the foursquare attribution
   $('.foursquare-attribution').attr('href', venue_info.foursquare);
 
-  let categories = venue_info.categories
+  let categories = venue_info.categories;
   let category_list = container.children('.venue__categories').children('ul');
   category_list.empty();
 
