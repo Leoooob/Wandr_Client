@@ -371,23 +371,36 @@ function update_travel(instructions_div, travel_JSON) {
   travel_JSON.forEach(function(element) {
     //get the first key in the object, this is always the mode of transport
     let key = Object.keys(element)[0];
-    let everything_else = element[key][0].legs[0].steps;
-    let journey_duration = element[key][0].legs[0].duration.text;
-    let steps = [];
+    let everything_else;
+    let exception = element[key][0];
+    //console.log(exception);
+    if (exception === undefined) {
+      //console.log('undefined');
+      let journey = {
+        'mode': key,
+        'journey_time': 'N/A',
+        'steps': ['No travel details could be found']
+      };
 
-    everything_else.forEach(function(element) {
-      let step = element.html_instructions + ' (' + element.distance.text + ')';
-      steps.push(step);
-    });
-
-    if (key == 'bicycling') key = 'cycling';
-    let journey = {
-      'mode': key,
-      'journey_time': journey_duration,
-      'steps': steps
-    };
-    travel.push(journey);
+      travel.push(journey);
+    } else {
+      everything_else = element[key][0].legs[0].steps;
+      let journey_duration = element[key][0].legs[0].duration.text;
+      let steps = [];
+      everything_else.forEach(function(element) {
+        let step = element.html_instructions + ' (' + element.distance.text + ')';
+        steps.push(step);
+      });
+        if (key == 'bicycling') key = 'cycling';
+      let journey = {
+        'mode': key,
+        'journey_time': journey_duration,
+        'steps': steps
+      };
+      travel.push(journey);
+    }
   });
+  console.log(travel);
 
   //empty instructions before updating with new ones
   $(instructions_div).empty();
@@ -445,7 +458,7 @@ function get_all_travel() {
           update_travel(instructions_div, response);
         },
         error: function(error) {
-          console.log('Error: ' + error);
+          console.log(error);
         }
       });
     }
@@ -658,6 +671,8 @@ function add_event_listeners() {
     let origin_div = $(this);
     let new_mode = this.value.toLowerCase();
     if (new_mode == 'public transport') new_mode = 'transit';
+    if (new_mode == 'cycling') new_mode = 'bicycling';
+    console.log('new_mode: ' + new_mode)
 
     let travel_time_div = origin_div.siblings('.travel__time');
     let travel_instruction_div = origin_div.parent('.travel').siblings('.travel__instructions');
