@@ -1,13 +1,16 @@
 'use strict';
 
+var venues = {};
 var used_venues = [];
 var venue_information = {};
-var venues = {};
+var drag_src_element = null;
 var original_venues_length = 0;
+
 if (localStorage.getItem('venue_data') !== null) {
   venues = JSON.parse(localStorage.getItem('venue_data'));
   original_venues_length = venues.venues.length;
 }
+
 const my_itinerary_container = document.getElementById('itinerary_container');
 
 function build_no_storage() {
@@ -325,6 +328,7 @@ function build_item_pill(venue_index) {
     new_item.className = 'slot_box';
     new_item.dataset.venueid = venues.venues[venue_index].id;
     new_item.dataset.index = venue_index;
+    new_item.draggable = "true";
 
     //set travel coords for later use
     let location = venues.venues[venue_index].location;
@@ -484,6 +488,8 @@ function count_pins() {
 
   if (count === 5) {
     get_all_travel();
+    var slots = document.querySelectorAll('#itinerary_container .slot_box');
+    [].forEach.call(slots, remove_DND_listeners);
     display = 'inline-flex';
   } else {
     display = 'none';
@@ -524,7 +530,7 @@ function set_genre_position(genre, new_venue_index) {
       let slot_label = slotbox.find('.slot__title');
       let current_index = slotbox.attr('data-index');
 
-      let data = next_venue(current_index, new_venue_index, coords);
+      let data = next_venue(current_index, new_venue_index);
       update_slotbox(data, slotbox);
     }
   });
@@ -581,11 +587,14 @@ function send_location(genre) {
 
 function add_event_listeners() {
   $('#trip_input').on('keyup', function(event) {
+    event.stopImmediatePropagation();
+    
     let key = event.keyCode | event.which;
     if (key === 13) edit_itinerary_name();
   });
 
   $('.slot__genre-button').on('click', function(event) {
+    event.stopImmediatePropagation();
     if (event)  event.preventDefault();
 
     let origin = $(this);
@@ -602,6 +611,7 @@ function add_event_listeners() {
   });
 
   $('.slot__right-arrow').on('click', function(event) {
+    event.stopImmediatePropagation();
     if (event)  event.preventDefault();
 
     let origin = $(this);
@@ -620,6 +630,7 @@ function add_event_listeners() {
   });
 
   $('.slot__left-arrow').on('click', function(event) {
+    event.stopImmediatePropagation();
     if (event)  event.preventDefault();
 
     let origin = $(this);
@@ -638,6 +649,7 @@ function add_event_listeners() {
   });
 
   $('.slot__pin-button').on('click', function(event) {
+    event.stopImmediatePropagation();
     if (event)  event.preventDefault();
 
     let origin_div = $(this);
@@ -658,6 +670,8 @@ function add_event_listeners() {
   });
 
   $('.genre_list li').on('click', function() {
+    event.stopImmediatePropagation();
+    
     let origin_div = $(this);
     let item_text = origin_div.children('div').text();
     let parent_div = origin_div.parent();
@@ -668,6 +682,8 @@ function add_event_listeners() {
   });
 
   $('.travel__mode').on('change', function() {
+    event.stopImmediatePropagation();
+    
     let origin_div = $(this);
     let new_mode = this.value.toLowerCase();
     if (new_mode == 'public transport') new_mode = 'transit';
@@ -685,6 +701,8 @@ function add_event_listeners() {
   });
 
   $('.travel__node').on('click', function() {
+    event.stopImmediatePropagation();
+    
     let origin_div = $(this);
     let parent_div = origin_div.closest('.slot_box');
 
@@ -698,6 +716,8 @@ function add_event_listeners() {
   });
 
   $('.slot__title').on('click', function() {
+    event.stopImmediatePropagation();
+    
     let modal = $('#venue_info');
     if (modal.css('display') == 'none') {
       let origin_div = $(this);
@@ -710,13 +730,20 @@ function add_event_listeners() {
   });
 
   $('.modal-close').on('click', function() {
+    event.stopImmediatePropagation();
+    
     $('#venue_info').hide();
   });
 
   $(document).on('keyup', function(event) {
+    event.stopImmediatePropagation();
+    
     let key = event.keyCode;
     if (key === 27) $('.modal-close').click();
   });
+  
+  var slots = document.querySelectorAll('#itinerary_container .slot_box');
+  [].forEach.call(slots, add_DND_listeners);
 }
 
 function update_instructions(instructions_div, transport_mode) {
@@ -955,4 +982,61 @@ function build_venue(venue_info) {
   
   let twitter_link = (venue_info.twitter != '/undefined') ? (venue_info.twitter) : ' N/A';
   build_venue_social(1, twitter_link);
+}
+
+/* DND event functions */
+function DND_drag_start(e) {
+  drag_src_element = this;
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/html', this.outerHTML);
+  this.classList.add('dragElem');
+}
+
+function DND_drag_over(e) {
+  if (e.preventDefault) e.preventDefault();
+  
+  this.classList.add('over');
+  e.dataTransfer.dropEffect = 'move';
+
+  return false;
+}
+
+function DND_drag_leave(e) {
+  this.classList.remove('over');
+}
+
+function DND_drop(e) {
+  if (e.stopPropagation)  e.stopPropagation();
+
+  if (drag_src_element != this) {
+    this.parentNode.removeChild(drag_src_element);
+    let drop_HTML = e.dataTransfer.getData('text/html');
+    this.insertAdjacentHTML('beforebegin', drop_HTML);
+  }
+  
+  this.classList.remove('dragElem');
+  this.classList.remove('over');
+  return false;
+}
+
+function DND_drag_end(e) {
+  this.classList.remove('over');
+  this.classList.remove('dragElem');
+  add_event_listeners();
+}
+
+function add_DND_listeners(element) {
+  element.addEventListener('dragstart', DND_drag_start, false);
+  element.addEventListener('dragover', DND_drag_over, false);
+  element.addEventListener('dragleave', DND_drag_leave, false);
+  element.addEventListener('drop', DND_drop, false);
+  element.addEventListener('dragend', DND_drag_end, false);
+}
+
+function remove_DND_listeners(element) {
+  element.removeEventListener('dragstart', DND_drag_start);
+  element.removeEventListener('dragover', DND_drag_over);
+  element.removeEventListener('dragleave', DND_drag_leave);
+  element.removeEventListener('drop', DND_drop);
+  element.removeEventListener('dragend', DND_drag_end);
 }
