@@ -120,6 +120,8 @@ function build_no_results() {
 }
 
 function build_itinerary() {
+  add_page_event_listeners();
+  
   if (localStorage.getItem('venue_data') === null || localStorage.getItem('location') === null) {
     console.log('no localstorage');
     let new_element = build_no_storage();
@@ -366,7 +368,7 @@ function edit_itinerary_name() {
 
   input.toggle();
   span.toggle();
-  if (input.css('display') != 'none')  input.focus();
+  if (input.css('display') != 'none') input.focus();
 }
 
 function update_travel(instructions_div, travel_JSON) {
@@ -377,9 +379,7 @@ function update_travel(instructions_div, travel_JSON) {
     let key = Object.keys(element)[0];
     let everything_else;
     let exception = element[key][0];
-    //console.log(exception);
     if (exception === undefined) {
-      //console.log('undefined');
       let journey = {
         'mode': key,
         'journey_time': 'N/A',
@@ -395,7 +395,9 @@ function update_travel(instructions_div, travel_JSON) {
         let step = element.html_instructions + ' (' + element.distance.text + ')';
         steps.push(step);
       });
-        if (key == 'bicycling') key = 'cycling';
+      
+      if (key == 'bicycling') key = 'cycling';
+      
       let journey = {
         'mode': key,
         'journey_time': journey_duration,
@@ -404,9 +406,7 @@ function update_travel(instructions_div, travel_JSON) {
       travel.push(journey);
     }
   });
-  console.log(travel);
 
-  //empty instructions before updating with new ones
   $(instructions_div).empty();
   //build all directions, hide all but walking and update the journey time
   update_travel_instructions(instructions_div, travel);
@@ -427,7 +427,7 @@ function update_travel_instructions(instructions_div, journeys) {
         } else return;
       } else return;
     }
-    //for each step in the journey, add it to the list
+    
     root.steps.forEach(function(element, index) {
       let li = document.createElement('li');
       {
@@ -486,16 +486,18 @@ function count_pins() {
     if (pin_value == 'true') count++;
   }
 
+  var slots = document.querySelectorAll('#itinerary_container .slot_box');
+  
   if (count === 5) {
     get_all_travel();
-    var slots = document.querySelectorAll('#itinerary_container .slot_box');
-    [].forEach.call(slots, remove_DND_listeners);
     display = 'inline-flex';
+    [].forEach.call(slots, remove_DND_listeners);
   } else {
     display = 'none';
     $('.travel__node').attr('src', './assets/travel-node.svg');
     if ($('.travel__mode')[0].selectedIndex !== 0)  $('.travel__mode')[0].selectedIndex = 0;
     if ($('.travel__instructions').css('display') !== 'none') $('.travel__instructions').css('display', display);
+    [].forEach.call(slots, add_DND_listeners);
   }
 
   $('.travel').css('display', display);
@@ -585,7 +587,7 @@ function send_location(genre) {
   }
 }
 
-function add_event_listeners() {
+function add_page_event_listeners() {
   $('#trip_input').on('keyup', function(event) {
     event.stopImmediatePropagation();
     
@@ -593,9 +595,26 @@ function add_event_listeners() {
     if (key === 13) edit_itinerary_name();
   });
 
+  $('.modal-close').on('click', function() {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+    
+    $('#venue_info').hide();
+  });
+
+  $(document).on('keyup', function(event) {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+    
+    let key = event.keyCode;
+    if (key === 27) $('.modal-close').click();
+  });
+}
+
+function add_event_listeners() {
   $('.slot__genre-button').on('click', function(event) {
     event.stopImmediatePropagation();
-    if (event)  event.preventDefault();
+    event.preventDefault();
 
     let origin = $(this);
     let pin_div = origin.closest('.slot');
@@ -612,7 +631,7 @@ function add_event_listeners() {
 
   $('.slot__right-arrow').on('click', function(event) {
     event.stopImmediatePropagation();
-    if (event)  event.preventDefault();
+    event.preventDefault();
 
     let origin = $(this);
     let pin_div = origin.closest('.slot');
@@ -631,7 +650,7 @@ function add_event_listeners() {
 
   $('.slot__left-arrow').on('click', function(event) {
     event.stopImmediatePropagation();
-    if (event)  event.preventDefault();
+    event.preventDefault();
 
     let origin = $(this);
     let pin_div = origin.closest('.slot');
@@ -650,7 +669,7 @@ function add_event_listeners() {
 
   $('.slot__pin-button').on('click', function(event) {
     event.stopImmediatePropagation();
-    if (event)  event.preventDefault();
+    event.preventDefault();
 
     let origin_div = $(this);
     let parent_div = origin_div.closest('.slot');
@@ -671,6 +690,7 @@ function add_event_listeners() {
 
   $('.genre_list li').on('click', function() {
     event.stopImmediatePropagation();
+    event.preventDefault();
     
     let origin_div = $(this);
     let item_text = origin_div.children('div').text();
@@ -688,7 +708,6 @@ function add_event_listeners() {
     let new_mode = this.value.toLowerCase();
     if (new_mode == 'public transport') new_mode = 'transit';
     if (new_mode == 'cycling') new_mode = 'bicycling';
-    console.log('new_mode: ' + new_mode)
 
     let travel_time_div = origin_div.siblings('.travel__time');
     let travel_instruction_div = origin_div.parent('.travel').siblings('.travel__instructions');
@@ -702,6 +721,7 @@ function add_event_listeners() {
 
   $('.travel__node').on('click', function() {
     event.stopImmediatePropagation();
+    event.preventDefault();
     
     let origin_div = $(this);
     let parent_div = origin_div.closest('.slot_box');
@@ -717,6 +737,7 @@ function add_event_listeners() {
 
   $('.slot__title').on('click', function() {
     event.stopImmediatePropagation();
+    event.preventDefault();
     
     let modal = $('#venue_info');
     if (modal.css('display') == 'none') {
@@ -727,19 +748,6 @@ function add_event_listeners() {
       venue_info(venue_id);
       modal.show();
     }
-  });
-
-  $('.modal-close').on('click', function() {
-    event.stopImmediatePropagation();
-    
-    $('#venue_info').hide();
-  });
-
-  $(document).on('keyup', function(event) {
-    event.stopImmediatePropagation();
-    
-    let key = event.keyCode;
-    if (key === 27) $('.modal-close').click();
   });
   
   var slots = document.querySelectorAll('#itinerary_container .slot_box');
