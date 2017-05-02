@@ -3,9 +3,10 @@
 var used_venues = [];
 var venue_information = {};
 var venues = {};
+var original_venues_length = 0;
 if (localStorage.getItem('venue_data') !== null) {
   venues = JSON.parse(localStorage.getItem('venue_data'));
-  const original_venues_length = venues.venues.length;
+  original_venues_length = venues.venues.length;
 }
 const my_itinerary_container = document.getElementById('itinerary_container');
 
@@ -499,7 +500,6 @@ function set_genre_position(genre, new_venue_index) {
   $('li.selected').children('div').each(function() {
     let genre_text = $(this).text();
     if (genre_text == genre) {
-
       let slotbox = $(this).closest('.slot_box');
       let slot_label = slotbox.find('.slot__title');
       let current_index = slotbox.attr('data-index');
