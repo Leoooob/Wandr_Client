@@ -157,9 +157,9 @@
     animation: frame_4 10s ease infinite; }
 
 .limitations_warning {
-  margin: 5px 10px;
+  margin: 5px auto;
+  max-width: 650px;
   padding-left: 5px;
-  /* border: 1px solid #f05f40; */
   border-radius: 5px; }
   .limitations_warning p {
     font-size: 1em;
