@@ -37,7 +37,6 @@ function build_no_storage() {
 }
 
 function next_venue(current_venue, current_position) {
-  //if exists in used_venues
   if (used_venues.indexOf(current_position) !== -1) {
     current_position++;
 
@@ -53,8 +52,10 @@ function next_venue(current_venue, current_position) {
 
     let id = venues.venues[current_position].id;
     let name = venues.venues[current_position].name;
+    let location = venues.venues[current_position].location;
+    let coords = location.lat + ',' + location.lng;
 
-    return [id, name, current_position]
+    return [id, name, current_position, coords]
   }
 }
 
@@ -75,8 +76,10 @@ function previous_venue(current_venue, current_position) {
 
     let id = venues.venues[current_position].id;
     let name = venues.venues[current_position].name;
+    let location = venues.venues[current_position].location;
+    let coords = location.lat + ',' + location.lng;
 
-    return [id, name, current_position]
+    return [id, name, current_position, coords]
   }
 }
 
@@ -508,7 +511,7 @@ function set_genre_position(genre, new_venue_index) {
       let slot_label = slotbox.find('.slot__title');
       let current_index = slotbox.attr('data-index');
 
-      let data = next_venue(current_index, new_venue_index);
+      let data = next_venue(current_index, new_venue_index, coords);
       update_slotbox(data, slotbox);
     }
   });
@@ -521,9 +524,11 @@ function update_slotbox(data, slotbox) {
   const venue_id = data[0];
   const venue_name = data[1];
   const new_index = data[2];
+  const coords = data[3];
 
   my_slotbox.attr('data-index', new_index);
   my_slotbox.attr('data-venueid', venue_id);
+  my_slotbox.attr('data-coords', coords);
   slot_label.text(venue_name);
 }
 
