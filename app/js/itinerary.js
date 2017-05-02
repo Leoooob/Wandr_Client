@@ -471,6 +471,7 @@ function count_pins() {
     display = 'inline-flex';
   } else {
     display = 'none';
+    $('.travel__node').attr('src', './assets/travel-node.svg');
     if ($('.travel__mode')[0].selectedIndex !== 0)  $('.travel__mode')[0].selectedIndex = 0;
     if ($('.travel__instructions').css('display') !== 'none') $('.travel__instructions').css('display', display);
   }
@@ -775,8 +776,8 @@ function build_venue_JSON(response) {
     });
   } else {
     let day_times = {
-      'days': 'No opening times were found',
-      'times': 'Sorry.'
+      'days': 'No opening times were found, sorry.',
+      'times': ''
     };
     venue_information.times.push(day_times);
   }
