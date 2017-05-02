@@ -840,6 +840,30 @@ function build_venue_openingtimes(element) {
   return li;
 }
 
+function build_venue_glyph(eq_no, img_src, text) {
+  let glyphs = $('.glyph-icon');
+  let tooltip_arrow = document.createElement('div');
+  tooltip_arrow.className = 'arrow';
+  
+  glyphs.eq(eq_no).children('img').attr('src', img_src);
+  glyphs.eq(eq_no).children('span').text(text);
+  glyphs.eq(eq_no).children('span').append(tooltip_arrow);
+}
+
+//media = 0 (facebook) or 1 (twitter), link = profile route ONLY
+function build_venue_social(media, link) {
+  let base_url = (media === 0) ? 'https://facebook.com' : 'https://www.twitter.com';
+  let hyperlink = (link === ' N/A') ? '#' : (base_url + link);
+  let a_tag = $('.social').eq(media).children('a');
+  a_tag.attr('href', hyperlink);
+  let label = a_tag.children('span');
+  label.contents().filter(function() {
+    return (this.nodeType === 3);
+  }).remove();
+  let text = document.createTextNode(' ' + link);
+  label.append(text);
+}
+
 //wrap this function call in a try-catch in case it cannot interpret some data and it ends up displaying stale info
 function build_venue(venue_info) {
   //add venue id as data role and check that before rebuilding the modal
@@ -906,33 +930,8 @@ function build_venue(venue_info) {
   build_venue_glyph(3, img_src, text);
   
   let facebook_link = (venue_info.facebook != '/undefined') ? (venue_info.facebook) : ' N/A';
-  console.log(facebook_link);
   build_venue_social(0, facebook_link);
   
   let twitter_link = (venue_info.twitter != '/undefined') ? (venue_info.twitter) : ' N/A';
   build_venue_social(1, twitter_link);
-}
-
-function build_venue_glyph(eq_no, img_src, text) {
-  let glyphs = $('.glyph-icon');
-  let tooltip_arrow = document.createElement('div');
-  tooltip_arrow.className = 'arrow';
-  
-  glyphs.eq(eq_no).children('img').attr('src', img_src);
-  glyphs.eq(eq_no).children('span').text(text);
-  glyphs.eq(eq_no).children('span').append(tooltip_arrow);
-}
-
-//media = 0 (facebook) or 1 (twitter), link = profile route ONLY
-function build_venue_social(media, link) {
-  let base_url = (media === 0) ? 'https://facebook.com' : 'https://www.twitter.com';
-  let hyperlink = (link === ' N/A') ? '#' : (base_url + link);
-  let a_tag = $('.social').eq(media).children('a');
-  a_tag.attr('href', hyperlink);
-  let label = a_tag.children('span');
-  label.contents().filter(function() {
-    return (this.nodeType === 3);
-  }).remove();
-  let text = document.createTextNode(' ' + link);
-  label.append(text);
 }
