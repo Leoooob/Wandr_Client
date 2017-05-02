@@ -228,6 +228,16 @@
     border-right: 10px solid transparent;
     border-top: 10px solid #333333; }
 
+/* draggable */
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element; }
+
 /* styles */
 .page-header {
   margin: 20px;
@@ -322,6 +332,10 @@
 
 .slot_box {
   list-style-type: none; }
+  .slot_box.dragElem {
+    opacity: 0.4; }
+  .slot_box.over {
+    border-top: 2px solid #ff4b14; }
   .slot_box .slot {
     display: flex;
     padding: 1rem;
