@@ -156,12 +156,12 @@
   .loading_animation .frame_4 {
     animation: frame_4 10s ease infinite; }
 
-.limitations_warning {
-  margin: 5px auto;
-  max-width: 650px;
-  padding-left: 5px;
-  border-radius: 5px; }
-  .limitations_warning p {
+aside .limitations_warning {
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  border-top: 1px solid #f06242; }
+  aside .limitations_warning p {
     font-size: 1em;
     text-align: center;
     font-family: "ClinicaPro-Regular"; }
