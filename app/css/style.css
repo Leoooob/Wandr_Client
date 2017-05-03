@@ -609,6 +609,10 @@ aside .limitations_warning {
   color: #f7f7f7;
   background: #f06242; }
 
+::-moz-selection {
+  color: #f7f7f7;
+  background: #f06242; }
+
 body {
   background-color: #f7f7f7; }
 
