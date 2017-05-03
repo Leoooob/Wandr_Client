@@ -605,6 +605,10 @@ aside .limitations_warning {
       width: 32px; }
 
 /* projet wide style rules */
+::selection {
+  color: #f7f7f7;
+  background: #f06242; }
+
 body {
   background-color: #f7f7f7; }
 

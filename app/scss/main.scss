@@ -12,6 +12,11 @@
   clear: both;
 }
 
+::selection {
+  color: $background-colour;
+  background: $primary-colour;
+}
+
 body {
   background-color: $background-colour;
 }
