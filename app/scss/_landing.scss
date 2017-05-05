@@ -191,10 +191,12 @@ aside {
 
     p {
       font-size: 1em;
+      margin: 10px 5px;
       text-align: center;
       font-family: $font-family;
       
       @media screen and (max-width: $mobile-w) {
+        margin: 5px;
         font-size: 12px;
       }
     }

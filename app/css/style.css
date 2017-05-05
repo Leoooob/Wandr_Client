@@ -174,10 +174,12 @@ aside .limitations_warning {
       display: inline-block; } }
   aside .limitations_warning p {
     font-size: 1em;
+    margin: 10px 5px;
     text-align: center;
     font-family: "ClinicaPro-Regular"; }
     @media screen and (max-width: 500px) {
       aside .limitations_warning p {
+        margin: 5px;
         font-size: 12px; } }
 
 /* import fonts and colours */
