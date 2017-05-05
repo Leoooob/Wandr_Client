@@ -124,6 +124,14 @@ function build_genre_menu() {
   let genre_menu = document.createElement('div');
   {
     genre_menu.className = 'genre_box';
+    
+    let cross_span = document.createElement('span');
+    {
+      cross_span.className = 'genre_close';
+      let text = document.createTextNode('\u02DF');
+      cross_span.appendChild(text);
+    }
+    genre_menu.appendChild(cross_span);
 
     let genre_list = document.createElement('ul');
     {
@@ -144,7 +152,6 @@ function build_genre_menu() {
 
           let genre_label = document.createElement('div');
           {
-            //genre_label.className = '';
             let text = document.createTextNode(element);
             genre_label.appendChild(text);
           }
@@ -585,6 +592,17 @@ function add_page_event_listeners() {
 }
 
 function add_event_listeners() {
+  $('.genre_close').on('click', function(event) {
+    console.log('click click mudafuka');
+    event.stopImmediatePropagation();
+    event.preventDefault();
+    
+    let origin = $(this);
+    let parent = origin.closest('.genre_box');
+    let genre_button = parent.siblings('.slot__genre-button');
+    genre_button.click();
+  });
+  
   $('.slot__genre-button').on('click', function(event) {
     event.stopImmediatePropagation();
     event.preventDefault();
