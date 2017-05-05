@@ -205,6 +205,13 @@ aside .limitations_warning {
   left: 55px;
   display: none;
   position: absolute; }
+  .genre_box .genre_close {
+    left: 4px;
+    z-index: 1;
+    top: -93px;
+    font-size: 1.5em;
+    position: absolute;
+    color: #333333; }
   .genre_box .genre_list {
     top: -94px;
     height: 70px;

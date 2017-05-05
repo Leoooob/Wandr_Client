@@ -7,6 +7,15 @@
   display: none;
   position: absolute;
   
+  .genre_close {
+    left: 4px;
+    z-index: 1;
+    top: -93px;
+    font-size: 1.5em;
+    position: absolute;
+    color: $dark-colour;
+  }
+  
   .genre_list {
     //top: -82px;
     top: -94px;
