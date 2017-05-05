@@ -6,37 +6,11 @@ var original_venues_length = 0;
 
 if (localStorage.getItem('venue_data') !== null) {
   venues = JSON.parse(localStorage.getItem('venue_data'));
-  original_venues_length = venues.venues.length;
+  
+  if (venues.venues !== undefined)  original_venues_length = venues.venues.length;
 }
 
 const my_itinerary_container = document.getElementById('itinerary_container');
-
-function build_no_storage() {
-  let new_element = document.createElement('div');
-  {
-    new_element.tabIndex = '1';
-    new_element.className = 'no_results';
-    {
-      let para = document.createElement('p');
-      {
-        let text = document.createTextNode("You don't have any itinerary data.. How did you get here?");
-        para.appendChild(text);
-      }
-      new_element.appendChild(para);
-      
-      var para_2 = document.createElement('p');
-      let a = document.createElement('a');
-      {
-        a.href = 'index.html';
-        let text = document.createTextNode('Go back to the landing page');
-        a.appendChild(text);
-      }
-      para_2.appendChild(a);
-      new_element.appendChild(para_2);
-    }
-  }
-  return new_element;
-}
 
 function next_venue(current_venue, current_position) {
   if (used_venues.indexOf(current_position) !== -1) {
@@ -101,7 +75,7 @@ function build_no_results() {
     {
       let para = document.createElement('p');
       {
-        let text = document.createTextNode("Sorry, we couldn't find anything for you to do here. You might be giving a location that is too specific.");
+        let text = document.createTextNode("Sorry, we couldn't find anything for you to do here. You might be giving a location that is too broad or too specific.");
         para.appendChild(text);
       }
       new_element.appendChild(para);
@@ -124,12 +98,12 @@ function build_itinerary() {
   
   if (localStorage.getItem('venue_data') === null || localStorage.getItem('location') === null) {
     console.log('no localstorage');
-    let new_element = build_no_storage();
-    my_itinerary_container.appendChild(new_element);
+    window.location.href = 'http://wandr.world/';
   } else if (venues.statusCode !== undefined || venues.venues.length === 0) {
     console.log('statuscode is wrong');
     let new_element = build_no_results();
     my_itinerary_container.appendChild(new_element);
+    localStorage.clear();
     return;
   } else {
     let itinerary_items = venues.venues.slice(0, 5);
