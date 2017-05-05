@@ -593,7 +593,6 @@ function add_page_event_listeners() {
 
 function add_event_listeners() {
   $('.genre_close').on('click', function(event) {
-    console.log('click click mudafuka');
     event.stopImmediatePropagation();
     event.preventDefault();
     
@@ -696,7 +695,7 @@ function add_event_listeners() {
     let origin_div = $(this);
     let new_mode = this.value.toLowerCase();
     if (new_mode == 'public transport') new_mode = 'transit';
-    if (new_mode == 'cycling') new_mode = 'bicycling';
+    //if (new_mode == 'cycling') new_mode = 'bicycling';
 
     let travel_time_div = origin_div.siblings('.travel__time');
     let travel_instruction_div = origin_div.parent('.travel').siblings('.travel__instructions');
@@ -986,7 +985,7 @@ function DND_drag_start(e) {
   drag_src_element = this;
   e.dataTransfer.effectAllowed = 'move';
   e.dataTransfer.setData('text/html', this.outerHTML);
-  this.classList.add('dragElem');
+  this.classList.add('drag');
 }
 
 function DND_drag_over(e) {
@@ -1011,14 +1010,14 @@ function DND_drop(e) {
     this.insertAdjacentHTML('beforebegin', drop_HTML);
   }
   
-  this.classList.remove('dragElem');
+  this.classList.remove('drag');
   this.classList.remove('over');
   return false;
 }
 
 function DND_drag_end(e) {
   this.classList.remove('over');
-  this.classList.remove('dragElem');
+  this.classList.remove('drag');
   add_event_listeners();
 }
 
