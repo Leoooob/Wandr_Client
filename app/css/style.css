@@ -381,7 +381,9 @@ aside .limitations_warning {
         opacity: 1; }
     .slot_box .slot__title {
       float: left;
-      flex-grow: 1; }
+      flex-grow: 1;
+      font-size: 1rem;
+      font-weight: normal; }
       @media screen and (max-width: 500px) {
         .slot_box .slot__title {
           font-size: 12px; } }

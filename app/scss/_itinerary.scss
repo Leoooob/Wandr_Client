@@ -182,6 +182,8 @@
     &__title {
       float: left;
       flex-grow: 1;
+      font-size: 1rem;
+      font-weight: normal;
 
       @media screen and (max-width: $mobile-w) {
         font-size: 12px;
@@ -291,4 +293,8 @@
   display: none;
   padding: 8px 0;
   font-size: 20px;
+}
+
+.drag {
+  
 }
