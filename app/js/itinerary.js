@@ -895,8 +895,8 @@ function build_venue_glyph(eq_no, img_src, img_alt, text) {
   tooltip_arrow.className = 'arrow';
   
   glyphs.eq(eq_no).children('img').attr('src', img_src).attr('alt', img_alt);
-  glyphs.eq(eq_no).children('span').text(text);
-  glyphs.eq(eq_no).children('span').append(tooltip_arrow);
+  glyphs.eq(eq_no).children().text(text);
+  glyphs.eq(eq_no).children().append(tooltip_arrow);
 }
 
 //media = 0 (facebook) or 1 (twitter), link = profile route ONLY
