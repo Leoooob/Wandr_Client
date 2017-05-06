@@ -147,6 +147,7 @@ function build_genre_menu() {
           let img = document.createElement('img');
           {
             img.src = file_path + element.toLowerCase() + file_extension;
+            img.alt = element + ' genre item';
           }
           genre_item.appendChild(img);
 
@@ -179,6 +180,7 @@ function build_arrow(direction) {
     {
       let img = document.createElement('img');
       img.src = './assets/arrow-' + direction + '.svg';
+      img.alt = direction + ' navigation arrow';
       a.appendChild(img);
     }
   }
@@ -193,6 +195,7 @@ function build_genre_button() {
     {
       let img = document.createElement('img');
       img.src = './assets/genre_32.svg';
+      img.alt = 'Genre menu open/close';
       a.appendChild(img);
     }
   }
@@ -200,7 +203,7 @@ function build_genre_button() {
 }
 
 function build_slot_title(title) {
-  let div = document.createElement('div');
+  let div = document.createElement('h2');
   {
     div.className = 'slot__title';
     let text = document.createTextNode(title);
@@ -218,6 +221,7 @@ function build_pin_slot() {
       let img = document.createElement('img');
       {
         img.src = './assets/pin-unfilled.svg';
+        img.alt = 'Pin icon';
       }
       a.appendChild(img);
 
@@ -283,6 +287,7 @@ function build_travel() {
     {
       travel_node.className = 'travel__node';
       travel_node.src = './assets/travel-node.svg';
+      travel_node.alt = 'Travel Node: Show travel instructions';
     }
     travel.appendChild(travel_node);
 
@@ -884,12 +889,12 @@ function build_venue_openingtimes(element) {
   return li;
 }
 
-function build_venue_glyph(eq_no, img_src, text) {
+function build_venue_glyph(eq_no, img_src, img_alt, text) {
   let glyphs = $('.glyph-icon');
   let tooltip_arrow = document.createElement('div');
   tooltip_arrow.className = 'arrow';
   
-  glyphs.eq(eq_no).children('img').attr('src', img_src);
+  glyphs.eq(eq_no).children('img').attr('src', img_src).attr('alt', img_alt);
   glyphs.eq(eq_no).children('span').text(text);
   glyphs.eq(eq_no).children('span').append(tooltip_arrow);
 }
@@ -955,23 +960,27 @@ function build_venue(venue_info) {
   
   let money = venue_info.glyphs.price.length;
   let img_src = './assets/venue_glyph/pound_glyph_' + money + '.svg';
+  let img_alt = 'Price glyph';
   let text = 'This is the price rating';
-  build_venue_glyph(0, img_src, text);
+  build_venue_glyph(0, img_src, img_alt, text);
 
   let creditcard = (venue_info.glyphs.creditcard == "Yes") ? '_yes' : '';
   img_src = './assets/venue_glyph/credit_card_glyph' + creditcard + '.svg';
+  img_alt = 'Credit card glyph';
   text = (creditcard.length > 0) ? 'Accepts creditcard' : 'Does not accept creditcard';
-  build_venue_glyph(1, img_src, text);
+  build_venue_glyph(1, img_src, img_alt, text);
 
   let wifi = (venue_info.glyphs.wifi == 'Free') ? '_yes' : '';
   img_src = './assets/venue_glyph/wifi_glyph' + wifi + '.svg';
+  img_alt = 'Free wi-fi glyph';
   text = (wifi.length > 0) ? 'Free wi-fi available' : 'No free wi-fi';
-  build_venue_glyph(2, img_src, text);
+  build_venue_glyph(2, img_src, img_alt, text);
 
   let outdoor = (venue_info.glyphs.outdoor == 'Yes') ? '_yes' : '';
   img_src = './assets/venue_glyph/outdoor_seating_glyph' + creditcard + '.svg';
+  img_alt = 'Outdoor seating glyph';
   text = (outdoor.length > 0) ? 'There is outdoor seating available' : 'There is no outdoor seating available';
-  build_venue_glyph(3, img_src, text);
+  build_venue_glyph(3, img_src, img_alt, text);
   
   let facebook_link = (venue_info.facebook != '/undefined') ? (venue_info.facebook) : ' N/A';
   build_venue_social(0, facebook_link);
