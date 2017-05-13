@@ -4,6 +4,7 @@ var venue_information = {};
 var drag_src_element = null;
 var original_venues_length = 0;
 
+//these two statements will catch null responses which usually mean that there is no venue information for that location
 if (localStorage.getItem('venue_data') !== null) {
   venues = JSON.parse(localStorage.getItem('venue_data'));
   
@@ -116,7 +117,6 @@ function build_itinerary() {
 
     //contains all event listeners for item pills
     add_event_listeners();
-    //create a function for each event listener and add them after creating the element?
   }
 }
 
@@ -382,6 +382,7 @@ function update_travel(instructions_div, travel_JSON) {
         steps.push(step);
       });
       
+      //cast the key so that it is consistent with label in the select element and 
       if (key == 'bicycling') key = 'cycling';
       
       let journey = {
@@ -399,7 +400,6 @@ function update_travel(instructions_div, travel_JSON) {
 }
 
 function update_travel_instructions(instructions_div, journeys) {
-  //journey array contains 4 elements (journeys)
   journeys.forEach(function(root) {
     instructions_div.setAttribute('data-' + root.mode, root.journey_time);
     let class_name = (root.mode == 'walking') ? root.mode : root.mode + ' hidden';
@@ -523,6 +523,7 @@ function set_genre_position(genre, new_venue_index) {
   });
 }
 
+//this function updates data-attributes for a slot box
 function update_slotbox(data, slotbox) {
   let my_slotbox = $(slotbox);
   let slot_label = my_slotbox.find('.slot__title');
@@ -673,7 +674,6 @@ function add_event_listeners() {
       pin_state = false;
     }
 
-    //if pinning the item, use Array.move to shift it into index 0-4 and then correct all indexes
     let pin_src = (!pin_state) ? "./assets/pin-unfilled.svg" :  "./assets/pin-filled.svg";
     origin_div.find('img').attr('src', pin_src);
     parent_div.attr('data-pinned', pin_state);
@@ -700,7 +700,6 @@ function add_event_listeners() {
     let origin_div = $(this);
     let new_mode = this.value.toLowerCase();
     if (new_mode == 'public transport') new_mode = 'transit';
-    //if (new_mode == 'cycling') new_mode = 'bicycling';
 
     let travel_time_div = origin_div.siblings('.travel__time');
     let travel_instruction_div = origin_div.parent('.travel').siblings('.travel__instructions');
