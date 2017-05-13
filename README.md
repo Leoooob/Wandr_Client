@@ -10,4 +10,4 @@ Once you've updated all development dependencies and have navigated to the Wandr
 NOTE: If you save an scss file with broken styles, you will need to re-run the gulp command above.
 
 # Putting the front-end into production
-When you are ready to push the site live, you only need to push the following files to your web server: `index.html`, `itinerary.html`, `css` folder and `js` folder.
+When you are ready to push the site live, you only need to push the following files to your web server: `index.html`, `itinerary.html`, `css` folder, `js` folder and `assets` folder.
