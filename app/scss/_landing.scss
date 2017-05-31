@@ -173,21 +173,11 @@ aside {
   .limitations_warning {
     left: 0;
     bottom: 0;
-    position: fixed;
+    margin-top: 5vh;
+    position: relative;
+    display: inline-block;
     background-color: $background-colour;
     border-top: 1px solid $primary-colour;
-    
-    @media screen and (max-width: $mobile-w) {
-      margin-top: 5vh;
-      position: relative;
-      display: inline-block;
-    }
-    
-    @media screen and (max-height: $mobile-h) {
-      margin-top: 5vh;
-      position: relative;
-      display: inline-block;
-    }
 
     p {
       font-size: 1em;

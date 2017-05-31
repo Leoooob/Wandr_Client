@@ -159,19 +159,11 @@
 aside .limitations_warning {
   left: 0;
   bottom: 0;
-  position: fixed;
+  margin-top: 5vh;
+  position: relative;
+  display: inline-block;
   background-color: #f7f7f7;
   border-top: 1px solid #f06242; }
-  @media screen and (max-width: 500px) {
-    aside .limitations_warning {
-      margin-top: 5vh;
-      position: relative;
-      display: inline-block; } }
-  @media screen and (max-height: 420px) {
-    aside .limitations_warning {
-      margin-top: 5vh;
-      position: relative;
-      display: inline-block; } }
   aside .limitations_warning p {
     font-size: 1em;
     margin: 10px 5px;
