@@ -695,8 +695,6 @@ function add_event_listeners() {
   });
 
   $('.travel__mode').on('change', function() {
-    event.stopImmediatePropagation();
-    
     let origin_div = $(this);
     let new_mode = this.value.toLowerCase();
     if (new_mode == 'public transport') new_mode = 'transit';
