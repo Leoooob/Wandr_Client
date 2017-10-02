@@ -159,8 +159,7 @@
 aside .limitations_warning {
   left: 0;
   bottom: 0;
-  margin-top: 5vh;
-  position: relative;
+  position: absolute;
   display: inline-block;
   background-color: #f7f7f7;
   border-top: 1px solid #f06242; }
@@ -172,7 +171,7 @@ aside .limitations_warning {
     @media screen and (max-width: 500px) {
       aside .limitations_warning p {
         margin: 5px;
-        font-size: 12px; } }
+        font-size: 0.75em; } }
 
 /* import fonts and colours */
 /* fonts */
@@ -621,7 +620,7 @@ aside .limitations_warning {
     .venue .social__brand {
       width: 32px; }
 
-/* projet wide style rules */
+/* project wide style rules */
 ::selection {
   color: #f7f7f7;
   background: #f06242; }

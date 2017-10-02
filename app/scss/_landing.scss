@@ -44,7 +44,7 @@
 .location-form {
   margin: 0;
   font-family: $font-family;
-  
+
   &__where-label {
     display: block;
     margin: 1rem auto;
@@ -52,7 +52,7 @@
     text-align: center;
     color: $dark-colour;
   }
-  
+
   &__where-input {
     width: 100%;
     display: block;
@@ -64,18 +64,18 @@
     border-radius: 3px;
     border: 1px solid $highlight-colour;
     background-color: $background-colour;
-    
+
     @media screen and (max-width: $mobile-h) {
       width: 95%;
     }
-    
+
     &:focus {
       outline: none;
       border-color: $primary-colour;
       box-shadow: 0 0 10px $primary-colour;
     }
   }
-  
+
   &__go-button {
     width: 120px;
     border: none;
@@ -88,17 +88,17 @@
     border-radius: 5px;
     color: $background-colour;
     background-color: $primary-colour;
-    
+
     @media screen and (max-width: $mobile-w) {
       margin: 5vh auto;
     }
-    
+
     &:hover, &:focus {
       outline: none;
       box-shadow: 0 0 10px $primary-colour;
       background-color: $highlight-colour;
     }
-    
+
     &.disabled {
       left: 0;
       right: 0;
@@ -123,7 +123,7 @@
     color: #f05f40;
     background: #f8f8f8;
     border: 1px solid #f06242;
-  
+
   &:hover, &:focus {
     outline: none;
     box-shadow: 0 0 10px $primary-colour;
@@ -173,8 +173,7 @@ aside {
   .limitations_warning {
     left: 0;
     bottom: 0;
-    margin-top: 5vh;
-    position: relative;
+    position: absolute;
     display: inline-block;
     background-color: $background-colour;
     border-top: 1px solid $primary-colour;
@@ -184,10 +183,10 @@ aside {
       margin: 10px 5px;
       text-align: center;
       font-family: $font-family;
-      
+
       @media screen and (max-width: $mobile-w) {
         margin: 5px;
-        font-size: 12px;
+        font-size: 0.75em;
       }
     }
   }

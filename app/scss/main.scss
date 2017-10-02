@@ -5,7 +5,7 @@
 @import '_modal';
 @import '_venue';
 
-/* projet wide style rules */
+/* project wide style rules */
 %clearfix:after {
   content: "";
   display: table;
@@ -32,7 +32,7 @@ body {
 
 .front-content {
   margin: 0 20px;
-  
+
   @media screen and (max-width: $mobile-w) {
     margin: 0 10px;
   }
@@ -40,21 +40,21 @@ body {
 
 .front-banner {
   position: relative;
-  
+
   h2 {
     color: $primary-colour;
     margin: 5px -10px;
   }
-  
+
   &__image {
     display: block;
     max-width: 500px;
     margin: 10vh auto;
-    
+
     @media (max-height: $mobile-h) {
       margin: 5vh auto;
     }
-    
+
     @media screen and (max-width: $mobile-w) {
       margin: 5vh auto;
     }
