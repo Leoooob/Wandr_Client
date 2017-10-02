@@ -41,6 +41,12 @@
 
 
 /* styles */
+.app-wrapper {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 90px;
+}
+
 .location-form {
   margin: 0;
   font-family: $font-family;
@@ -169,7 +175,8 @@ footer {
   .limitations_warning {
     left: 0;
     bottom: 0;
-    position: absolute;
+    height: 100px;
+    position: fixed;
     display: inline-block;
     background-color: $background-colour;
     border-top: 1px solid $primary-colour;
