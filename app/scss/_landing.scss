@@ -83,15 +83,11 @@
     display: block;
     cursor: pointer;
     font-size: 1.6rem;
-    margin: 10vh auto;
+    margin: 5vh auto;
     text-align: center;
     border-radius: 5px;
     color: $background-colour;
     background-color: $primary-colour;
-
-    @media screen and (max-width: $mobile-w) {
-      margin: 5vh auto;
-    }
 
     &:hover, &:focus {
       outline: none;
@@ -169,7 +165,7 @@
   }
 }
 
-aside {
+footer {
   .limitations_warning {
     left: 0;
     bottom: 0;

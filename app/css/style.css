@@ -94,14 +94,11 @@
     display: block;
     cursor: pointer;
     font-size: 1.6rem;
-    margin: 10vh auto;
+    margin: 5vh auto;
     text-align: center;
     border-radius: 5px;
     color: #f7f7f7;
     background-color: #f06242; }
-    @media screen and (max-width: 500px) {
-      .location-form__go-button {
-        margin: 5vh auto; } }
     .location-form__go-button:hover, .location-form__go-button:focus {
       outline: none;
       box-shadow: 0 0 10px #f06242;
@@ -156,20 +153,20 @@
   .loading_animation .frame_4 {
     animation: frame_4 10s ease infinite; }
 
-aside .limitations_warning {
+footer .limitations_warning {
   left: 0;
   bottom: 0;
   position: absolute;
   display: inline-block;
   background-color: #f7f7f7;
   border-top: 1px solid #f06242; }
-  aside .limitations_warning p {
+  footer .limitations_warning p {
     font-size: 1em;
     margin: 10px 5px;
     text-align: center;
     font-family: "ClinicaPro-Regular"; }
     @media screen and (max-width: 500px) {
-      aside .limitations_warning p {
+      footer .limitations_warning p {
         margin: 5px;
         font-size: 0.75em; } }
 
