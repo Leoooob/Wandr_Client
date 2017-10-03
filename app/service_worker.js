@@ -31,7 +31,7 @@ self.addEventListener('fetch', function(event) {
     })
     .catch(function (err) {
         // swallow error
-        
+
         //console.log(err.stack);
     })
   );
