@@ -41,12 +41,6 @@
 
 
 /* styles */
-.app-wrapper {
-  min-height: 100%;
-  position: relative;
-  padding-bottom: 90px;
-}
-
 .location-form {
   margin: 0;
   font-family: $font-family;
@@ -122,9 +116,9 @@
   font-size: 1rem;
   text-align: center;
   border-radius: 5px;
-    color: #f05f40;
-    background: #f8f8f8;
-    border: 1px solid #f06242;
+  color: #f05f40;
+  background: #f8f8f8;
+  border: 1px solid #f06242;
 
   &:hover, &:focus {
     outline: none;

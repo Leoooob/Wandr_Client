@@ -60,11 +60,6 @@
     opacity: 1; } }
 
 /* styles */
-.app-wrapper {
-  min-height: 100%;
-  position: relative;
-  padding-bottom: 90px; }
-
 .location-form {
   margin: 0;
   font-family: "ClinicaPro-Regular"; }
