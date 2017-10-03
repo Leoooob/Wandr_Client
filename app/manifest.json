@@ -1,0 +1,50 @@
+{
+    "author": "Leon Hassan",
+    "short_name": "Wandr",
+    "name": "Wandr, the procedural itinerary generator.",
+    "description": "Wandr will build you a customisable itinerary given a location.",
+    
+    "icons": [
+        {
+            "src": "/assets/static/favicon_16px.png",
+            "type": "image/png",
+            "sizes": "16x16"
+        },
+        {
+            "src": "/assets/static/favicon_32px.png",
+            "type": "image/png",
+            "sizes": "32x32"
+        },
+        {
+            "src": "/assets/static/favicon_64px.png",
+            "type": "image/png",
+            "sizes": "64x64"
+        },
+        {
+            "src": "/assets/static/favicon_96px.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "/assets/static/favicon_192px.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/assets/static/favicon_512px.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/?utm_source=homescreen",
+    
+    "background_color": "#f8f8f8",
+    "theme_color": "#ff4b15",
+    
+    "display": "standalone",
+    "manifest_version": 2,
+    "version": "1.0.1",
+    
+    "dir": "ltr",
+    "default_locale": "en"
+}

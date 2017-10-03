@@ -2,18 +2,22 @@
 <html>
 <head>
   <link rel="stylesheet" href="css/style.css" />
-  
+
   <meta charset="utf-8">
   <meta name="author" content="Leon Hassan">
   <meta name="theme-color" content="#f05f40">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Wandr, the procedural itinerary generator.">
-  
+
+  <link rel="icon" type="image/png" href="./assets/static/favicon_512px.png" sizes="512x512">
   <link rel="icon" type="image/png" href="./assets/static/favicon_192px.png" sizes="192x192">
   <link rel="icon" type="image/png" href="./assets/static/favicon_96px.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="./assets/static/favicon_64px.png" sizes="64x64">
   <link rel="icon" type="image/png" href="./assets/static/favicon_32px.png" sizes="32x32">
   <link rel="icon" type="image/png" href="./assets/static/favicon_16px.png" sizes="16x16">
-  
+
+  <link rel="manifest" href="/manifest.json">
+
   <title>Wandr</title>
 </head>
 
@@ -59,6 +63,18 @@
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh8xMvPeu7Y7hMcOBUA-lh4KhTYt2xUR8&libraries=places" async defer></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script>
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker
+               .register('/service_worker-v0.1.js')
+               .then(function() {
+                  console.log("Service Worker Registered");
+                })
+                .catch(function(err) {
+                  console.log(err.stack);
+                });
+    }
+  </script>
   <script src="js/landing.js" defer></script>
 </body>
 </html>
