@@ -2,7 +2,7 @@
 /* fonts */
 @font-face {
   font-family: 'ClinicaPro-Regular';
-  src: url("../assets/fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../assets/fonts/ClinicaPro-Regular-webfont.woff") format("woff");
+  src: url("../fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../fonts/ClinicaPro-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -12,7 +12,7 @@
 /* fonts */
 @font-face {
   font-family: 'ClinicaPro-Regular';
-  src: url("../assets/fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../assets/fonts/ClinicaPro-Regular-webfont.woff") format("woff");
+  src: url("../fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../fonts/ClinicaPro-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -175,7 +175,7 @@ footer .limitations_warning {
 /* fonts */
 @font-face {
   font-family: 'ClinicaPro-Regular';
-  src: url("../assets/fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../assets/fonts/ClinicaPro-Regular-webfont.woff") format("woff");
+  src: url("../fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../fonts/ClinicaPro-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -185,7 +185,7 @@ footer .limitations_warning {
 /* fonts */
 @font-face {
   font-family: 'ClinicaPro-Regular';
-  src: url("../assets/fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../assets/fonts/ClinicaPro-Regular-webfont.woff") format("woff");
+  src: url("../fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../fonts/ClinicaPro-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -450,7 +450,7 @@ footer .limitations_warning {
 /* fonts */
 @font-face {
   font-family: 'ClinicaPro-Regular';
-  src: url("../assets/fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../assets/fonts/ClinicaPro-Regular-webfont.woff") format("woff");
+  src: url("../fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../fonts/ClinicaPro-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -508,7 +508,7 @@ footer .limitations_warning {
 /* fonts */
 @font-face {
   font-family: 'ClinicaPro-Regular';
-  src: url("../assets/fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../assets/fonts/ClinicaPro-Regular-webfont.woff") format("woff");
+  src: url("../fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../fonts/ClinicaPro-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 

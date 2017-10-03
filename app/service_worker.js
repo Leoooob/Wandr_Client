@@ -2,13 +2,15 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('resources').then(function(cache) {
       return cache.addAll([
-        '/css/style.css',
+        '/build/css/style.css',
+        '/build/fonts/ClinicaPro-Regular-webfont.woff',
+        '/build/fonts/ClinicaPro-Regular-webfont.woff2',
         '/assets/brand/facebook.svg',
         '/assets/brand/foursquare.png',
         '/assets/brand/twitter.svg',
         '/assets/wandr-logo.svg',
-        '/assets/js/itinerary.js',
-        '/assets/js/landing.js',
+        '/js/itinerary.js',
+        '/js/landing.js',
         '/assets/arrow-left.svg',
         '/assets/arrow-right.svg',
         '/assets/edit_24.svg',
