@@ -7,7 +7,7 @@ var original_venues_length = 0;
 //these two statements will catch null responses which usually mean that there is no venue information for that location
 if (localStorage.getItem('venue_data') !== null) {
   venues = JSON.parse(localStorage.getItem('venue_data'));
-  
+
   if (venues.venues !== undefined)  original_venues_length = venues.venues.length;
 }
 
@@ -96,7 +96,7 @@ function build_no_results() {
 
 function build_itinerary() {
   add_page_event_listeners();
-  
+
   if (localStorage.getItem('venue_data') === null || localStorage.getItem('location') === null) {
     console.log('no localstorage');
     window.location.href = 'http://wandr.world/';
@@ -124,7 +124,7 @@ function build_genre_menu() {
   let genre_menu = document.createElement('div');
   {
     genre_menu.className = 'genre_box';
-    
+
     let cross_span = document.createElement('span');
     {
       cross_span.className = 'genre_close';
@@ -344,7 +344,7 @@ function edit_itinerary_name() {
   let span = $('span.summary_location');
   let input = $('.trip_name_input');
   let new_name = input.val();
-  
+
   if (new_name.length === 0) {
     new_name = localStorage.getItem('location');
   }
@@ -381,10 +381,10 @@ function update_travel(instructions_div, travel_JSON) {
         let step = element.html_instructions + ' (' + element.distance.text + ')';
         steps.push(step);
       });
-      
-      //cast the key so that it is consistent with label in the select element and 
+
+      //cast the key so that it is consistent with label in the select element and
       if (key == 'bicycling') key = 'cycling';
-      
+
       let journey = {
         'mode': key,
         'journey_time': journey_duration,
@@ -413,7 +413,7 @@ function update_travel_instructions(instructions_div, journeys) {
         } else return;
       } else return;
     }
-    
+
     root.steps.forEach(function(element, index) {
       let li = document.createElement('li');
       {
@@ -473,7 +473,7 @@ function count_pins() {
   }
 
   var slots = document.querySelectorAll('#itinerary_container .slot_box');
-  
+
   if (count === 5) {
     get_all_travel();
     display = 'inline-flex';
@@ -574,9 +574,17 @@ function send_location(genre) {
 }
 
 function add_page_event_listeners() {
+  $('#venue_info').on('click', function(e) {
+    if (e.target !== this) {
+      return;
+    } else {
+      $('.modal-close').click();
+    }
+  });
+
   $('#trip_input').on('keyup', function(event) {
     event.stopImmediatePropagation();
-    
+
     let key = event.keyCode | event.which;
     if (key === 13) edit_itinerary_name();
   });
@@ -584,14 +592,14 @@ function add_page_event_listeners() {
   $('.modal-close').on('click', function() {
     event.stopImmediatePropagation();
     event.preventDefault();
-    
+
     $('#venue_info').hide();
   });
 
   $(document).on('keyup', function(event) {
     event.stopImmediatePropagation();
     event.preventDefault();
-    
+
     let key = event.keyCode;
     if (key === 27) $('.modal-close').click();
   });
@@ -601,13 +609,13 @@ function add_event_listeners() {
   $('.genre_close').on('click', function(event) {
     event.stopImmediatePropagation();
     event.preventDefault();
-    
+
     let origin = $(this);
     let parent = origin.closest('.genre_box');
     let genre_button = parent.siblings('.slot__genre-button');
     genre_button.click();
   });
-  
+
   $('.slot__genre-button').on('click', function(event) {
     event.stopImmediatePropagation();
     event.preventDefault();
@@ -684,7 +692,7 @@ function add_event_listeners() {
   $('.genre_list li').on('click', function() {
     event.stopImmediatePropagation();
     event.preventDefault();
-    
+
     let origin_div = $(this);
     let item_text = origin_div.children('div').text();
     let parent_div = origin_div.parent();
@@ -712,7 +720,7 @@ function add_event_listeners() {
   $('.travel__node').on('click', function() {
     event.stopImmediatePropagation();
     event.preventDefault();
-    
+
     let origin_div = $(this);
     let parent_div = origin_div.closest('.slot_box');
 
@@ -728,7 +736,7 @@ function add_event_listeners() {
   $('.slot__title').on('click', function() {
     event.stopImmediatePropagation();
     event.preventDefault();
-    
+
     let modal = $('#venue_info');
     if (modal.css('display') == 'none') {
       let origin_div = $(this);
@@ -739,7 +747,7 @@ function add_event_listeners() {
       modal.show();
     }
   });
-  
+
   var slots = document.querySelectorAll('#itinerary_container .slot_box');
   [].forEach.call(slots, add_DND_listeners);
 }
@@ -890,7 +898,7 @@ function build_venue_glyph(eq_no, img_src, img_alt, text) {
   let glyphs = $('.glyph-icon');
   let tooltip_arrow = document.createElement('div');
   tooltip_arrow.className = 'arrow';
-  
+
   glyphs.eq(eq_no).children('img').attr('src', img_src).attr('alt', img_alt);
   glyphs.eq(eq_no).children().text(text);
   glyphs.eq(eq_no).children().append(tooltip_arrow);
@@ -954,7 +962,7 @@ function build_venue(venue_info) {
   }
 
   if (venue_info.glyphs.price === undefined)  venue_info.glyphs.price = '';
-  
+
   let money = venue_info.glyphs.price.length;
   let img_src = './assets/venue_glyph/pound_glyph_' + money + '.svg';
   let img_alt = 'Price glyph';
@@ -978,10 +986,10 @@ function build_venue(venue_info) {
   img_alt = 'Outdoor seating glyph';
   text = (outdoor.length > 0) ? 'There is outdoor seating available' : 'There is no outdoor seating available';
   build_venue_glyph(3, img_src, img_alt, text);
-  
+
   let facebook_link = (venue_info.facebook != '/undefined') ? (venue_info.facebook) : ' N/A';
   build_venue_social(0, facebook_link);
-  
+
   let twitter_link = (venue_info.twitter != '/undefined') ? (venue_info.twitter) : ' N/A';
   build_venue_social(1, twitter_link);
 }
@@ -996,7 +1004,7 @@ function DND_drag_start(e) {
 
 function DND_drag_over(e) {
   if (e.preventDefault) e.preventDefault();
-  
+
   this.classList.add('over');
   e.dataTransfer.dropEffect = 'move';
 
@@ -1015,7 +1023,7 @@ function DND_drop(e) {
     let drop_HTML = e.dataTransfer.getData('text/html');
     this.insertAdjacentHTML('beforebegin', drop_HTML);
   }
-  
+
   this.classList.remove('drag');
   this.classList.remove('over');
   return false;
