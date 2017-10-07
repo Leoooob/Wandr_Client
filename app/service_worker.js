@@ -2,7 +2,7 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('resources').then(function(cache) {
       return cache.addAll([
-        '/build/css/style.css',
+        '/build/css/style.min.css',
         '/build/fonts/ClinicaPro-Regular-webfont.woff',
         '/build/fonts/ClinicaPro-Regular-webfont.woff2',
         '/assets/brand/facebook.svg',

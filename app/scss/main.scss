@@ -49,14 +49,14 @@ body {
   &__image {
     display: block;
     max-width: 500px;
-    margin: 10vh auto;
+    margin: 0 auto 10vh;
 
-    @media (max-height: $mobile-h) {
-      margin: 5vh auto;
+    @media (max-height: $mobile-h){
+      margin: 0 auto 5vh;
     }
 
     @media screen and (max-width: $mobile-w) {
-      margin: 5vh auto;
+      margin: 0 auto 5vh;
     }
   }
 }

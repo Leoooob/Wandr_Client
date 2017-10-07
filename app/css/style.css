@@ -647,10 +647,10 @@ body {
   .front-banner__image {
     display: block;
     max-width: 500px;
-    margin: 10vh auto; }
+    margin: 0 auto 10vh; }
     @media (max-height: 420px) {
       .front-banner__image {
-        margin: 5vh auto; } }
+        margin: 0 auto 5vh; } }
     @media screen and (max-width: 500px) {
       .front-banner__image {
-        margin: 5vh auto; } }
+        margin: 0 auto 5vh; } }
