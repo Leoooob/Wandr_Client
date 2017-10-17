@@ -33,11 +33,11 @@
   &__bottom-row {
     padding: 5px;
     font-size: 20px;
-    
+
     @media screen and (max-width: $mobile-w) {
       font-size: 14px;
     }
-    
+
     .summary_location {
       float: left;
       padding: 8px 0;
@@ -49,7 +49,7 @@
     font-size: 20px;
     margin: 1ex auto;
     text-align: left;
-    
+
     @media screen and (max-width: $mobile-w) {
       margin: 0 auto;
       font-size: 14px;
@@ -59,7 +59,7 @@
   &__location {
     float: left;
     padding: 1rem 0;
-    
+
     @media screen and (max-width: $mobile-w) {
       padding: 0;
       margin-bottom: 10px;
@@ -78,9 +78,10 @@
 
     &__icon {
       width: 2rem;
+      height: 2rem;
       float: right;
     }
-    
+
     &__edit {
       margin-left: 10px;
     }
@@ -97,11 +98,11 @@
     color: $light-colour;
     font-family: $font-family;
     background-color: $dark-colour;
-    
+
     @media screen and (max-width: $mobile-w) {
       width: 120px;
     }
-    
+
     &:hover {
       opacity: 1;
       outline: none;
@@ -119,7 +120,7 @@
 .container {
   margin: 0 20px;
   text-align: center;
-  
+
   @media screen and (max-width: $mobile-w) {
     margin: 0;
   }
@@ -142,17 +143,17 @@
 
 .slot_box {
   list-style-type: none;
-  
-  
+
+
   &.dragElem {
     opacity: 0.4;
   }
-  
+
   &.over {
     //border: 2px dashed #000;
     border-top: 2px solid $highlight-colour;
   }
-  
+
   .slot {
     display: flex;
     padding: 1rem;
@@ -247,13 +248,13 @@
 .travel {
   display: none;
   //display: inline-flex;
-  
+
   &__mode {
     order: 1;
     font-size: 15px;
     line-height: 30px;
   }
-    
+
   select {
     &:focus {
       outline: none;
@@ -261,7 +262,7 @@
       box-shadow: 0 0 10px $primary-colour;
     }
   }
-  
+
   &__node {
     order: 2;
     width: 32px;
@@ -269,13 +270,13 @@
     margin: 0 15px;
     cursor: pointer;
   }
-  
+
   &__time {
     order: 3;
     font-size: 20px;
     line-height: 30px;
   }
-  
+
   &__instructions {
     display: none;
     max-width: 600px;
@@ -296,5 +297,5 @@
 }
 
 .drag {
-  
+
 }

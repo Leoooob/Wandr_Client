@@ -300,6 +300,7 @@ footer .limitations_warning {
       opacity: 1; }
     .summary__button__icon {
       width: 2rem;
+      height: 2rem;
       float: right; }
     .summary__button__edit {
       margin-left: 10px; }
@@ -616,7 +617,8 @@ footer .limitations_warning {
       .venue .social a span {
         display: block; }
     .venue .social__brand {
-      width: 32px; }
+      width: 32px;
+      height: 32px; }
 
 /* project wide style rules */
 ::selection {

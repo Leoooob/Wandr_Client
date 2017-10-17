@@ -12,7 +12,7 @@
   color: $dark-colour;
   text-decoration: none;
   font-family: $font-family;
-  
+
   span {
     img {
       width: 64px;
@@ -23,45 +23,45 @@
 
 .venue {
   text-align: justify;
-  
+
   h3 {
     width: 70%;
     margin: 5px 0;
     display: inline-block;
     word-wrap: break-word;
   }
-  
+
   h4 {
     margin-bottom: 0;
   }
-  
+
   a.url {
     width: 70%;
     display: inline-block;
     word-wrap: break-word;
   }
-  
+
   &__categories {
     ul {
       margin: 0;
       padding-left: 10px;
       column-count: 3;
-      
+
       li {
         margin-left: 10px;
       }
     }
   }
-  
+
   &__split {
     width: 100%;
     display: inline-flex;
   }
-  
+
   &__address {
     max-width: 50%;
     margin-right: 2em;
-    
+
     address {
       margin: 0;
       word-wrap: break-word;
@@ -69,39 +69,39 @@
       font-family: $font-family;
     }
   }
-  
+
   &__times {
     max-width: 50%;
-    
+
     ul {
       margin: 5px 0;
       padding-left: 0;
-      
+
       li {
         list-style-type: none;
       }
     }
   }
-  
+
   &__rating {
     margin-top: 10px;
   }
-  
+
   .glyph-icon {
     width: 64px;
     height: auto;
     margin: 5px 10px;
     position: relative;
-    
+
     &:hover, &:focus {
       cursor: help;
-      
+
       .glyph-icon__tooltip {
         opacity: 0.9;
         display: block;
       }
     }
-    
+
     &__tooltip {
       z-index: 1;
       opacity: 0;
@@ -116,7 +116,7 @@
       transition: opacity .6s;
       border: 1px solid $grey-colour;
       background-color: $background-colour;
-      
+
       .arrow {
         top: -10px;
         left: 50px;
@@ -127,32 +127,33 @@
       }
     }
   }
-  
+
   .social {
     margin: 0 auto;
     padding: 2px 5px;
     border-radius: 10px;
     border: 3px solid $primary-colour;
-    
+
     &:hover, &:focus {
       outline: none;
       border-color: $highlight-colour;
       box-shadow: 0 0 10px $highlight-colour;
     }
-    
+
     a {
       display: block;
       cursor: pointer;
       color: $dark-colour;
       text-decoration: none;
-      
+
       span {
         display: block;
       }
     }
-    
+
     &__brand {
       width: 32px;
+      height: 32px;
     }
   }
 }
