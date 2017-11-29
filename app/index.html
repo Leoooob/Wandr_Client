@@ -6,16 +6,25 @@
   <meta name="theme-color" content="#f05f40">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Wandr, the procedural itinerary generator.">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-
-  <link rel="stylesheet" href="build/css/style.min.css" defer />
-
   <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" sizes="96x96" href="./assets/static/favicon_96px.png">
-  <link rel="apple-touch-icon" sizes="192x192" href="./assets/static/favicon_192px.png">
-  <link rel="apple-touch-icon" sizes="512x512" href="./assets/static/favicon_512px.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Wandr">
+  <link rel="icon" sizes="192x192" href="./assets/static/favicon_192px.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Wandr">
+  <link rel="apple-touch-icon" href="images/touch/icon-192x192.png">
+
+  <!-- Tile for Win8 -->
+  <meta name="msapplication-TileColor" content="#f05f40">
+  <meta name="msapplication-TileImage" content="./assets/static/favicon_192px.png">
 
   <title>Wandr</title>
+  <link rel="stylesheet" href="build/css/style.min.css" />
 </head>
 
 <body onload="initialise_autocomplete();">
@@ -61,16 +70,21 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh8xMvPeu7Y7hMcOBUA-lh4KhTYt2xUR8&libraries=places" async defer></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous" defer></script>
   <script>
-    if('serviceWorker' in navigator) {
-      navigator.serviceWorker
-               .register('/service_worker.js')
-               .then(function() {
-                  console.log("Service Worker Registered");
-                })
-                .catch(function(err) {
-                  console.log(err.stack);
-                });
-    }
+    (function() {
+      'use strict';
+
+      if (!('serviceWorker' in navigator)) {
+        console.log('Service worker not supported');
+        return;
+      }
+      navigator.serviceWorker.register('/service_worker.js')
+      .then((registration) => {
+        console.log(`Registered at scope: ${registration.scope}`);
+      })
+      .catch((error) => {
+        console.log(`Registration failed: ${error}`);
+      });
+    })();
   </script>
   <script src="js/landing.js" defer></script>
 </body>
