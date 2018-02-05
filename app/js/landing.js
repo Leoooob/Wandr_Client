@@ -22,7 +22,6 @@ function initialise_autocomplete() {
 var location_sent = false;
 
 function submit_location() {
-  localStorage.clear();
   let location = document.getElementById('location_input').value;
   location_sent = true;
   swap_location_buttons();
@@ -33,7 +32,7 @@ function swap_location_buttons() {
   let submit_button = document.getElementById('submit_button');
   let skip_button = document.getElementById('skip_location_submit');
   let loading_div = document.getElementById('loading_div');
-  
+
   if (location_sent) {
     submit_button.style.display = 'none';
     if (skip_button !== null) skip_button.style.display = 'none';
@@ -47,8 +46,17 @@ function swap_location_buttons() {
 function send_location(location) {
   //let my_url = 'http://localhost:3000/api/location';
   let my_url = 'https://wandr-app.herokuapp.com/api/location';
-  
-  $.ajax({
+
+  //TODO: check response, if empty then stop the navigation. otherwise carry on and nuke the cache.
+  fetch(my_url).then((response) => {
+    localStorage.setItem('venue_data', JSON.stringify(response));
+    localStorage.setItem('location', location);
+    window.location.href = '/itinerary.html';
+  }).catch((error) => {
+    console.error(error);
+  });
+
+  /*$.ajax({
     url: my_url,
     type: 'GET',
     data: {
@@ -62,5 +70,5 @@ function send_location(location) {
     error: function(error) {
       console.log('Error: ' + error);
     }
-  });
+  });*/
 }
