@@ -22,6 +22,8 @@ function initialise_autocomplete() {
 var location_sent = false;
 
 function submit_location() {
+  //TODO: remove localStorage clearing
+  localStorage.clear();
   let location = document.getElementById('location_input').value;
   location_sent = true;
   swap_location_buttons();
