@@ -1,7 +1,7 @@
 /* import all other scss sheets */
 /* fonts */
 @font-face {
-  font-family: 'ClinicaPro-Regular';
+  font-family: "ClinicaPro-Regular";
   src: url("../fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../fonts/ClinicaPro-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
@@ -11,7 +11,7 @@
 /* import fonts and colours */
 /* fonts */
 @font-face {
-  font-family: 'ClinicaPro-Regular';
+  font-family: "ClinicaPro-Regular";
   src: url("../fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../fonts/ClinicaPro-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
@@ -174,7 +174,7 @@ footer .limitations_warning {
 /* import fonts and colours */
 /* fonts */
 @font-face {
-  font-family: 'ClinicaPro-Regular';
+  font-family: "ClinicaPro-Regular";
   src: url("../fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../fonts/ClinicaPro-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
@@ -184,7 +184,7 @@ footer .limitations_warning {
 /* import fonts and colours */
 /* fonts */
 @font-face {
-  font-family: 'ClinicaPro-Regular';
+  font-family: "ClinicaPro-Regular";
   src: url("../fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../fonts/ClinicaPro-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
@@ -450,7 +450,7 @@ footer .limitations_warning {
 /* import fonts and colours */
 /* fonts */
 @font-face {
-  font-family: 'ClinicaPro-Regular';
+  font-family: "ClinicaPro-Regular";
   src: url("../fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../fonts/ClinicaPro-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
@@ -508,7 +508,7 @@ footer .limitations_warning {
 /* import fonts and colours */
 /* fonts */
 @font-face {
-  font-family: 'ClinicaPro-Regular';
+  font-family: "ClinicaPro-Regular";
   src: url("../fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"), url("../fonts/ClinicaPro-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }

@@ -1,13 +1,13 @@
 /* fonts */
 @font-face {
-    font-family: 'ClinicaPro-Regular';
-    src: url('../fonts/ClinicaPro-Regular-webfont.woff2') format('woff2'),
-         url('../fonts/ClinicaPro-Regular-webfont.woff') format('woff');
+    font-family: "ClinicaPro-Regular";
+    src: url("../fonts/ClinicaPro-Regular-webfont.woff2") format("woff2"),
+         url("../fonts/ClinicaPro-Regular-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 
-$font-family: 'ClinicaPro-Regular';
+$font-family: "ClinicaPro-Regular";
 
 /* HSLA colours */
 $primary-colour: hsla(11%, 85%, 60%, 1);       //f05f40
