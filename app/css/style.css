@@ -640,6 +640,12 @@ body {
   @media screen and (max-width: 500px) {
     .front-content {
       margin: 0 10px; } }
+  .front-content h3 {
+    font-size: 2rem;
+    color: #f05f40;
+    text-align: center; }
+  .front-content .offline-link {
+    display: block; }
 
 .front-banner {
   position: relative; }

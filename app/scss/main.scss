@@ -36,6 +36,16 @@ body {
   @media screen and (max-width: $mobile-w) {
     margin: 0 10px;
   }
+
+  h3 {
+    font-size: 2rem;
+    color: #f05f40;
+    text-align: center;
+  }
+
+  .offline-link {
+    display: block;
+  }
 }
 
 .front-banner {
