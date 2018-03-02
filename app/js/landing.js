@@ -50,8 +50,6 @@ function send_location(location) {
   var my_url = new URL("https://wandr-app.herokuapp.com/api/location");
   my_url.searchParams.set("near", location);
 
-  let options = {method: "GET"};
-
   //@TODO: check response, if empty then stop the navigation. otherwise carry on and nuke the cache.
   fetch(my_url)
     .then((response) => response.json())
