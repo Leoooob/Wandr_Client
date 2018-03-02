@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(() => {
   if (localStorage.getItem("venue_data") !== null && localStorage.getItem("location") !== null) {
     let container = $(".front-content");
     let button = document.createElement("button");
@@ -47,16 +47,28 @@ function swap_location_buttons() {
 
 function send_location(location) {
   //let my_url = "http://localhost:3000/api/location";
-  let my_url = "https://wandr-app.herokuapp.com/api/location";
+  var my_url = new URL("https://wandr-app.herokuapp.com/api/location");
+  my_url.searchParams.set("near", location);
 
-  //TODO: check response, if empty then stop the navigation. otherwise carry on and nuke the cache.
-  fetch(my_url).then((response) => {
-    localStorage.setItem("venue_data", JSON.stringify(response));
-    localStorage.setItem("location", location);
-    window.location.href = "/itinerary.html";
-  }).catch((error) => {
-    console.error(error);
-  });
+  let options = {method: "GET"};
+
+  //@TODO: check response, if empty then stop the navigation. otherwise carry on and nuke the cache.
+  fetch(my_url)
+    .then((response) => response.json())
+    .then((response) => {
+      if (!response.venues.length) {
+        throw new Error("No venues were found for this location.");
+      }
+
+      return response;
+    })
+    //@TODO: do something in frontend with the below error
+    .catch((error) => console.error(error))
+    .then((response) => {
+      localStorage.setItem("venue_data", JSON.stringify(response));
+      localStorage.setItem("location", location);
+      window.location.href = "/itinerary.html";
+    });
 
   /*$.ajax({
     url: my_url,
