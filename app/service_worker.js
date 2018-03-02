@@ -1,4 +1,4 @@
-var cacheName = 'wandrAppShell';
+var cacheName = 'wandrAppShell-v0.1';
 
 var myCache = [
   '/',
@@ -48,8 +48,6 @@ self.addEventListener('fetch', (event) => {
             return response;
           });
         });
-        // shorthand of above
-        //return response || fetchAndCache(event.request);
       })
     );
   }
