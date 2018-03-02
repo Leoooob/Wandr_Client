@@ -1,4 +1,4 @@
-var cacheName = "wandrAppShell-v0.1";
+var cacheName = "wandrAppShell-v0.2";
 
 var myCache = [
   "/",
@@ -22,7 +22,8 @@ var myCache = [
   "/assets/refresh_32.svg",
   "/assets/reset_32.svg",
   "/assets/travel-node_active.svg",
-  "/assets/travel-node.svg"
+  "/assets/travel-node.svg",
+  "/offline-404.html"
 ];
 
 // cache the application shell
@@ -61,7 +62,7 @@ self.addEventListener("fetch", (event) => {
           }
         }).catch((error) => {
           console.error(error);
-          return caches.match("/offline.html");
+          return caches.match("/offline-404.html");
         });
       })
     );
