@@ -429,30 +429,28 @@ function get_all_travel() {
   let slot_box = $(".slot_box:lt(5)");
   let travel_ins = document.getElementsByClassName("travel__instructions");
 
-  for (let i = 0; i < 5; i++) {
-    if (i !== 4) {
-      let origin = slot_box[i].getAttribute("data-coords");
-      let destination = slot_box[i + 1].getAttribute("data-coords");
-      //let my_url = "http://localhost:3000/api/travel";
-      let my_url = "https://wandr-app.herokuapp.com/api/travel";
+  for (let i = 0; i < 4; i++) {
+    let origin = slot_box[i].getAttribute("data-coords");
+    let destination = slot_box[i + 1].getAttribute("data-coords");
 
-      $.ajax({
-        url: my_url,
-        type: "GET",
-        data: {
-          "origin": origin,
-          "destination": destination
-        },
-        success: function(response) {
-          let instructions_div = travel_ins[i];
-          update_travel(instructions_div, response);
-        },
-        error: function(error) {
-          console.log(error);
-        }
-      });
-    }
+    fetch_travel_info(origin, destination, travel_ins[i]);
   }
+}
+
+function fetch_travel_info(origin, destination, target_div) {
+  //let my_url = "http://localhost:3000/api/travel";
+  let my_url = new URL("https://wandr-app.herokuapp.com/api/travel");
+
+  my_url.searchParams.set("origin", origin);
+  my_url.searchParams.set("destination", destination);
+
+  fetch(my_url)
+    .then((response) => response.json())
+    .catch((error) => console.error(error))
+    .then((response) => {
+      let instructions_div = target_div;
+      update_travel(instructions_div, response);
+    });
 }
 
 function is_pinned(origin_div) {
@@ -544,32 +542,25 @@ function send_location(genre) {
     venues.venues.length = original_venues_length;
     set_genre_position(genre, 0);
   } else {
-    //let my_url = "http://localhost:3000/api/location";
-    let my_url = "https://wandr-app.herokuapp.com/api/location";
     let location = localStorage.getItem("location");
+    //let my_url = "http://localhost:3000/api/location";
+    let my_url = new URL("https://wandr-app.herokuapp.com/api/location");
 
-    $.ajax({
-      url: my_url,
-      type: "GET",
-      data: {
-        near: location,
-        genre: genre.toLowerCase()
-      },
-      success: function(response) {
-        //add new locations to the venue list
+    my_url.searchParams.set("near", location);
+    my_url.searchParams.set("genre", genre.toLowerCase());
+
+    fetch(my_url)
+      .then((response) => response.json())
+      .catch((error) => console.error(error))
+      .then((response) => {
         let new_index = add_genre_venues(response);
-
         if (new_index !== false) {
           //set position in venue index to new_index for genre item
           set_genre_position(genre, new_index);
         } else {
-          //do something to let the user know that there is nothing for this genre in this area
+          //@TODO: Add some kind of visual notification that there is nothing for this genre in the area.
         }
-      },
-      error: function(error) {
-        console.log("Error: " + error);
-      }
-    });
+      });
   }
 }
 
@@ -762,21 +753,15 @@ function update_instructions(instructions_div, transport_mode) {
 
 function venue_info(venue_id) {
   //let my_url = "http://localhost:3000/api/venue";
-  let my_url = "https://wandr-app.herokuapp.com/api/venue";
+  let my_url = new URL("https://wandr-app.herokuapp.com/api/venue");
+  my_url.searchParams.set("id", venue_id);
 
-  $.ajax({
-    url: my_url,
-    type: "GET",
-    data: {
-      id: venue_id
-    },
-    success: function(response) {
+  fetch(my_url)
+    .then((response) => response.json())
+    .catch((error) => console.error(error))
+    .then((response) => {
       build_venue_JSON(response);
-    },
-    error: function(error) {
-      console.log("Error: " + error);
-    }
-  });
+    });
 }
 
 function build_venue_JSON(response) {
@@ -795,7 +780,7 @@ function build_venue_JSON(response) {
 
   venue_information.address = response.location.formattedAddress; //this is an array, each element is a line of address
 
-  //opening times
+  //opening times, with graceful degradation
   let opening_times = "";
   if (response.hours !== undefined) {
     opening_times = response.hours.timeframes;
