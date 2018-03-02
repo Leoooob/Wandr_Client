@@ -55,7 +55,11 @@ function send_location(location) {
     .then((response) => response.json())
     .then((response) => {
       if (!response.venues.length) {
+        localStorage.clear();
         throw new Error("No venues were found for this location.");
+      } else {
+        localStorage.setItem("venue_data", JSON.stringify(response));
+        localStorage.setItem("location", location);
       }
 
       return response;
@@ -63,8 +67,6 @@ function send_location(location) {
     //@TODO: do something in frontend with the below error
     .catch((error) => console.error(error))
     .then((response) => {
-      localStorage.setItem("venue_data", JSON.stringify(response));
-      localStorage.setItem("location", location);
       window.location.href = "/itinerary.html";
     });
 
