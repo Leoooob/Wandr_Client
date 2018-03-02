@@ -645,7 +645,8 @@ body {
     color: #f05f40;
     text-align: center; }
   .front-content .offline-link {
-    display: block; }
+    display: block;
+    text-align: center; }
 
 .front-banner {
   position: relative; }
