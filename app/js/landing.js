@@ -22,8 +22,6 @@ function initialise_autocomplete() {
 var location_sent = false;
 
 function submit_location() {
-  //TODO: remove localStorage clearing
-  localStorage.clear();
   let location = document.getElementById("location_input").value;
   location_sent = true;
   swap_location_buttons();
@@ -50,7 +48,6 @@ function send_location(location) {
   var my_url = new URL("https://wandr-app.herokuapp.com/api/location");
   my_url.searchParams.set("near", location);
 
-  //@TODO: check response, if empty then stop the navigation. otherwise carry on and nuke the cache.
   fetch(my_url)
     .then((response) => response.json())
     .then((response) => {
@@ -64,25 +61,8 @@ function send_location(location) {
 
       return response;
     })
-    //@TODO: do something in frontend with the below error
     .catch((error) => console.error(error))
     .then((response) => {
       window.location.href = "/itinerary.html";
     });
-
-  /*$.ajax({
-    url: my_url,
-    type: "GET",
-    data: {
-      near: location
-    },
-    success: function(response) {
-      localStorage.setItem("venue_data", JSON.stringify(response));
-      localStorage.setItem("location", location);
-      window.location.href = "/itinerary.html";
-    },
-    error: function(error) {
-      console.log("Error: " + error);
-    }
-  });*/
 }
