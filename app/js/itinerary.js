@@ -498,7 +498,7 @@ function add_genre_venues(new_venues) {
       if (venues.venues.indexOf(element) == -1) {
         venues.venues.push(element);
       } else {
-        console.log(element.name + " already exists in our venue list");
+        console.error(element.name + " already exists in our venue list");
       }
     });
 
@@ -597,7 +597,7 @@ function add_page_event_listeners() {
 }
 
 function add_event_listeners() {
-  $(".genre_close").on("click", (event) => {
+  $(".genre_close").on("click", function(event) {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -607,7 +607,7 @@ function add_event_listeners() {
     genre_button.click();
   });
 
-  $(".slot__genre-button").on("click", (event) => {
+  $(".slot__genre-button").on("click", function(event) {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -624,7 +624,7 @@ function add_event_listeners() {
     }
   });
 
-  $(".slot__right-arrow").on("click", (event) => {
+  $(".slot__right-arrow").on("click", function(event) {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -642,7 +642,7 @@ function add_event_listeners() {
     }
   });
 
-  $(".slot__left-arrow").on("click", (event) => {
+  $(".slot__left-arrow").on("click", function(event) {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -660,7 +660,7 @@ function add_event_listeners() {
     }
   });
 
-  $(".slot__pin-button").on("click", (event) => {
+  $(".slot__pin-button").on("click", function(event) {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -680,7 +680,7 @@ function add_event_listeners() {
     //count the number of pinned items, if this is number of itinerary items display travel stuff
   });
 
-  $(".genre_list li").on("click", () => {
+  $(".genre_list li").on("click", function() {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -693,7 +693,7 @@ function add_event_listeners() {
     send_location(item_text);
   });
 
-  $(".travel__mode").on("change", () => {
+  $(".travel__mode").on("change", function() {
     let origin_div = $(this);
     let new_mode = this.value.toLowerCase();
     if (new_mode == "public transport") new_mode = "transit";
@@ -708,7 +708,7 @@ function add_event_listeners() {
     travel_time_div.text(journey_time);
   });
 
-  $(".travel__node").on("click", () => {
+  $(".travel__node").on("click", function() {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -724,7 +724,7 @@ function add_event_listeners() {
     }
   });
 
-  $(".slot__title").on("click", () => {
+  $(".slot__title").on("click", function() {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -978,7 +978,6 @@ function build_venue(venue_info) {
   let twitter_link = (venue_info.twitter != "/undefined") ? (venue_info.twitter) : " N/A";
   build_venue_social(1, twitter_link);
 }
-
 /* DND event functions */
 function DND_drag_start(e) {
   drag_src_element = this;
