@@ -108,7 +108,7 @@ function build_itinerary() {
     return;
   } else {
     let itinerary_items = venues.venues.slice(0, 5);
-    itinerary_items.forEach(function(element, index) {
+    itinerary_items.forEach((element, index) => {
       //start component builder
       build_item_pill(index);
       //add each venue index to the list
@@ -141,7 +141,7 @@ function build_genre_menu() {
       let file_path = "./assets/genre_glyph/";
       let file_extension = ".svg";
 
-      genres.forEach(function(element) {
+      genres.forEach((element) => {
         let genre_item = document.createElement("li");
         {
           let img = document.createElement("img");
@@ -275,7 +275,7 @@ function build_travel() {
       travel_select.className = "travel__mode";
       let modes = ["Walking", "Cycling", "Driving", "Public Transport"];
 
-      modes.forEach(function(element) {
+      modes.forEach((element) => {
         let option = document.createElement("option");
         option.text = element;
         travel_select.add(option);
@@ -360,7 +360,7 @@ function edit_itinerary_name() {
 function update_travel(instructions_div, travel_JSON) {
   //array of JSON, each element key = mode of transport, value = array (each element = part of journey)
   let travel = [];
-  travel_JSON.forEach(function(element) {
+  travel_JSON.forEach((element) => {
     //get the first key in the object, this is always the mode of transport
     let key = Object.keys(element)[0];
     let everything_else;
@@ -377,7 +377,7 @@ function update_travel(instructions_div, travel_JSON) {
       everything_else = element[key][0].legs[0].steps;
       let journey_duration = element[key][0].legs[0].duration.text;
       let steps = [];
-      everything_else.forEach(function(element) {
+      everything_else.forEach((element) => {
         let step = element.html_instructions + " (" + element.distance.text + ")";
         steps.push(step);
       });
@@ -400,7 +400,7 @@ function update_travel(instructions_div, travel_JSON) {
 }
 
 function update_travel_instructions(instructions_div, journeys) {
-  journeys.forEach(function(root) {
+  journeys.forEach((root) => {
     instructions_div.setAttribute("data-" + root.mode, root.journey_time);
     let class_name = (root.mode == "walking") ? root.mode : root.mode + " hidden";
 
@@ -414,7 +414,7 @@ function update_travel_instructions(instructions_div, journeys) {
       } else return;
     }
 
-    root.steps.forEach(function(element, index) {
+    root.steps.forEach((element, index) => {
       let li = document.createElement("li");
       {
         li.className = class_name;
@@ -491,7 +491,7 @@ function add_genre_venues(new_venues) {
   let original_length = venues.venues.length;
 
   if (new_venues.venues.length > 0) {
-    new_venues.venues.forEach(function(element) {
+    new_venues.venues.forEach((element) =>{
       //indexOf an object, is there a way to compare the name of
       //the object against the names of other objects?
       //http://stackoverflow.com/questions/201183/how-to-determine-equality-for-two-javascript-objects/16788517#16788517
@@ -509,7 +509,7 @@ function add_genre_venues(new_venues) {
 }
 
 function set_genre_position(genre, new_venue_index) {
-  $("li.selected").children("div").each(function() {
+  $("li.selected").children("div").each(() => {
     let genre_text = $(this).text();
     if (genre_text == genre) {
       let slotbox = $(this).closest(".slot_box");
@@ -565,7 +565,7 @@ function send_location(genre) {
 }
 
 function add_page_event_listeners() {
-  $("#venue_info").on("click", function(e) {
+  $("#venue_info").on("click",(e) => {
     if (e.target !== this) {
       return;
     } else {
@@ -573,21 +573,21 @@ function add_page_event_listeners() {
     }
   });
 
-  $("#trip_input").on("keyup", function(event) {
+  $("#trip_input").on("keyup", (event) => {
     event.stopImmediatePropagation();
 
     let key = event.keyCode | event.which;
     if (key === 13) edit_itinerary_name();
   });
 
-  $(".modal-close").on("click", function() {
+  $(".modal-close").on("click", () => {
     event.stopImmediatePropagation();
     event.preventDefault();
 
     $("#venue_info").hide();
   });
 
-  $(document).on("keyup", function(event) {
+  $(document).on("keyup", (event) => {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -597,7 +597,7 @@ function add_page_event_listeners() {
 }
 
 function add_event_listeners() {
-  $(".genre_close").on("click", function(event) {
+  $(".genre_close").on("click", (event) => {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -607,7 +607,7 @@ function add_event_listeners() {
     genre_button.click();
   });
 
-  $(".slot__genre-button").on("click", function(event) {
+  $(".slot__genre-button").on("click", (event) => {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -624,7 +624,7 @@ function add_event_listeners() {
     }
   });
 
-  $(".slot__right-arrow").on("click", function(event) {
+  $(".slot__right-arrow").on("click", (event) => {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -642,7 +642,7 @@ function add_event_listeners() {
     }
   });
 
-  $(".slot__left-arrow").on("click", function(event) {
+  $(".slot__left-arrow").on("click", (event) => {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -660,7 +660,7 @@ function add_event_listeners() {
     }
   });
 
-  $(".slot__pin-button").on("click", function(event) {
+  $(".slot__pin-button").on("click", (event) => {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -680,7 +680,7 @@ function add_event_listeners() {
     //count the number of pinned items, if this is number of itinerary items display travel stuff
   });
 
-  $(".genre_list li").on("click", function() {
+  $(".genre_list li").on("click", () => {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -693,7 +693,7 @@ function add_event_listeners() {
     send_location(item_text);
   });
 
-  $(".travel__mode").on("change", function() {
+  $(".travel__mode").on("change", () => {
     let origin_div = $(this);
     let new_mode = this.value.toLowerCase();
     if (new_mode == "public transport") new_mode = "transit";
@@ -708,7 +708,7 @@ function add_event_listeners() {
     travel_time_div.text(journey_time);
   });
 
-  $(".travel__node").on("click", function() {
+  $(".travel__node").on("click", () => {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -724,7 +724,7 @@ function add_event_listeners() {
     }
   });
 
-  $(".slot__title").on("click", function() {
+  $(".slot__title").on("click", () => {
     event.stopImmediatePropagation();
     event.preventDefault();
 
@@ -774,7 +774,7 @@ function build_venue_JSON(response) {
   let categories = response.categories;
   venue_information.categories = [];
 
-  categories.forEach(function(element) {
+  categories.forEach((element) => {
     venue_information.categories.push(element.name);
   });
 
@@ -896,7 +896,7 @@ function build_venue_social(media, link) {
   let a_tag = $(".social").eq(media).children("a");
   a_tag.attr("href", hyperlink);
   let label = a_tag.children("span");
-  label.contents().filter(function() {
+  label.contents().filter(() => {
     return (this.nodeType === 3);
   }).remove();
   let text = document.createTextNode(" " + link);
@@ -922,7 +922,7 @@ function build_venue(venue_info) {
   let category_list = container.children(".venue__categories").children("ul");
   category_list.empty();
 
-  categories.forEach(function(element) {
+  categories.forEach((element) => {
     let category = build_venue_category(element);
     category_list.append(category);
   });
@@ -934,7 +934,7 @@ function build_venue(venue_info) {
   let opening_times = $(".venue__times").children("ul");
   opening_times.empty();
 
-  venue_info.times.forEach(function(element) {
+  venue_info.times.forEach((element) => {
     let li = build_venue_openingtimes(element);
     opening_times.append(li);
   });
