@@ -793,14 +793,14 @@ function build_venue_JSON(response) {
   venue_information.times = [];
 
   if (opening_times != "No opening times were found for this venue") {
-    opening_times.forEach(function (element) {
+    opening_times.forEach((element) => {
       let days = element.days;
       if (days == "Today") {
         return;
       } else {
         let times_list = element.open;
         let times = [];
-        times_list.forEach(function (element) {
+        times_list.forEach((element) => {
           times.push(element.renderedTime);
         });
 
@@ -1015,9 +1015,9 @@ function cache_itinerary() {
 function cache_urls(urls) {
   const cache_name = localStorage.getItem("itinerary_name");
 
-  caches.open(cache_name).then((cache) => {
-    cache.addAll(urls);
-  }).catch((error) => console.error(error));
+  caches.open(cache_name)
+    .then((cache) => cache.addAll(urls))
+    .catch((error) => console.error(error));
 }
 
 /* DND event functions */
