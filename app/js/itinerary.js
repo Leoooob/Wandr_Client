@@ -978,6 +978,48 @@ function build_venue(venue_info) {
   let twitter_link = (venue_info.twitter != "/undefined") ? (venue_info.twitter) : " N/A";
   build_venue_social(1, twitter_link);
 }
+
+function cache_itinerary() {
+  let slot_box = $(".slot_box:lt(5)");
+  let travel_ins = document.getElementsByClassName("travel__instructions");
+  let urls =[];
+
+  for (let i = 0; i < 5; i++) {
+    let venue_index = slot_box[i].getAttribute("data-index");
+    let this_item = venues.venues.splice(venue_index, 1);
+    venues.venues.splice(i, 0, this_item[0]);
+
+
+    let venue_id = slot_box[i].getAttribute("data-venueid");
+    let venue_url = new URL("https://wandr-app.herokuapp.com/api/venue");
+    venue_url.searchParams.set("id", venue_id);
+    urls.push(venue_url.href);
+
+    if (i !== 4) {
+      let origin_venue = slot_box[i].getAttribute("data-coords");
+      let destination_venue = slot_box[i + 1].getAttribute("data-coords");
+      let travel_url = new URL("https://wandr-app.herokuapp.com/api/travel");
+
+      travel_url.searchParams.set("origin", origin_venue);
+      travel_url.searchParams.set("destination", destination_venue);
+
+      urls.push(travel_url.href);
+    }
+  }
+
+  cache_urls(urls);
+  localStorage.setItem("venue_data", JSON.stringify(venues));
+}
+
+// cache an array of urls
+function cache_urls(urls) {
+  const cache_name = localStorage.getItem("itinerary_name");
+
+  caches.open(cache_name).then((cache) => {
+    cache.addAll(urls);
+  }).catch((error) => console.error(error));
+}
+
 /* DND event functions */
 function DND_drag_start(e) {
   drag_src_element = this;
