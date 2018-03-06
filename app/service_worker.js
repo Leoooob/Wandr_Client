@@ -1,4 +1,4 @@
-var cacheName = "wandrAppShell-v0.2";
+var cacheName = "wandrAppShell-v0.3";
 
 var myCache = [
   "/",
@@ -72,6 +72,8 @@ self.addEventListener("fetch", (event) => {
 // delete outdated caches in the activate event listener
 self.addEventListener("activate", (event) => {
   var cacheWhitelist = [cacheName];
+  const itinerary = localStorage.getItem("itinerary_name");
+  if (itinerary !== null) cacheWhitelist.push(itinerary);
 
   event.waitUntil(
     caches.keys().then((cacheNames) => {
