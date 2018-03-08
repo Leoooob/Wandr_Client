@@ -480,8 +480,6 @@ footer .limitations_warning {
   background-color: black;
   background-color: rgba(0, 0, 0, 0.4); }
   .modal__content {
-    margin: auto;
-    max-width: 400px;
     border-radius: 10px;
     border: 1px solid #333333;
     background-color: #f7f7f7; }
@@ -489,7 +487,6 @@ footer .limitations_warning {
       width: 32px;
       float: right;
       cursor: pointer;
-      margin: 5px 10px;
       font-size: 28px;
       font-weight: bold; }
       .modal__content .modal-close:hover, .modal__content .modal-close:focus {
@@ -517,11 +514,8 @@ footer .limitations_warning {
 /* media query sizes */
 /* styles */
 .foursquare-attribution {
-  right: 0;
-  top: -15px;
   width: 75px;
   font-size: 14px;
-  position: absolute;
   text-align: center;
   color: #333333;
   text-decoration: none;
@@ -531,17 +525,19 @@ footer .limitations_warning {
     margin-top: 5px; }
 
 .venue {
-  text-align: justify; }
-  .venue h3 {
-    width: 70%;
-    margin: 5px 0;
-    display: inline-block;
-    word-wrap: break-word; }
+  text-align: justify;
+  display: grid;
+  grid-gap: 10px 0; }
+  .venue .grid_container {
+    display: grid;
+    grid-gap: 15px 10px;
+    grid-template-columns: auto max-content; }
+    .venue .grid_container .headings h3 {
+      margin: 0;
+      text-align: left; }
   .venue h4 {
-    margin-bottom: 0; }
+    margin: 0; }
   .venue a.url {
-    width: 70%;
-    display: inline-block;
     word-wrap: break-word; }
   .venue__categories ul {
     margin: 0;
@@ -550,25 +546,20 @@ footer .limitations_warning {
     .venue__categories ul li {
       margin-left: 10px; }
   .venue__split {
-    width: 100%;
-    display: inline-flex; }
-  .venue__address {
-    max-width: 50%;
-    margin-right: 2em; }
-    .venue__address address {
-      margin: 0;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-      font-family: "ClinicaPro-Regular"; }
-  .venue__times {
-    max-width: 50%; }
-    .venue__times ul {
-      margin: 5px 0;
-      padding-left: 0; }
-      .venue__times ul li {
-        list-style-type: none; }
-  .venue__rating {
-    margin-top: 10px; }
+    display: grid;
+    grid-gap: 0 5px;
+    grid-template-columns: auto auto; }
+    .venue__split__4 {
+      grid-template-columns: repeat(4, auto); }
+  .venue__address address {
+    word-wrap: break-word;
+    white-space: pre-line;
+    font-family: "ClinicaPro-Regular"; }
+  .venue__times ul {
+    margin: 5px 0;
+    padding-left: 0; }
+    .venue__times ul li {
+      list-style-type: none; }
   .venue .glyph-icon {
     width: 64px;
     height: auto;
@@ -602,6 +593,8 @@ footer .limitations_warning {
         border-right: 10px solid transparent; }
   .venue .social {
     margin: 0 auto;
+    width: max-content;
+    max-width: 100%;
     padding: 2px 5px;
     border-radius: 10px;
     border: 3px solid #f06242; }

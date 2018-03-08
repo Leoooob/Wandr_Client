@@ -1,124 +1,126 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <link rel="stylesheet" href="css/style.css" />
-  
+
   <meta name="author" content="Leon Hassan">
   <meta name="theme-color" content="#f05f40">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Wandr, the procedural itinerary generator.">
-  
+
   <link rel="icon" type="image/png" href="./assets/static/favicon_192px.png" sizes="192x192">
   <link rel="icon" type="image/png" href="./assets/static/favicon_96px.png" sizes="96x96">
   <link rel="icon" type="image/png" href="./assets/static/favicon_32px.png" sizes="32x32">
   <link rel="icon" type="image/png" href="./assets/static/favicon_16px.png" sizes="16x16">
-  
+
   <title>Wandr</title>
 </head>
 
 <body>
-<section class="front-content">
-  <header class="front-banner">
-    <h2>Venue Information</h2>
-    <a class="foursquare-attribution" href="http://foursquare.com/">
-      <span>
-        Open in Foursquare
-        <img class="brand" src="./assets/brand/foursquare.png" alt="Foursquare venue hyperlink">
-      </span>
-    </a>
-  </header>
+  <section class="front-content">
 
-  <div class="venue">
-    <h3>Nibsy's</h3>
-    <a href="http://www.nibsys.com">http://www.nibsys.com/</a>
-    <div class="venue__categories">
-      <h4>Categories:</h4>
-      <ul>
-        <li>Cafè</li>
-        <li>Coffee shop</li>
-      </ul>
-    </div>
-    <div class="venue__split">
-      <div class="venue__address">
-        <h4>Address:</h4>
-        <address>
-          26 Cross St.<br>
-          Reading,<br>
-          Berkshire.<br>
-          RG1 1SN.
-        </address>
+    <div class="venue">
+      <div class="grid_container">
+        <div class="headings">
+          <h3>Nibsy's</h3>
+          <a href="http://www.nibsys.com">http://www.nibsys.com/</a>
+        </div>
+        <a class="foursquare-attribution" href="http://foursquare.com/">
+          <span>
+            Open in Foursquare
+            <img class="brand" src="./assets/brand/foursquare.png" alt="Foursquare venue hyperlink">
+          </span>
+        </a>
       </div>
-      <div class="venue__times">
-        <h4>Opening Times:</h4>
+      <div class="venue__categories">
+        <h4>Categories:</h4>
         <ul>
-          <li>Tue-Fri: 8:30am-5:30pm</li>
-          <li>Sat: 9am-6pm</li>
-          <li>Sun: 10am-5pm</li>
+          <li>Cafè</li>
+          <li>Coffee shop</li>
         </ul>
       </div>
-    </div>
-     
-    <!--<div class="venue__pictures">
-      <img src="" alt="Picture of venue">
-    </div>-->
-    
-    <div class="venue__rating">
-      <strong>Rating</strong>: 7.1/10 (Rated by 19 people)
-    </div>
-    
-    <div class="venue__split">
-      <div class="glyph-icon">
-        <img src="./assets/venue_glyph/pound_glyph_1.svg" alt="venue pricing">
-        <!-- change tooltip depending on if the venue actually has the stuff or not -->
-        <span class="glyph-icon__tooltip">
-          This venue is cheap
-          <div class="arrow"></div>
-        </span>
+      <div class="venue__split">
+        <div class="venue__address">
+          <h4>Address:</h4>
+          <address>
+            26 Cross St.
+            <br> Reading,
+            <br> Berkshire.
+            <br> RG1 1SN.
+          </address>
+        </div>
+        <div class="venue__times">
+          <h4>Opening Times:</h4>
+          <ul>
+            <li>Tue-Fri: 8:30am-5:30pm</li>
+            <li>Sat: 9am-6pm</li>
+            <li>Sun: 10am-5pm</li>
+          </ul>
+        </div>
       </div>
-      <div class="glyph-icon">
-        <img src="./assets/venue_glyph/credit_card_glyph_yes.svg" alt="venue accepts creditcard">
-        <span class="glyph-icon__tooltip">
-          This venue accepts creditcard
-          <div class="arrow"></div>
-        </span>
-      </div>
-      <div class="glyph-icon">
-        <img src="./assets/venue_glyph/wifi_glyph_yes.svg" alt="free wifi">
-        <span class="glyph-icon__tooltip">
-          There is free wi-fi at this venue
-          <div class="arrow"></div>
-        </span>
-      </div>
-      <div class="glyph-icon">
-        <img src="./assets/venue_glyph/outdoor_seating_glyph.svg" alt="outdoor seating">
-        <span class="glyph-icon__tooltip">
-          There is no outdoor seating at this venue
-          <div class="arrow"></div>
-        </span>
-      </div>
-    </div>
-    
-    <div class="venue__split">
-      <div class="social">
-        <a href="https://www.facebook.com/nibsys">
-          <span>
-            <img class="social__brand" src="./assets/brand/facebook.svg" alt="Facebook logo">
-            /nibsys
-          </span>
-        </a>
-      </div>
-      <div class="social">
-        <a href="https://www.twitter.com/nibsysgf">
-          <span>
-            <img class="social__brand" src="./assets/brand/twitter.svg" alt="Twitter logo">
-            /nibsysgf
-          </span>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <!--<div class="venue__pictures">
+            <img src="" alt="Picture of venue">
+          </div>-->
+
+      <div class="venue__rating">
+        <strong>Rating</strong>: 7.1/10 (Rated by 19 people)
+      </div>
+
+      <div class="venue__split venue__split__4">
+        <div class="glyph-icon">
+          <img src="./assets/venue_glyph/pound_glyph_1.svg" alt="venue pricing">
+          <!-- change tooltip depending on if the venue actually has the stuff or not -->
+          <span class="glyph-icon__tooltip">
+            This venue is cheap
+            <div class="arrow"></div>
+          </span>
+        </div>
+        <div class="glyph-icon">
+          <img src="./assets/venue_glyph/credit_card_glyph_yes.svg" alt="venue accepts creditcard">
+          <span class="glyph-icon__tooltip">
+            This venue accepts creditcard
+            <div class="arrow"></div>
+          </span>
+        </div>
+        <div class="glyph-icon">
+          <img src="./assets/venue_glyph/wifi_glyph_yes.svg" alt="free wifi">
+          <span class="glyph-icon__tooltip">
+            There is free wi-fi at this venue
+            <div class="arrow"></div>
+          </span>
+        </div>
+        <div class="glyph-icon">
+          <img src="./assets/venue_glyph/outdoor_seating_glyph.svg" alt="outdoor seating">
+          <span class="glyph-icon__tooltip">
+            There is no outdoor seating at this venue
+            <div class="arrow"></div>
+          </span>
+        </div>
+      </div>
+
+      <div class="venue__split">
+        <div class="social">
+          <a href="https://www.facebook.com/nibsys">
+            <span>
+              <img class="social__brand" src="./assets/brand/facebook.svg" alt="Facebook logo"> /nibsys
+            </span>
+          </a>
+        </div>
+        <div class="social">
+          <a href="https://www.twitter.com/nibsysgf">
+            <span>
+              <img class="social__brand" src="./assets/brand/twitter.svg" alt="Twitter logo"> /nibsysgf
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
 </body>
+
 </html>

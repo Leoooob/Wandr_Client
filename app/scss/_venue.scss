@@ -3,11 +3,8 @@
 
 /* styles */
 .foursquare-attribution {
-  right: 0;
-  top: -15px;
   width: 75px;
   font-size: 14px;
-  position: absolute;
   text-align: center;
   color: $dark-colour;
   text-decoration: none;
@@ -23,21 +20,27 @@
 
 .venue {
   text-align: justify;
+  display: grid;
+  grid-gap: 10px 0;
 
-  h3 {
-    width: 70%;
-    margin: 5px 0;
-    display: inline-block;
-    word-wrap: break-word;
+  .grid_container {
+    display: grid;
+    grid-gap: 15px 10px;
+    grid-template-columns: auto max-content;
+
+    .headings {
+      h3 {
+        margin: 0;
+        text-align: left;
+      }
+    }
   }
 
   h4 {
-    margin-bottom: 0;
+    margin: 0;
   }
 
   a.url {
-    width: 70%;
-    display: inline-block;
     word-wrap: break-word;
   }
 
@@ -54,25 +57,24 @@
   }
 
   &__split {
-    width: 100%;
-    display: inline-flex;
+    display: grid;
+    grid-gap: 0 5px;
+    grid-template-columns: auto auto;
+
+    &__4 {
+      grid-template-columns: repeat(4, auto);
+    }
   }
 
   &__address {
-    max-width: 50%;
-    margin-right: 2em;
-
     address {
-      margin: 0;
       word-wrap: break-word;
-      white-space: pre-wrap;
+      white-space: pre-line;
       font-family: $font-family;
     }
   }
 
   &__times {
-    max-width: 50%;
-
     ul {
       margin: 5px 0;
       padding-left: 0;
@@ -81,10 +83,6 @@
         list-style-type: none;
       }
     }
-  }
-
-  &__rating {
-    margin-top: 10px;
   }
 
   .glyph-icon {
@@ -130,6 +128,8 @@
 
   .social {
     margin: 0 auto;
+    width: max-content;
+    max-width: 100%;
     padding: 2px 5px;
     border-radius: 10px;
     border: 3px solid $primary-colour;
