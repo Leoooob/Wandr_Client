@@ -97,9 +97,9 @@ function build_no_results() {
 function build_itinerary() {
   add_page_event_listeners();
 
-  if (localStorage.getItem("venue_data") === null || localStorage.getItem("location") === null) {
+  if (localStorage.getItem("venue_data") === null || localStorage.getItem("venue_data") === "{}" || localStorage.getItem("location") === null) {
     console.log("no localstorage");
-    window.location.href = "http://wandr.world/";
+    window.location = "/";
   } else if (venues.statusCode !== undefined || venues.venues.length === 0) {
     console.log("statuscode is wrong");
     let new_element = build_no_results();
@@ -873,7 +873,12 @@ function build_venue_category(category_name) {
 function build_venue_openingtimes(element) {
   let li = document.createElement("li");
   {
-    let text = document.createTextNode(element.days + ": " + element.times);
+    let text = "";
+    if (element.times !== null) {
+      text = document.createTextNode(element.days + ": " + element.times);
+    } else {
+      text = document.createTextNode(element.days);
+    }
     li.appendChild(text);
   }
   return li;
@@ -896,7 +901,7 @@ function build_venue_social(media, link) {
   let a_tag = $(".social").eq(media).children("a");
   a_tag.attr("href", hyperlink);
   let label = a_tag.children("span");
-  label.contents().filter(() => {
+  label.contents().filter(function() {
     return (this.nodeType === 3);
   }).remove();
   let text = document.createTextNode(" " + link);
@@ -907,12 +912,13 @@ function build_venue_social(media, link) {
 function build_venue(venue_info) {
   //add venue id as data role and check that before rebuilding the modal
   let container = $("#venue_information");
-  container.children("h3").text(venue_info.name);
+  let headings_container = $(".grid_container .headings");
+  headings_container.children("h3").text(venue_info.name);
   let url = (venue_info.url !== undefined) ? venue_info.url : "No website available";
   if (url == "No website available") {
-    container.children("a").attr("href", "#").text(url);
+    headings_container.children("a").attr("href", "#").text(url);
   } else {
-    container.children("a").attr("href", url).text(url);
+    headings_container.children("a").attr("href", url).text(url);
   }
 
   //add link to the foursquare attribution
@@ -929,7 +935,7 @@ function build_venue(venue_info) {
 
   let address_element = container.find(".venue__address");
   address_element.children("address").empty();
-  address_element.children("address").text(venue_info.address.join("\n"));
+  address_element.children("address").text(venue_info.address.join(",\n"));
 
   let opening_times = $(".venue__times").children("ul");
   opening_times.empty();
@@ -1017,6 +1023,7 @@ function cache_urls(urls) {
 
   caches.open(cache_name)
     .then((cache) => cache.addAll(urls))
+    //@TODO: Add message toast or something to show caching is successful
     .catch((error) => console.error(error));
 }
 
