@@ -1,4 +1,4 @@
-var cacheName = "wandrAppShell-v0.3";
+var cacheName = "wandrAppShell-v0.4";
 
 var myCache = [
   "/",
@@ -17,6 +17,7 @@ var myCache = [
   "/assets/arrow-right.svg",
   "/assets/edit_24.svg",
   "/assets/genre_32.svg",
+  "/assets/download.svg",
   "/assets/pin-filled.svg",
   "/assets/pin-unfilled.svg",
   "/assets/refresh_32.svg",
@@ -72,8 +73,9 @@ self.addEventListener("fetch", (event) => {
 // delete outdated caches in the activate event listener
 self.addEventListener("activate", (event) => {
   var cacheWhitelist = [cacheName];
-  const itinerary = localStorage.getItem("itinerary_name");
-  if (itinerary !== null) cacheWhitelist.push(itinerary);
+  // web workers cannot access localStorage for security reasons
+  /*const itinerary = localStorage.getItem("itinerary_name");
+  if (itinerary !== null) cacheWhitelist.push(itinerary);*/
 
   event.waitUntil(
     caches.keys().then((cacheNames) => {
