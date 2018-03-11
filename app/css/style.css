@@ -480,6 +480,8 @@ footer .limitations_warning {
   background-color: black;
   background-color: rgba(0, 0, 0, 0.4); }
   .modal__content {
+    margin: auto;
+    max-width: 500px;
     border-radius: 10px;
     border: 1px solid #333333;
     background-color: #f7f7f7; }

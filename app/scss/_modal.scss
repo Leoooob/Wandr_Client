@@ -25,6 +25,8 @@
   background-color: rgba(0,0,0,0.4);
   
   &__content {
+    margin: auto;
+    max-width: 500px;
     border-radius: 10px;
     border: 1px solid $dark-colour;
     background-color: $background-colour;
