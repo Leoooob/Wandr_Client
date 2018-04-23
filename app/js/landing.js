@@ -14,11 +14,6 @@ $(document).ready(() => {
   }
 });
 
-function initialise_autocomplete() {
-    let input = document.getElementById("location_input");
-    let autocomplete = new google.maps.places.Autocomplete(input);
-}
-
 var location_sent = false;
 
 function submit_location() {
