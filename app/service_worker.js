@@ -1,4 +1,4 @@
-var cacheName = "wandrAppShell-v1";
+var cacheName = "wandrAppShell-v11-05";
 
 var myCache = [
   "/",
