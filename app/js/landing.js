@@ -12,9 +12,23 @@ $(document).ready(() => {
     }
     container.append(button);
   }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(setGeoLocation,geoLocationError);
+  }
 });
 
 var location_sent = false;
+
+function setGeoLocation(position) {
+  let coords = `${position.coords.latitude}, ${position.coords.longitude}`;
+  let location = document.getElementById("location_input");
+  location.value = coords;
+}
+
+function geoLocationError(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
 
 function submit_location() {
   let location = document.getElementById("location_input").value;
